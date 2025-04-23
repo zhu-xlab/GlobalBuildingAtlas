@@ -4,7 +4,9 @@
 In this project, we provide the level of detail 1 (LoD1) data of buildings across the globe.
 
 A overview of the dataset is illustrated bellow:
-[Overview](./figures/overview.png)
+
+<img src="figures/overview.png" width="800">
+
 
 ## Access to the Data
 ### Web Feature Service (WFS)
