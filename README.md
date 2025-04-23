@@ -16,3 +16,6 @@ Url: http://138.246.224.194:8088/geoserver/ows
 
 ### Web Viewer
 A web interface for viewing the data is available at [Web Viewer](http://138.246.224.194/)
+
+### Full Data Download
+The full data can be downloaded from [mediaTUM]()
