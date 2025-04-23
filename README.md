@@ -1,5 +1,8 @@
 # GlobalBuilding3D
 
+## Introduction
+In this project, we provide the level of detail 1 (LoD1) data of buildings across the globe.
+
 ## Access to the Data
 ### Web Feature Service (WFS)
 A WFS is provided so that one can access the data using other websites or GIS softwares such as QGIS and ArcGIS.
