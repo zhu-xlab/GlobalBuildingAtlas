@@ -1,0 +1,646 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started &mdash; Dataset4EO 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Prepare datasets" href="dataset_prepare.html" />
+  <link rel="prev" title="Prepare Datasets" href="prepare_data.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://dataset4eo.readthedocs.io/en/latest/"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO/blob/main/demo/dataset4eo_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                About
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/mmcv" target="_blank">
+                  <span class="dropdown-title">MMCV </span>
+                  <p>Foundational library for computer vision</p>
+                </a>
+              </div>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#using-multiple-mmselfsup-versions">Using multiple MMSelfSup versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_data.html">Prepare Datasets</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/0_config.html">Tutorial 0: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/1_new_dataset.html">Tutorial 1: Adding New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/2_data_pipeline.html">Tutorial 2: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/3_new_module.html">Tutorial 3: Adding New Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/4_schedule.html">Tutorial 4: Customize Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/5_runtime.html">Tutorial 5: Customize Runtime Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/6_benchmarks.html">Tutorial 6: Run Benchmarks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Getting Started</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="_sources/get_started.md.txt" rel="nofollow"><img src="_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#getting-started"><span class="std std-doc">Getting Started</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#train-existing-methods"><span class="std std-doc">Train existing methods</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#training-with-cpu"><span class="std std-doc">Training with CPU</span></a></p></li>
+<li><p><a class="reference internal" href="#train-with-single-multiple-gpus"><span class="std std-doc">Train with single/multiple GPUs</span></a></p></li>
+<li><p><a class="reference internal" href="#train-with-multiple-machines"><span class="std std-doc">Train with multiple machines</span></a></p></li>
+<li><p><a class="reference internal" href="#launch-multiple-jobs-on-a-single-machine"><span class="std std-doc">Launch multiple jobs on a single machine</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#benchmarks"><span class="std std-doc">Benchmarks</span></a></p></li>
+<li><p><a class="reference internal" href="#tools-and-tips"><span class="std std-doc">Tools and Tips</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#count-number-of-parameters"><span class="std std-doc">Count number of parameters</span></a></p></li>
+<li><p><a class="reference internal" href="#publish-a-model"><span class="std std-doc">Publish a model</span></a></p></li>
+<li><p><a class="reference internal" href="#use-t-sne"><span class="std std-doc">Use t-SNE</span></a></p></li>
+<li><p><a class="reference internal" href="#reproducibility"><span class="std std-doc">Reproducibility</span></a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>This page provides basic tutorials about the usage of MMSelfSup. For installation instructions, please see <a class="reference internal" href="install.html"><span class="doc std std-doc">install.md</span></a>.</p>
+<section id="train-existing-methods">
+<h2>Train existing methods<a class="headerlink" href="#train-existing-methods" title="Permalink to this heading">¶</a></h2>
+<p><strong>Note</strong>: The default learning rate in config files is for 8 GPUs. If using different number GPUs, the total batch size will change in proportion, you have to scale the learning rate following <code class="docutils literal notranslate"><span class="pre">new_lr</span> <span class="pre">=</span> <span class="pre">old_lr</span> <span class="pre">*</span> <span class="pre">new_ngpus</span> <span class="pre">/</span> <span class="pre">old_ngpus</span></code>. We recommend to use <code class="docutils literal notranslate"><span class="pre">tools/dist_train.sh</span></code> even with 1 gpu, since some methods do not support non-distributed training.</p>
+<section id="training-with-cpu">
+<h3>Training with CPU<a class="headerlink" href="#training-with-cpu" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span>-1
+python tools/train.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: We do not recommend users to use CPU for training because it is too slow and some algorithms are using <code class="docutils literal notranslate"><span class="pre">SyncBN</span></code> which is based on distributed training. We support this feature to allow users to debug on machines without GPU for convenience.</p>
+</section>
+<section id="train-with-single-multiple-gpus">
+<h3>Train with single/multiple GPUs<a class="headerlink" href="#train-with-single-multiple-gpus" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bash tools/dist_train.sh <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">GPUS</span><span class="si">}</span> --work-dir <span class="si">${</span><span class="nv">YOUR_WORK_DIR</span><span class="si">}</span> <span class="o">[</span>optional arguments<span class="o">]</span>
+</pre></div>
+</div>
+<p>Optional arguments are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--resume-from</span> <span class="pre">${CHECKPOINT_FILE}</span></code>: Resume from a previous checkpoint file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--deterministic</span></code>: Switch on “deterministic” mode which slows down training but the results are reproducible.</p></li>
+</ul>
+<p>An example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># checkpoints and logs saved in WORK_DIR=work_dirs/selfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k/</span>
+bash tools/dist_train.sh configs/selfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k.py <span class="m">8</span> --work-dir work_dirs/selfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k/
+</pre></div>
+</div>
+<p><strong>Note</strong>: During training, checkpoints and logs are saved in the same folder structure as the config file under <code class="docutils literal notranslate"><span class="pre">work_dirs/</span></code>. Custom work directory is not recommended since evaluation scripts infer work directories from the config file name. If you want to save your weights somewhere else, please use symlink, for example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ln -s <span class="si">${</span><span class="nv">YOUR_WORK_DIRS</span><span class="si">}</span> <span class="si">${</span><span class="nv">MMSELFSUP</span><span class="si">}</span>/work_dirs
+</pre></div>
+</div>
+<p>Alternatively, if you run MMSelfSup on a cluster managed with <a class="reference external" href="https://slurm.schedmd.com/">slurm</a>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS_PER_NODE</span><span class="o">=</span><span class="si">${</span><span class="nv">GPUS_PER_NODE</span><span class="si">}</span> <span class="nv">GPUS</span><span class="o">=</span><span class="si">${</span><span class="nv">GPUS</span><span class="si">}</span> <span class="nv">SRUN_ARGS</span><span class="o">=</span><span class="si">${</span><span class="nv">SRUN_ARGS</span><span class="si">}</span> bash tools/slurm_train.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">YOUR_WORK_DIR</span><span class="si">}</span> <span class="o">[</span>optional arguments<span class="o">]</span>
+</pre></div>
+</div>
+<p>An example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GPUS_PER_NODE</span><span class="o">=</span><span class="m">8</span> <span class="nv">GPUS</span><span class="o">=</span><span class="m">8</span> bash tools/slurm_train.sh Dummy Test_job configs/selfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k.py work_dirs/selfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k/
+</pre></div>
+</div>
+</section>
+<section id="train-with-multiple-machines">
+<h3>Train with multiple machines<a class="headerlink" href="#train-with-multiple-machines" title="Permalink to this heading">¶</a></h3>
+<p>If you launch with multiple machines simply connected with ethernet, you can simply run following commands:</p>
+<p>On the first machine:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">NNODES</span><span class="o">=</span><span class="m">2</span> <span class="nv">NODE_RANK</span><span class="o">=</span><span class="m">0</span> <span class="nv">PORT</span><span class="o">=</span><span class="nv">$MASTER_PORT</span> <span class="nv">MASTER_ADDR</span><span class="o">=</span><span class="nv">$MASTER_ADDR</span> bash tools/dist_train.sh <span class="nv">$CONFIG</span> <span class="nv">$GPUS</span>
+</pre></div>
+</div>
+<p>On the second machine:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">NNODES</span><span class="o">=</span><span class="m">2</span> <span class="nv">NODE_RANK</span><span class="o">=</span><span class="m">1</span> <span class="nv">PORT</span><span class="o">=</span><span class="nv">$MASTER_PORT</span> <span class="nv">MASTER_ADDR</span><span class="o">=</span><span class="nv">$MASTER_ADDR</span> bash tools/dist_train.sh <span class="nv">$CONFIG</span> <span class="nv">$GPUS</span>
+</pre></div>
+</div>
+<p>Usually it is slow if you do not have high speed networking like InfiniBand.</p>
+<p>If you launch with slurm, the command is the same as that on single machine described above, but you need refer to <a class="reference external" href="https://github.com/open-mmlab/mmselfsup/blob/master/tools/slurm_train.sh">slurm_train.sh</a> to set appropriate parameters and environment variables.</p>
+</section>
+<section id="launch-multiple-jobs-on-a-single-machine">
+<h3>Launch multiple jobs on a single machine<a class="headerlink" href="#launch-multiple-jobs-on-a-single-machine" title="Permalink to this heading">¶</a></h3>
+<p>If you launch multiple jobs on a single machine, e.g., 2 jobs of 4-GPU training on a machine with 8 GPUs, you need to specify different ports (29500 by default) for each job to avoid communication conflict.</p>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">dist_train.sh</span></code> to launch training jobs:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3 <span class="nv">PORT</span><span class="o">=</span><span class="m">29500</span> sh tools/dist_train.sh <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="m">4</span> --work-dir tmp_work_dir_1
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">4</span>,5,6,7 <span class="nv">PORT</span><span class="o">=</span><span class="m">29501</span> sh tools/dist_train.sh <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="m">4</span> --work-dir tmp_work_dir_2
+</pre></div>
+</div>
+<p>If you use launch training jobs with slurm, you have two options to set different communication ports:</p>
+<p>Option 1:</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">config1.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dist_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">&#39;nccl&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">29500</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">config2.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dist_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">&#39;nccl&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">29501</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then you can launch two jobs with config1.py and config2.py.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3 <span class="nv">GPUS</span><span class="o">=</span><span class="m">4</span> bash tools/slurm_train.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> config1.py tmp_work_dir_1
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">4</span>,5,6,7 <span class="nv">GPUS</span><span class="o">=</span><span class="m">4</span> bash tools/slurm_train.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> config2.py tmp_work_dir_2
+</pre></div>
+</div>
+<p>Option 2:</p>
+<p>You can set different communication ports without the need to modify the configuration file, but have to set the <code class="docutils literal notranslate"><span class="pre">cfg-options</span></code> to overwrite the default port in configuration file.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3 <span class="nv">GPUS</span><span class="o">=</span><span class="m">4</span> bash tools/slurm_train.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> config1.py tmp_work_dir_1 --cfg-options dist_params.port<span class="o">=</span><span class="m">29500</span>
+<span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">4</span>,5,6,7 <span class="nv">GPUS</span><span class="o">=</span><span class="m">4</span> bash tools/slurm_train.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> config2.py tmp_work_dir_2 --cfg-options dist_params.port<span class="o">=</span><span class="m">29501</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="benchmarks">
+<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading">¶</a></h2>
+<p>We also provide commands to evaluate your pre-trained model on several downstream task, and you can refer to <a class="reference internal" href="tutorials/6_benchmarks.html"><span class="doc std std-doc">Benchmarks</span></a> for the details.</p>
+</section>
+<section id="tools-and-tips">
+<h2>Tools and Tips<a class="headerlink" href="#tools-and-tips" title="Permalink to this heading">¶</a></h2>
+<section id="count-number-of-parameters">
+<h3>Count number of parameters<a class="headerlink" href="#count-number-of-parameters" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/analysis_tools/count_parameters.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span>
+</pre></div>
+</div>
+</section>
+<section id="publish-a-model">
+<h3>Publish a model<a class="headerlink" href="#publish-a-model" title="Permalink to this heading">¶</a></h3>
+<p>Before you publish a model, you may want to</p>
+<ul class="simple">
+<li><p>Convert model weights to CPU tensors.</p></li>
+<li><p>Delete the optimizer states.</p></li>
+<li><p>Compute the hash of the checkpoint file and append the hash id to the filename.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/model_converters/publish_model.py <span class="si">${</span><span class="nv">INPUT_FILENAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">OUTPUT_FILENAME</span><span class="si">}</span>
+</pre></div>
+</div>
+</section>
+<section id="use-t-sne">
+<h3>Use t-SNE<a class="headerlink" href="#use-t-sne" title="Permalink to this heading">¶</a></h3>
+<p>We provide an off-the-shelf tool to visualize the quality of image representations by t-SNE.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/analysis_tools/visualize_tsne.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> --checkpoint <span class="si">${</span><span class="nv">CKPT_PATH</span><span class="si">}</span> --work-dir <span class="si">${</span><span class="nv">WORK_DIR</span><span class="si">}</span> <span class="o">[</span>optional arguments<span class="o">]</span>
+</pre></div>
+</div>
+<p>Arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_FILE</span></code>: config file for the pre-trained model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CKPT_PATH</span></code>: the path of model’s checkpoint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WORK_DIR</span></code>: the directory to save the results of visualization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[optional</span> <span class="pre">arguments]</span></code>: for optional arguments, you can refer to <a class="reference external" href="https://github.com/open-mmlab/mmselfsup/blob/master/tools/analysis_tools/visualize_tsne.py">visualize_tsne.py</a></p></li>
+</ul>
+</section>
+<section id="mae-visualization">
+<h3>MAE Visualization<a class="headerlink" href="#mae-visualization" title="Permalink to this heading">¶</a></h3>
+<p>We provide a tool to visualize the mask and reconstruction image of MAE model.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/misc/mae_visualization.py <span class="si">${</span><span class="nv">IMG</span><span class="si">}</span> <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">CKPT_PATH</span><span class="si">}</span> --device <span class="si">${</span><span class="nv">DEVICE</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>参数:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IMG</span></code>: an image path used for visualization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG_FILE</span></code>: config file for the pre-trained model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CKPT_PATH</span></code>: the path of model’s checkpoint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEVICE</span></code>: device used for inference.</p></li>
+</ul>
+<p>An example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/misc/mae_visualization.py tests/data/color.jpg configs/selfsup/mae/mae_vit-base-p16_8xb512-coslr-400e_in1k.py mae_epoch_400.pth --device <span class="s1">&#39;cuda:0&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="reproducibility">
+<h3>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this heading">¶</a></h3>
+<p>If you want to make your performance exactly reproducible, please switch on <code class="docutils literal notranslate"><span class="pre">--deterministic</span></code> to train the final model to be published. Note that this flag will switch off <code class="docutils literal notranslate"><span class="pre">torch.backends.cudnn.benchmark</span></code> and slow down the training speed.</p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="dataset_prepare.html" class="btn btn-neutral float-right" title="Prepare datasets" accesskey="n"
+      rel="next">Next <img src="_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="prepare_data.html" class="btn btn-neutral" title="Prepare Datasets" accesskey="p"
+      rel="prev"><img src="_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#train-existing-methods">Train existing methods</a><ul>
+<li><a class="reference internal" href="#training-with-cpu">Training with CPU</a></li>
+<li><a class="reference internal" href="#train-with-single-multiple-gpus">Train with single/multiple GPUs</a></li>
+<li><a class="reference internal" href="#train-with-multiple-machines">Train with multiple machines</a></li>
+<li><a class="reference internal" href="#launch-multiple-jobs-on-a-single-machine">Launch multiple jobs on a single machine</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
+<li><a class="reference internal" href="#tools-and-tips">Tools and Tips</a><ul>
+<li><a class="reference internal" href="#count-number-of-parameters">Count number of parameters</a></li>
+<li><a class="reference internal" href="#publish-a-model">Publish a model</a></li>
+<li><a class="reference internal" href="#use-t-sne">Use t-SNE</a></li>
+<li><a class="reference internal" href="#mae-visualization">MAE Visualization</a></li>
+<li><a class="reference internal" href="#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="./"
+    src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://dataset4eo.readthedocs.io/en/latest/" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO/blob/main/demo/dataset4eo_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO" target="_blank">GitHub</a>
+          </li>
+          <li class="resources-mobile-menu-title" >
+            About
+          </li>
+          <ul class="resources-mobile-menu-items">
+            <li>
+              <a href="https://github.com/open-mmlab/mmcv" target="_blank">MMCV</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

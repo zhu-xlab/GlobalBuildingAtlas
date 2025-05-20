@@ -1,0 +1,565 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Prepare Datasets &mdash; Dataset4EO 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Getting Started" href="get_started.html" />
+  <link rel="prev" title="Prerequisites" href="install.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://dataset4eo.readthedocs.io/en/latest/"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO/blob/main/demo/dataset4eo_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                About
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/mmcv" target="_blank">
+                  <span class="dropdown-title">MMCV </span>
+                  <p>Foundational library for computer vision</p>
+                </a>
+              </div>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#using-multiple-mmselfsup-versions">Using multiple MMSelfSup versions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prepare Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/0_config.html">Tutorial 0: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/1_new_dataset.html">Tutorial 1: Adding New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/2_data_pipeline.html">Tutorial 2: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/3_new_module.html">Tutorial 3: Adding New Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/4_schedule.html">Tutorial 4: Customize Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/5_runtime.html">Tutorial 5: Customize Runtime Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/6_benchmarks.html">Tutorial 6: Run Benchmarks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Prepare Datasets</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prepare_data.md.txt" rel="nofollow"><img src="_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="prepare-datasets">
+<h1>Prepare Datasets<a class="headerlink" href="#prepare-datasets" title="Permalink to this heading">¶</a></h1>
+<p>MMSelfSup supports multiple datasets. Please follow the corresponding guidelines for data preparation. It is recommended to symlink your dataset root to <code class="docutils literal notranslate"><span class="pre">$MMSELFSUP/data</span></code>. If your folder structure is different, you may need to change the corresponding paths in config files.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#prepare-imagenet"><span class="std std-doc">Prepare ImageNet</span></a></p></li>
+<li><p><a class="reference internal" href="#prepare-place205"><span class="std std-doc">Prepare Place205</span></a></p></li>
+<li><p><a class="reference internal" href="#prepare-inaturalist2018"><span class="std std-doc">Prepare iNaturalist2018</span></a></p></li>
+<li><p><a class="reference internal" href="#prepare-pascal-voc"><span class="std std-doc">Prepare PASCAL VOC</span></a></p></li>
+<li><p><a class="reference internal" href="#prepare-cifar10"><span class="std std-doc">Prepare CIFAR10</span></a></p></li>
+<li><p><a class="reference internal" href="#prepare-datasets-for-detection-and-segmentation"><span class="std std-doc">Prepare datasets for detection and segmentation</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#detection"><span class="std std-doc">Detection</span></a></p></li>
+<li><p><a class="reference internal" href="#segmentation"><span class="std std-doc">Segmentation</span></a></p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mmselfsup
+├── mmselfsup
+├── tools
+├── configs
+├── docs
+├── data
+│   ├── imagenet
+│   │   ├── meta
+│   │   ├── train
+│   │   ├── val
+│   ├── places205
+│   │   ├── meta
+│   │   ├── train
+│   │   ├── val
+│   ├── inaturalist2018
+│   │   ├── meta
+│   │   ├── train
+│   │   ├── val
+│   ├── VOCdevkit
+│   │   ├── VOC2007
+│   ├── cifar
+│   │   ├── cifar-10-batches-py
+
+</pre></div>
+</div>
+<section id="prepare-imagenet">
+<h2>Prepare ImageNet<a class="headerlink" href="#prepare-imagenet" title="Permalink to this heading">¶</a></h2>
+<p>For ImageNet, it has multiple versions, but the most commonly used one is <a class="reference external" href="http://www.image-net.org/challenges/LSVRC/2012/">ILSVRC 2012</a>. It can be accessed with the following steps:</p>
+<ol class="arabic simple">
+<li><p>Register an account and login to the <a class="reference external" href="http://www.image-net.org/download-images">download page</a></p></li>
+<li><p>Find download links for ILSVRC2012 and download the following two files</p>
+<ul class="simple">
+<li><p>ILSVRC2012_img_train.tar (~138GB)</p></li>
+<li><p>ILSVRC2012_img_val.tar (~6.3GB)</p></li>
+</ul>
+</li>
+<li><p>Untar the downloaded files</p></li>
+<li><p>Download meta data using this <a class="reference external" href="https://github.com/BVLC/caffe/blob/master/data/ilsvrc12/get_ilsvrc_aux.sh">script</a></p></li>
+</ol>
+</section>
+<section id="prepare-place205">
+<h2>Prepare Place205<a class="headerlink" href="#prepare-place205" title="Permalink to this heading">¶</a></h2>
+<p>For Places205, you need to:</p>
+<ol class="arabic simple">
+<li><p>Register an account and login to the <a class="reference external" href="http://places.csail.mit.edu/downloadData.html">download page</a></p></li>
+<li><p>Download the resized images and the image list of train set and validation set of Places205</p></li>
+<li><p>Untar the downloaded files</p></li>
+</ol>
+</section>
+<section id="prepare-inaturalist2018">
+<h2>Prepare iNaturalist2018<a class="headerlink" href="#prepare-inaturalist2018" title="Permalink to this heading">¶</a></h2>
+<p>For iNaturalist2018, you need to:</p>
+<ol class="arabic simple">
+<li><p>Download the training and validation images and annotations from the <a class="reference external" href="https://github.com/visipedia/inat_comp/tree/master/2018">download page</a></p></li>
+<li><p>Untar the downloaded files</p></li>
+<li><p>Convert the original json annotation format to the list format using the script <code class="docutils literal notranslate"><span class="pre">tools/data_converters/convert_inaturalist.py</span></code></p></li>
+</ol>
+</section>
+<section id="prepare-pascal-voc">
+<h2>Prepare PASCAL VOC<a class="headerlink" href="#prepare-pascal-voc" title="Permalink to this heading">¶</a></h2>
+<p>Assuming that you usually store datasets in <code class="docutils literal notranslate"><span class="pre">$YOUR_DATA_ROOT</span></code>. The following command will automatically download PASCAL VOC 2007 into <code class="docutils literal notranslate"><span class="pre">$YOUR_DATA_ROOT</span></code>, prepare the required files, create a folder <code class="docutils literal notranslate"><span class="pre">data</span></code> under <code class="docutils literal notranslate"><span class="pre">$MMSELFSUP</span></code> and make a symlink <code class="docutils literal notranslate"><span class="pre">VOCdevkit</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bash tools/data_converters/prepare_voc07_cls.sh <span class="nv">$YOUR_DATA_ROOT</span>
+</pre></div>
+</div>
+</section>
+<section id="prepare-cifar10">
+<h2>Prepare CIFAR10<a class="headerlink" href="#prepare-cifar10" title="Permalink to this heading">¶</a></h2>
+<p>CIFAR10 will be downloaded automatically if it is not found. In addition, <code class="docutils literal notranslate"><span class="pre">dataset</span></code> implemented by <code class="docutils literal notranslate"><span class="pre">MMSelfSup</span></code> will also automatically structure CIFAR10 to the appropriate format.</p>
+</section>
+<section id="prepare-datasets-for-detection-and-segmentation">
+<h2>Prepare datasets for detection and segmentation<a class="headerlink" href="#prepare-datasets-for-detection-and-segmentation" title="Permalink to this heading">¶</a></h2>
+<section id="detection">
+<h3>Detection<a class="headerlink" href="#detection" title="Permalink to this heading">¶</a></h3>
+<p>To prepare COCO, VOC2007 and VOC2012 for detection, you can refer to <a class="reference external" href="https://github.com/open-mmlab/mmdetection/blob/master/docs/1_exist_data_model.md">mmdet</a>.</p>
+</section>
+<section id="segmentation">
+<h3>Segmentation<a class="headerlink" href="#segmentation" title="Permalink to this heading">¶</a></h3>
+<p>To prepare VOC2012AUG and Cityscapes for segmentation, you can refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/docs/dataset_prepare.md#prepare-datasets">mmseg</a></p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="get_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n"
+      rel="next">Next <img src="_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="install.html" class="btn btn-neutral" title="Prerequisites" accesskey="p"
+      rel="prev"><img src="_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Prepare Datasets</a><ul>
+<li><a class="reference internal" href="#prepare-imagenet">Prepare ImageNet</a></li>
+<li><a class="reference internal" href="#prepare-place205">Prepare Place205</a></li>
+<li><a class="reference internal" href="#prepare-inaturalist2018">Prepare iNaturalist2018</a></li>
+<li><a class="reference internal" href="#prepare-pascal-voc">Prepare PASCAL VOC</a></li>
+<li><a class="reference internal" href="#prepare-cifar10">Prepare CIFAR10</a></li>
+<li><a class="reference internal" href="#prepare-datasets-for-detection-and-segmentation">Prepare datasets for detection and segmentation</a><ul>
+<li><a class="reference internal" href="#detection">Detection</a></li>
+<li><a class="reference internal" href="#segmentation">Segmentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="./"
+    src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://dataset4eo.readthedocs.io/en/latest/" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO/blob/main/demo/dataset4eo_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO" target="_blank">GitHub</a>
+          </li>
+          <li class="resources-mobile-menu-title" >
+            About
+          </li>
+          <ul class="resources-mobile-menu-items">
+            <li>
+              <a href="https://github.com/open-mmlab/mmcv" target="_blank">MMCV</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

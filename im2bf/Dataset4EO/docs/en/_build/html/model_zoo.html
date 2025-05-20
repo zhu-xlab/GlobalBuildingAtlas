@@ -1,0 +1,883 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Model Zoo &mdash; RSI-SelfSupervised 0.9.2 documentation</title>
+  
+
+  <link rel="shortcut icon" href="_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Tutorial 0: Learn about Configs" href="tutorials/0_config.html" />
+  <link rel="prev" title="Getting Started" href="get_started.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest/"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-SelfSupervised/blob/main/demo/rsi_selfsupervised_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                About
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/mmcv" target="_blank">
+                  <span class="dropdown-title">MMCV </span>
+                  <p>Foundational library for computer vision</p>
+                </a>
+              </div>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#using-multiple-mmselfsup-versions">Using multiple MMSelfSup versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare_data.html">Prepare Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Model Zoo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/0_config.html">Tutorial 0: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/1_new_dataset.html">Tutorial 1: Adding New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/2_data_pipeline.html">Tutorial 2: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/3_new_module.html">Tutorial 3: Adding New Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/4_schedule.html">Tutorial 4: Customize Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/5_runtime.html">Tutorial 5: Customize Runtime Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/6_benchmarks.html">Tutorial 6: Run Benchmarks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Algorithms</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/byol.html">BYOL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/deep.html">DeepCluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/dense.html">DenseCL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/moco.html">MoCo v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/npid.html">NPID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/odc.html">ODC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/rl.html">Relative Location</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/rp.html">Rotation Prediction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/simclr.html">SimCLR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/ss.html">SimSiam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/swav.html">SwAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/mocov3.html">MoCo v3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/mae.html">MAE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/simmim.html">SimMIM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/barlowtwins.html">BarlowTwins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/cae.html">CAE</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compatibility.html">Differences between MMSelfSup and OpenSelfSup</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Model Zoo</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="_sources/model_zoo.md.txt" rel="nofollow"><img src="_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="model-zoo">
+<h1>Model Zoo<a class="headerlink" href="#model-zoo" title="Permalink to this heading">¶</a></h1>
+<p>All models and part of benchmark results are recorded below.</p>
+<section id="pre-trained-models">
+<h2>Pre-trained models<a class="headerlink" href="#pre-trained-models" title="Permalink to this heading">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Config</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/relative_loc/README.md">Relative Location</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/relative_loc/relative-loc_resnet50_8xb64-steplr-70e_in1k.py">relative-loc_resnet50_8xb64-steplr-70e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/relative_loc/relative-loc_resnet50_8xb64-steplr-70e_in1k_20220225-84784688.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/relative_loc/relative-loc_resnet50_8xb64-steplr-70e_in1k_20220211_124808.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/rotation_pred/README.md">Rotation Prediction</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/rotation_pred/rotation-pred_resnet50_8xb16-steplr-70e_in1k.py">rotation-pred_resnet50_8xb16-steplr-70e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/rotation_pred/rotation-pred_resnet50_8xb16-steplr-70e_in1k_20220225-5b9f06a0.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/rotation_pred/rotation-pred_resnet50_8xb16-steplr-70e_in1k_20220215_185303.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/deepcluster/README.md">DeepCluster</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/deepcluster/deepcluster-sobel_resnet50_8xb64-steplr-200e_in1k.py">deepcluster-sobel_resnet50_8xb64-steplr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/deepcluster/deepcluster-sobel_resnet50_8xb64-steplr-200e_in1k-bb8681e2.pth">model</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/npid/README.md">NPID</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/npid/npid_resnet50_8xb32-steplr-200e_in1k.py">npid_resnet50_8xb32-steplr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/npid/npid_resnet50_8xb32-steplr-200e_in1k_20220225-5fbbda2a.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/npid/npid_resnet50_8xb32-steplr-200e_in1k_20220215_185513.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/odc/README.md">ODC</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k.py">odc_resnet50_8xb64-steplr-440e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k_20220225-a755d9c0.pth">model</a>   | <a href="https://download.openmmlab.com/mmselfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k_20220215_235245.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simclr/README.md">SimCLR</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simclr/simclr_resnet50_8xb32-coslr-200e_in1k.py">simclr_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/simclr/simclr_resnet50_8xb32-coslr-200e_in1k_20220428-46ef6bb9.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/simclr/simclr_resnet50_8xb32-coslr-200e_in1k_20220411_182427.log.json">log</a></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simclr/simclr_resnet50_16xb256-coslr-200e_in1k.py">simclr_resnet50_16xb256-coslr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/simclr/simclr_resnet50_16xb256-coslr-200e_in1k_20220428-8c24b063.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/simclr/simclr_resnet50_16xb256-coslr-200e_in1k_20220423_205520.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mocov2/README.md">MoCo v2</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mocov2/mocov2_resnet50_8xb32-coslr-200e_in1k.py">mocov2_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/moco/mocov2_resnet50_8xb32-coslr-200e_in1k_20220225-89e03af4.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/moco/mocov2_resnet50_8xb32-coslr-200e_in1k_20220210_110905.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/README.md">BYOL</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/byol_resnet50_8xb32-accum16-coslr-200e_in1k.py">byol_resnet50_8xb32-accum16-coslr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/byol/byol_resnet50_8xb32-accum16-coslr-200e_in1k_20220225-5c8b2c2e.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/byol/byol_resnet50_8xb32-accum16-coslr-200e_in1k_20220214_115709.log.json">log</a></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/byol_resnet50_16xb256-coslr-200e_in1k.py">byol_resnet50_16xb256-coslr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/byol/byol_resnet50_16xb256-coslr-200e_in1k_20220527-b6f8eedd.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/byol/byol_resnet50_16xb256-coslr-200e_in1k_20220509_213052.log.json">log</a></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/byol_resnet50_8xb32-accum16-coslr-300e_in1k.py">byol_resnet50_8xb32-accum16-coslr-300e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/byol/byol_resnet50_8xb32-accum16-coslr-300e_in1k_20220225-a0daa54a.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/byol/byol_resnet50_8xb32-accum16-coslr-300e_in1k_20220210_095852.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/swav/README.md">SwAV</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/swav/swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96.py">swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/swav/swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96_20220225-0497dd5d.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/swav/swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96_20220211_061131.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/densecl/README.md">DenseCL</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/densecl/densecl_resnet50_8xb32-coslr-200e_in1k.py">densecl_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/densecl/densecl_resnet50_8xb32-coslr-200e_in1k_20220225-8c7808fe.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/densecl/densecl_resnet50_8xb32-coslr-200e_in1k_20220215_041207.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/README.md">SimSiam</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/simsiam_resnet50_8xb32-coslr-100e_in1k.py">simsiam_resnet50_8xb32-coslr-100e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/simsiam/simsiam_resnet50_8xb32-coslr-100e_in1k_20220225-68a88ad8.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/simsiam/simsiam_resnet50_8xb32-coslr-100e_in1k_20220210_195405.log.json">log</a></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/simsiam_resnet50_8xb32-coslr-200e_in1k.py">simsiam_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/simsiam/simsiam_resnet50_8xb32-coslr-200e_in1k_20220225-2f488143.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/simsiam/simsiam_resnet50_8xb32-coslr-200e_in1k_20220210_195402.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/barlowtwins/README.md">BarlowTwins</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/barlowtwins/barlowtwins_resnet50_8xb256-coslr-300e_in1k.py">barlowtwins_resnet50_8xb256-coslr-300e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/barlowtwins/barlowtwins_resnet50_8xb256-coslr-300e_in1k_20220419-5ae15f89.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/barlowtwins/barlowtwins_resnet50_8xb256-coslr-300e_in1k_20220413_111555.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mocov3/README.md">MoCo v3</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mocov3/mocov3_vit-small-p16_32xb128-fp16-coslr-300e_in1k-224.py">mocov3_vit-small-p16_32xb128-fp16-coslr-300e_in1k-224</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/moco/mocov3_vit-small-p16_32xb128-fp16-coslr-300e_in1k-224_20220225-e31238dd.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/moco/mocov3_vit-small-p16_32xb128-fp16-coslr-300e_in1k-224_20220222_160222.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mae/README.md">MAE</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mae/mae_vit-base-p16_8xb512-coslr-400e_in1k.py">mae_vit-base-p16_8xb512-coslr-400e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/mae/mae_vit-base-p16_8xb512-coslr-400e_in1k-224_20220223-85be947b.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/mae/mae_vit-base-p16_8xb512-coslr-300e_in1k-224_20220210_140925.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simmim/README.md">SimMIM</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simmim/simmim_swin-base_16xb128-coslr-100e_in1k-192.py">simmim_swin-base_16xb128-coslr-100e_in1k-192</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/simmim/simmim_swin-base_16xb128-coslr-100e_in1k-192_20220316-1d090125.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/simmim/simmim_swin-base_16xb128-coslr-100e_in1k-192_20220316-1d090125.log.json">log</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simmim/README.md">CAE</a></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/cae/cae_vit-base-p16_8xb256-fp16-coslr-300e_in1k.py">cae_vit-base-p16_8xb256-fp16-coslr-300e_in1k</a></td>
+<td><a href="https://download.openmmlab.com/mmselfsup/cae/cae_vit-base-p16_16xb256-coslr-300e_in1k-224_20220427-4c786349.pth">model</a> | <a href="https://download.openmmlab.com/mmselfsup/cae/cae_vit-base-p16_16xb256-coslr-300e_in1k-224_20220427-4c786349.log.json">log</a></td>
+</tr>
+</tbody>
+</table>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p>The training details are recorded in the config names.</p></li>
+<li><p>You can click algorithm name to obtain more information.</p></li>
+</ul>
+</section>
+<section id="benchmarks">
+<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this heading">¶</a></h2>
+<p>In the following tables, we only display ImageNet linear evaluation, ImageNet fine-tuning, COCO17 object detection and instance segmentation, and PASCAL VOC12 Aug semantic segmentation. You can click algorithm name above to check more comprehensive benchmark results.</p>
+<section id="imagenet-linear-evaluation">
+<h3>ImageNet Linear Evaluation<a class="headerlink" href="#imagenet-linear-evaluation" title="Permalink to this heading">¶</a></h3>
+<p>If not specified, we use linear evaluation setting from <a class="reference external" href="http://openaccess.thecvf.com/content_CVPR_2020/papers/He_Momentum_Contrast_for_Unsupervised_Visual_Representation_Learning_CVPR_2020_paper.pdf">MoCo</a> as default. Other settings are mentioned in Remarks.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Config</th>
+<th>Remarks</th>
+<th>Top-1 (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relative Location</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/relative_loc/relative-loc_resnet50_8xb64-steplr-70e_in1k.py">relative-loc_resnet50_8xb64-steplr-70e_in1k</a></td>
+<td></td>
+<td>38.78</td>
+</tr>
+<tr>
+<td>Rotation Prediction</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/rotation_pred/rotation-pred_resnet50_8xb16-steplr-70e_in1k.py">rotation-pred_resnet50_8xb16-steplr-70e_in1k</a></td>
+<td></td>
+<td>48.12</td>
+</tr>
+<tr>
+<td>DeepCluster</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/deepcluster/deepcluster-sobel_resnet50_8xb64-steplr-200e_in1k.py">deepcluster-sobel_resnet50_8xb64-steplr-200e_in1k.py</a></td>
+<td></td>
+<td>46.92</td>
+</tr>
+<tr>
+<td>NPID</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/npid/npid_resnet50_8xb32-steplr-200e_in1k.py">npid_resnet50_8xb32-steplr-200e_in1k</a></td>
+<td></td>
+<td>58.97</td>
+</tr>
+<tr>
+<td>ODC</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/odc/odc_resnet50_8xb64-steplr-440e_in1k.py">odc_resnet50_8xb64-steplr-440e_in1k</a></td>
+<td></td>
+<td>53.43</td>
+</tr>
+<tr>
+<td>SimCLR</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simclr/simclr_resnet50_8xb32-coslr-200e_in1k.py">simclr_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>SimSiam paper setting</td>
+<td>62.56</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simclr/simclr_resnet50_16xb256-coslr-200e_in1k.py">simclr_resnet50_16xb256-coslr-200e_in1k</a></td>
+<td>SimSiam paper setting</td>
+<td>66.66</td>
+</tr>
+<tr>
+<td>MoCo v2</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mocov2/mocov2_resnet50_8xb32-coslr-200e_in1k.py">mocov2_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td></td>
+<td>67.58</td>
+</tr>
+<tr>
+<td>BYOL</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/byol_resnet50_8xb32-accum16-coslr-200e_in1k.py">byol_resnet50_8xb32-accum16-coslr-200e_in1k</a></td>
+<td>SimSiam paper setting</td>
+<td>71.72</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/byol_resnet50_16xb256-coslr-200e_in1k.py">byol_resnet50_16xb256-coslr-200e_in1k</a></td>
+<td>SimSiam paper setting</td>
+<td>71.88</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/byol_resnet50_8xb32-accum16-coslr-300e_in1k.py">byol_resnet50_8xb32-accum16-coslr-300e_in1k</a></td>
+<td>SimSiam paper setting</td>
+<td>72.93</td>
+</tr>
+<tr>
+<td>SwAV</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/swav/swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96.py">swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96</a></td>
+<td>SwAV paper setting</td>
+<td>70.47</td>
+</tr>
+<tr>
+<td>DenseCL</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/densecl/densecl_resnet50_8xb32-coslr-200e_in1k.py">densecl_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td></td>
+<td>63.62</td>
+</tr>
+<tr>
+<td>SimSiam</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/simsiam_resnet50_8xb32-coslr-100e_in1k.py">simsiam_resnet50_8xb32-coslr-100e_in1k</a></td>
+<td>SimSiam paper setting</td>
+<td>68.28</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/simsiam_resnet50_8xb32-coslr-200e_in1k.py">simsiam_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>SimSiam paper setting</td>
+<td>69.84</td>
+</tr>
+<tr>
+<td>Barlow Twins</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/barlowtwins/barlowtwins_resnet50_8xb256-coslr-300e_in1k.py">barlowtwins_resnet50_8xb256-coslr-300e_in1k</a></td>
+<td>Barlow Twins paper setting</td>
+<td>71.66</td>
+</tr>
+<tr>
+<td>MoCo v3</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mocov3/mocov3_vit-small-p16_32xb128-fp16-coslr-300e_in1k-224.py">mocov3_vit-small-p16_32xb128-fp16-coslr-300e_in1k-224</a></td>
+<td>MoCo v3 paper setting</td>
+<td>73.19</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="imagenet-fine-tuning">
+<h3>ImageNet Fine-tuning<a class="headerlink" href="#imagenet-fine-tuning" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Config</th>
+<th>Remarks</th>
+<th>Top-1 (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAE</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mae/mae_vit-base-p16_8xb512-coslr-400e_in1k.py">mae_vit-base-p16_8xb512-coslr-400e_in1k</a></td>
+<td></td>
+<td>83.1</td>
+</tr>
+<tr>
+<td>SimMIM</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simmim/simmim_swin-base_16xb128-coslr-100e_in1k-192.py">simmim_swin-base_16xb128-coslr-100e_in1k-192</a></td>
+<td></td>
+<td>82.9</td>
+</tr>
+<tr>
+<td>CAE</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/cae/cae_vit-base-p16_8xb256-fp16-coslr-300e_in1k.py">cae_vit-base-p16_8xb256-fp16-coslr-300e_in1k</a></td>
+<td></td>
+<td>83.2</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coco17-object-detection-and-instance-segmentation">
+<h3>COCO17 Object Detection and Instance Segmentation<a class="headerlink" href="#coco17-object-detection-and-instance-segmentation" title="Permalink to this heading">¶</a></h3>
+<p>In COCO17 object detection and instance segmentation task, we choose the evaluation protocol from <a class="reference external" href="http://openaccess.thecvf.com/content_CVPR_2020/papers/He_Momentum_Contrast_for_Unsupervised_Visual_Representation_Learning_CVPR_2020_paper.pdf">MoCo</a>, with Mask-RCNN FPN architecture. The results below are fine-tuned with the same <a class="reference external" href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/benchmarks/mmdetection/coco/mask_rcnn_r50_fpn_mstrain_1x_coco.py">config</a>.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Config</th>
+<th>mAP (Box)</th>
+<th>mAP (Mask)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relative Location</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/relative_loc/relative-loc_resnet50_8xb64-steplr-70e_in1k.py">relative-loc_resnet50_8xb64-steplr-70e_in1k</a></td>
+<td>37.5</td>
+<td>33.7</td>
+</tr>
+<tr>
+<td>Rotation Prediction</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/rotation_pred/rotation-pred_resnet50_8xb16-steplr-70e_in1k.py">rotation-pred_resnet50_8xb16-steplr-70e_in1k</a></td>
+<td>37.9</td>
+<td>34.2</td>
+</tr>
+<tr>
+<td>NPID</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/npid/npid_resnet50_8xb32-steplr-200e_in1k.py">npid_resnet50_8xb32-steplr-200e_in1k</a></td>
+<td>38.5</td>
+<td>34.6</td>
+</tr>
+<tr>
+<td>SimCLR</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simclr/simclr_resnet50_8xb32-coslr-200e_in1k.py">simclr_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>38.7</td>
+<td>34.9</td>
+</tr>
+<tr>
+<td>MoCo v2</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mocov2/mocov2_resnet50_8xb32-coslr-200e_in1k.py">mocov2_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>40.2</td>
+<td>36.1</td>
+</tr>
+<tr>
+<td>BYOL</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/byol_resnet50_8xb32-accum16-coslr-200e_in1k.py">byol_resnet50_8xb32-accum16-coslr-200e_in1k</a></td>
+<td>40.9</td>
+<td>36.8</td>
+</tr>
+<tr>
+<td>SwAV</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/swav/swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96.py">swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96</a></td>
+<td>40.2</td>
+<td>36.3</td>
+</tr>
+<tr>
+<td>SimSiam</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/simsiam_resnet50_8xb32-coslr-100e_in1k.py">simsiam_resnet50_8xb32-coslr-100e_in1k</a></td>
+<td>38.6</td>
+<td>34.6</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/simsiam_resnet50_8xb32-coslr-200e_in1k.py">simsiam_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>38.8</td>
+<td>34.9</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pascal-voc12-aug-semantic-segmentation">
+<h3>Pascal VOC12 Aug Semantic Segmentation<a class="headerlink" href="#pascal-voc12-aug-semantic-segmentation" title="Permalink to this heading">¶</a></h3>
+<p>In Pascal VOC12 Aug semantic segmentation task, we choose the evaluation protocol from <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation">MMSeg</a>, with FCN architecture. The results below are fine-tuned with the same <a class="reference external" href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/benchmarks/mmsegmentation/voc12aug/fcn_r50-d8_512x512_20k_voc12aug.py">config</a>.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Config</th>
+<th>mIOU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relative Location</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/relative_loc/relative-loc_resnet50_8xb64-steplr-70e_in1k.py">relative-loc_resnet50_8xb64-steplr-70e_in1k</a></td>
+<td>63.49</td>
+</tr>
+<tr>
+<td>Rotation Prediction</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/rotation_pred/rotation-pred_resnet50_8xb16-steplr-70e_in1k.py">rotation-pred_resnet50_8xb16-steplr-70e_in1k</a></td>
+<td>64.31</td>
+</tr>
+<tr>
+<td>NPID</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/npid/npid_resnet50_8xb32-steplr-200e_in1k.py">npid_resnet50_8xb32-steplr-200e_in1k</a></td>
+<td>65.45</td>
+</tr>
+<tr>
+<td>SimCLR</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simclr/simclr_resnet50_8xb32-coslr-200e_in1k.py">simclr_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>64.03</td>
+</tr>
+<tr>
+<td>MoCo v2</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/mocov2/mocov2_resnet50_8xb32-coslr-200e_in1k.py">mocov2_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>67.55</td>
+</tr>
+<tr>
+<td>BYOL</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/byol/byol_resnet50_8xb32-accum16-coslr-200e_in1k.py">byol_resnet50_8xb32-accum16-coslr-200e_in1k</a></td>
+<td>67.16</td>
+</tr>
+<tr>
+<td>SwAV</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/swav/swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96.py">swav_resnet50_8xb32-mcrop-2-6-coslr-200e_in1k-224-96</a></td>
+<td>63.73</td>
+</tr>
+<tr>
+<td>DenseCL</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/densecl/densecl_resnet50_8xb32-coslr-200e_in1k.py">densecl_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>69.47</td>
+</tr>
+<tr>
+<td>SimSiam</td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/simsiam_resnet50_8xb32-coslr-100e_in1k.py">simsiam_resnet50_8xb32-coslr-100e_in1k</a></td>
+<td>48.35</td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/open-mmlab/mmselfsup/blob/master/configs/selfsup/simsiam/simsiam_resnet50_8xb32-coslr-200e_in1k.py">simsiam_resnet50_8xb32-coslr-200e_in1k</a></td>
+<td>46.27</td>
+</tr>
+</tbody>
+</table></section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="tutorials/0_config.html" class="btn btn-neutral float-right" title="Tutorial 0: Learn about Configs" accesskey="n"
+      rel="next">Next <img src="_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="get_started.html" class="btn btn-neutral" title="Getting Started" accesskey="p"
+      rel="prev"><img src="_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Model Zoo</a><ul>
+<li><a class="reference internal" href="#pre-trained-models">Pre-trained models</a></li>
+<li><a class="reference internal" href="#benchmarks">Benchmarks</a><ul>
+<li><a class="reference internal" href="#imagenet-linear-evaluation">ImageNet Linear Evaluation</a></li>
+<li><a class="reference internal" href="#imagenet-fine-tuning">ImageNet Fine-tuning</a></li>
+<li><a class="reference internal" href="#coco17-object-detection-and-instance-segmentation">COCO17 Object Detection and Instance Segmentation</a></li>
+<li><a class="reference internal" href="#pascal-voc12-aug-semantic-segmentation">Pascal VOC12 Aug Semantic Segmentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="./"
+    src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest/" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-SelfSupervised/blob/main/demo/rsi_selfsupervised_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">GitHub</a>
+          </li>
+          <li class="resources-mobile-menu-title" >
+            About
+          </li>
+          <ul class="resources-mobile-menu-items">
+            <li>
+              <a href="https://github.com/open-mmlab/mmcv" target="_blank">MMCV</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,642 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial 6: Run Benchmarks &mdash; Dataset4EO 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Useful tools" href="../useful_tools.html" />
+  <link rel="prev" title="Tutorial 5: Customize Runtime Settings" href="5_runtime.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://dataset4eo.readthedocs.io/en/latest/"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO/blob/main/demo/dataset4eo_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                About
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/mmcv" target="_blank">
+                  <span class="dropdown-title">MMCV </span>
+                  <p>Foundational library for computer vision</p>
+                </a>
+              </div>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html#using-multiple-mmselfsup-versions">Using multiple MMSelfSup versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prepare_data.html">Prepare Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_config.html">Tutorial 0: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_new_dataset.html">Tutorial 1: Adding New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_data_pipeline.html">Tutorial 2: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_new_module.html">Tutorial 3: Adding New Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_schedule.html">Tutorial 4: Customize Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_runtime.html">Tutorial 5: Customize Runtime Settings</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial 6: Run Benchmarks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Tutorial 6: Run Benchmarks</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/6_benchmarks.md.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="tutorial-6-run-benchmarks">
+<h1>Tutorial 6: Run Benchmarks<a class="headerlink" href="#tutorial-6-run-benchmarks" title="Permalink to this heading">¶</a></h1>
+<p>In MMSelfSup, we provide many benchmarks, thus the models can be evaluated on different downstream tasks. Here are comprehensive tutorials and examples to explain how to run all benchmarks with MMSelfSup.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#tutorial-6-run-benchmarks"><span class="std std-doc">Tutorial 6: Run Benchmarks</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#classification"><span class="std std-doc">Classification</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#voc-svm-low-shot-svm"><span class="std std-doc">VOC SVM / Low-shot SVM</span></a></p></li>
+<li><p><a class="reference internal" href="#linear-evaluation"><span class="std std-doc">Linear Evaluation</span></a></p></li>
+<li><p><a class="reference internal" href="#imagenet-semi-supervised-classification"><span class="std std-doc">ImageNet Semi-Supervised Classification</span></a></p></li>
+<li><p><a class="reference internal" href="#imagenet-nearest-neighbor-classification"><span class="std std-doc">ImageNet Nearest-Neighbor Classification</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#detection"><span class="std std-doc">Detection</span></a></p></li>
+<li><p><a class="reference internal" href="#segmentation"><span class="std std-doc">Segmentation</span></a></p></li>
+</ul>
+</li>
+</ul>
+<p>First, you are supposed to extract your backbone weights by <code class="docutils literal notranslate"><span class="pre">tools/model_converters/extract_backbone_weights.py</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python ./tools/model_converters/extract_backbone_weights.py <span class="o">{</span>CHECKPOINT<span class="o">}</span> <span class="o">{</span>MODEL_FILE<span class="o">}</span>
+</pre></div>
+</div>
+<p>Arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CHECKPOINT</span></code>: the checkpoint file of a selfsup method named as epoch_*.pth.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODEL_FILE</span></code>: the output backbone weights file. If not mentioned, the <code class="docutils literal notranslate"><span class="pre">PRETRAIN</span></code> below uses this extracted model file.</p></li>
+</ul>
+<section id="classification">
+<h2>Classification<a class="headerlink" href="#classification" title="Permalink to this heading">¶</a></h2>
+<p>As for classification, we provide scripts in folder <code class="docutils literal notranslate"><span class="pre">tools/benchmarks/classification/</span></code>, which has 4 <code class="docutils literal notranslate"><span class="pre">.sh</span></code> files, 1 folder for VOC SVM related classification task and 1 folder for ImageNet nearest-neighbor classification task.</p>
+<section id="voc-svm-low-shot-svm">
+<h3>VOC SVM / Low-shot SVM<a class="headerlink" href="#voc-svm-low-shot-svm" title="Permalink to this heading">¶</a></h3>
+<p>To run these benchmarks, you should first prepare your VOC datasets. Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmselfsup/blob/master/docs/en/prepare_data.md">prepare_data.md</a> for the details of data preparation.</p>
+<p>To evaluate the pre-trained models, you can run command below.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributed version</span>
+bash tools/benchmarks/classification/svm_voc07/dist_test_svm_pretrain.sh <span class="si">${</span><span class="nv">SELFSUP_CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">GPUS</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span> <span class="si">${</span><span class="nv">FEATURE_LIST</span><span class="si">}</span>
+
+<span class="c1"># slurm version</span>
+bash tools/benchmarks/classification/svm_voc07/slurm_test_svm_pretrain.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">SELFSUP_CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span> <span class="si">${</span><span class="nv">FEATURE_LIST</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Besides, if you want to evaluate the ckpt files saved by runner, you can run command below.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributed version</span>
+bash tools/benchmarks/classification/svm_voc07/dist_test_svm_epoch.sh <span class="si">${</span><span class="nv">SELFSUP_CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">EPOCH</span><span class="si">}</span> <span class="si">${</span><span class="nv">FEATURE_LIST</span><span class="si">}</span>
+
+<span class="c1"># slurm version</span>
+bash tools/benchmarks/classification/svm_voc07/slurm_test_svm_epoch.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">SELFSUP_CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">EPOCH</span><span class="si">}</span> <span class="si">${</span><span class="nv">FEATURE_LIST</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><strong>To test with ckpt, the code uses the epoch_*.pth file, there is no need to extract weights.</strong></p>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">${SELFSUP_CONFIG}</span></code> is the config file of the self-supervised experiment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${FEATURE_LIST}</span></code> is a string to specify features from layer1 to layer5 to evaluate; e.g., if you want to evaluate layer5 only, then <code class="docutils literal notranslate"><span class="pre">FEATURE_LIST</span></code> is “feat5”, if you want to evaluate all features, then <code class="docutils literal notranslate"><span class="pre">FEATURE_LIST</span></code> is “feat1 feat2 feat3 feat4 feat5” (separated by space). If left empty, the default <code class="docutils literal notranslate"><span class="pre">FEATURE_LIST</span></code> is “feat5”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRETRAIN</span></code>: the pre-trained model file.</p></li>
+<li><p>if you want to change GPU numbers, you could add <code class="docutils literal notranslate"><span class="pre">GPUS_PER_NODE=4</span> <span class="pre">GPUS=4</span></code> at the beginning of the command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EPOCH</span></code> is the epoch number of the ckpt that you want to test</p></li>
+</ul>
+</section>
+<section id="linear-evaluation">
+<h3>Linear Evaluation<a class="headerlink" href="#linear-evaluation" title="Permalink to this heading">¶</a></h3>
+<p>The linear evaluation is one of the most general benchmarks, we integrate several papers’ config settings, also including multi-head linear evaluation. We write classification model in our own codebase for the multi-head function, thus, to run linear evaluation, we still use <code class="docutils literal notranslate"><span class="pre">.sh</span></code> script to launch training. The supported datasets are <strong>ImageNet</strong>, <strong>Places205</strong> and <strong>iNaturalist18</strong>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributed version</span>
+bash tools/benchmarks/classification/dist_train_linear.sh <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span>
+
+<span class="c1"># slurm version</span>
+bash tools/benchmarks/classification/slurm_train_linear.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p>The default GPU number is 8. When changing GPUS, please also change <code class="docutils literal notranslate"><span class="pre">samples_per_gpu</span></code> in the config file accordingly to ensure the total batch size is 256.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG</span></code>: Use config files under <code class="docutils literal notranslate"><span class="pre">configs/benchmarks/classification/</span></code>. Specifically, <code class="docutils literal notranslate"><span class="pre">imagenet</span></code> (excluding <code class="docutils literal notranslate"><span class="pre">imagenet_*percent</span></code> folders), <code class="docutils literal notranslate"><span class="pre">places205</span></code> and <code class="docutils literal notranslate"><span class="pre">inaturalist2018</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRETRAIN</span></code>: the pre-trained model file.</p></li>
+</ul>
+</section>
+<section id="imagenet-semi-supervised-classification">
+<h3>ImageNet Semi-Supervised Classification<a class="headerlink" href="#imagenet-semi-supervised-classification" title="Permalink to this heading">¶</a></h3>
+<p>To run ImageNet semi-supervised classification, we still use <code class="docutils literal notranslate"><span class="pre">.sh</span></code> script to launch training.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributed version</span>
+bash tools/benchmarks/classification/dist_train_semi.sh <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span>
+
+<span class="c1"># slurm version</span>
+bash tools/benchmarks/classification/slurm_train_semi.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p>The default GPU number is 4.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG</span></code>: Use config files under <code class="docutils literal notranslate"><span class="pre">configs/benchmarks/classification/imagenet/</span></code>, named <code class="docutils literal notranslate"><span class="pre">imagenet_*percent</span></code> folders.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRETRAIN</span></code>: the pre-trained model file.</p></li>
+</ul>
+</section>
+<section id="imagenet-nearest-neighbor-classification">
+<h3>ImageNet Nearest-Neighbor Classification<a class="headerlink" href="#imagenet-nearest-neighbor-classification" title="Permalink to this heading">¶</a></h3>
+<p>To evaluate the pre-trained models using the nearest-neighbor benchmark, you can run command below.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributed version</span>
+bash tools/benchmarks/classification/knn_imagenet/dist_test_knn_pretrain.sh <span class="si">${</span><span class="nv">SELFSUP_CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span>
+
+<span class="c1"># slurm version</span>
+bash tools/benchmarks/classification/knn_imagenet/slurm_test_knn_pretrain.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">SELFSUP_CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Besides, if you want to evaluate the ckpt files saved by runner, you can run command below.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributed version</span>
+bash tools/benchmarks/classification/knn_imagenet/dist_test_knn_epoch.sh <span class="si">${</span><span class="nv">SELFSUP_CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">EPOCH</span><span class="si">}</span>
+
+<span class="c1"># slurm version</span>
+bash tools/benchmarks/classification/knn_imagenet/slurm_test_knn_epoch.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">JOB_NAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">SELFSUP_CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">EPOCH</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><strong>To test with ckpt, the code uses the epoch_*.pth file, there is no need to extract weights.</strong></p>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">${SELFSUP_CONFIG}</span></code> is the config file of the self-supervised experiment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRETRAIN</span></code>: the pre-trained model file.</p></li>
+<li><p>if you want to change GPU numbers, you could add <code class="docutils literal notranslate"><span class="pre">GPUS_PER_NODE=4</span> <span class="pre">GPUS=4</span></code> at the beginning of the command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EPOCH</span></code> is the epoch number of the ckpt that you want to test</p></li>
+</ul>
+</section>
+</section>
+<section id="detection">
+<h2>Detection<a class="headerlink" href="#detection" title="Permalink to this heading">¶</a></h2>
+<p>Here, we prefer to use MMDetection to do the detection task. First, make sure you have installed <a class="reference external" href="https://github.com/open-mmlab/mim">MIM</a>, which is also a project of OpenMMLab.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install openmim
+</pre></div>
+</div>
+<p>It is very easy to install the package.</p>
+<p>Besides, please refer to MMDet for <a class="reference external" href="https://github.com/open-mmlab/mmdetection/blob/master/docs/en/get_started.md">installation</a> and <a class="reference external" href="https://github.com/open-mmlab/mmdetection/blob/master/docs/en/1_exist_data_model.md">data preparation</a></p>
+<p>After installation, you can run MMDet with simple command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributed version</span>
+bash tools/benchmarks/mmdetection/mim_dist_train.sh <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span> <span class="si">${</span><span class="nv">GPUS</span><span class="si">}</span>
+
+<span class="c1"># slurm version</span>
+bash tools/benchmarks/mmdetection/mim_slurm_train.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG</span></code>: Use config files under <code class="docutils literal notranslate"><span class="pre">configs/benchmarks/mmdetection/</span></code> or write your own config files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRETRAIN</span></code>: the pre-trained model file.</p></li>
+</ul>
+<p>Or if you want to do detection task with <a class="reference external" href="https://github.com/facebookresearch/detectron2">detectron2</a>, we also provides some config files.
+Please refer to <a class="reference external" href="https://github.com/facebookresearch/detectron2/blob/main/INSTALL.md">INSTALL.md</a> for installation and follow the <a class="reference external" href="https://github.com/facebookresearch/detectron2/tree/main/datasets">directory structure</a> to prepare your datasets required by detectron2.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda activate detectron2 <span class="c1"># use detectron2 environment here, otherwise use open-mmlab environment</span>
+<span class="nb">cd</span> benchmarks/detection
+python convert-pretrain-to-detectron2.py <span class="si">${</span><span class="nv">WEIGHT_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">OUTPUT_FILE</span><span class="si">}</span> <span class="c1"># must use .pkl as the output extension.</span>
+bash run.sh <span class="si">${</span><span class="nv">DET_CFG</span><span class="si">}</span> <span class="si">${</span><span class="nv">OUTPUT_FILE</span><span class="si">}</span>
+</pre></div>
+</div>
+</section>
+<section id="segmentation">
+<h2>Segmentation<a class="headerlink" href="#segmentation" title="Permalink to this heading">¶</a></h2>
+<p>For semantic segmentation task, we use MMSegmentation. First, make sure you have installed <a class="reference external" href="https://github.com/open-mmlab/mim">MIM</a>, which is also a project of OpenMMLab.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install openmim
+</pre></div>
+</div>
+<p>It is very easy to install the package.</p>
+<p>Besides, please refer to MMSeg for <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/docs/get_started.md">installation</a> and <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/docs/dataset_prepare.md#prepare-datasets">data preparation</a>.</p>
+<p>After installation, you can run MMSeg with simple command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># distributed version</span>
+bash tools/benchmarks/mmsegmentation/mim_dist_train.sh <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span> <span class="si">${</span><span class="nv">GPUS</span><span class="si">}</span>
+
+<span class="c1"># slurm version</span>
+bash tools/benchmarks/mmsegmentation/mim_slurm_train.sh <span class="si">${</span><span class="nv">PARTITION</span><span class="si">}</span> <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="si">${</span><span class="nv">PRETRAIN</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CONFIG</span></code>: Use config files under <code class="docutils literal notranslate"><span class="pre">configs/benchmarks/mmsegmentation/</span></code> or write your own config files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRETRAIN</span></code>: the pre-trained model file.</p></li>
+</ul>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="../useful_tools.html" class="btn btn-neutral float-right" title="Useful tools" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="5_runtime.html" class="btn btn-neutral" title="Tutorial 5: Customize Runtime Settings" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Tutorial 6: Run Benchmarks</a><ul>
+<li><a class="reference internal" href="#classification">Classification</a><ul>
+<li><a class="reference internal" href="#voc-svm-low-shot-svm">VOC SVM / Low-shot SVM</a></li>
+<li><a class="reference internal" href="#linear-evaluation">Linear Evaluation</a></li>
+<li><a class="reference internal" href="#imagenet-semi-supervised-classification">ImageNet Semi-Supervised Classification</a></li>
+<li><a class="reference internal" href="#imagenet-nearest-neighbor-classification">ImageNet Nearest-Neighbor Classification</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#detection">Detection</a></li>
+<li><a class="reference internal" href="#segmentation">Segmentation</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/clipboard.min.js"></script>
+  <script src="../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://dataset4eo.readthedocs.io/en/latest/" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO/blob/main/demo/dataset4eo_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO" target="_blank">GitHub</a>
+          </li>
+          <li class="resources-mobile-menu-title" >
+            About
+          </li>
+          <ul class="resources-mobile-menu-items">
+            <li>
+              <a href="https://github.com/open-mmlab/mmcv" target="_blank">MMCV</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

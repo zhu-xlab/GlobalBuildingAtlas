@@ -1,6 +1,3 @@
 [submodule "im2bh"]
 	path = im2bh
 	url = git@github.com:zhu-xlab/HTC-DC-Net.git
-[submodule "im2bf"]
-	path = im2bf
-	url = git@github.com:zhu-xlab/GCP.git

@@ -1,0 +1,946 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Useful tools &mdash; RSI-Segmentation 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Changelog" href="changelog.html" />
+  <link rel="prev" title="Tutorial 6: Customize Runtime Settings" href="tutorials/customize_runtime.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html#installation">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model Zoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model_zoo.html">Benchmark and Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelzoo_statistics.html">Model Zoo Statistics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Run</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="train.html">Train a model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Inference with pretrained models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/config.html">Tutorial 1: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_datasets.html">Tutorial 2: Customize Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_pipeline.html">Tutorial 3: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_models.html">Tutorial 4: Customize Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/training_tricks.html">Tutorial 5: Training Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_runtime.html">Tutorial 6: Customize Runtime Settings</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Useful tools</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="_sources/useful_tools.md.txt" rel="nofollow"><img src="_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="useful-tools">
+<h1>Useful tools<a class="headerlink" href="#useful-tools" title="Permalink to this heading">¶</a></h1>
+<p>Apart from training/testing scripts, We provide lots of useful tools under the
+<code class="docutils literal notranslate"><span class="pre">tools/</span></code> directory.</p>
+<section id="get-the-flops-and-params-experimental">
+<h2>Get the FLOPs and params (experimental)<a class="headerlink" href="#get-the-flops-and-params-experimental" title="Permalink to this heading">¶</a></h2>
+<p>We provide a script adapted from <a class="reference external" href="https://github.com/sovrasov/flops-counter.pytorch">flops-counter.pytorch</a> to compute the FLOPs and params of a given model.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/get_flops.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="o">[</span>--shape <span class="si">${</span><span class="nv">INPUT_SHAPE</span><span class="si">}</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>You will get the result like this.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>==============================
+Input shape: (3, 2048, 1024)
+Flops: 1429.68 GMac
+Params: 48.98 M
+==============================
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tool is still experimental and we do not guarantee that the number is correct. You may well use the result for simple comparisons, but double check it before you adopt it in technical reports or papers.</p>
+</div>
+<p>(1) FLOPs are related to the input shape while parameters are not. The default input shape is (1, 3, 1280, 800).
+(2) Some operators are not counted into FLOPs like GN and custom operators.</p>
+</section>
+<section id="publish-a-model">
+<h2>Publish a model<a class="headerlink" href="#publish-a-model" title="Permalink to this heading">¶</a></h2>
+<p>Before you upload a model to AWS, you may want to
+(1) convert model weights to CPU tensors, (2) delete the optimizer states and
+(3) compute the hash of the checkpoint file and append the hash id to the filename.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/publish_model.py <span class="si">${</span><span class="nv">INPUT_FILENAME</span><span class="si">}</span> <span class="si">${</span><span class="nv">OUTPUT_FILENAME</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>E.g.,</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/publish_model.py work_dirs/pspnet/latest.pth psp_r50_hszhao_200ep.pth
+</pre></div>
+</div>
+<p>The final output filename will be <code class="docutils literal notranslate"><span class="pre">psp_r50_512x1024_40ki_cityscapes-{hash</span> <span class="pre">id}.pth</span></code>.</p>
+</section>
+<section id="convert-to-onnx-experimental">
+<h2>Convert to ONNX (experimental)<a class="headerlink" href="#convert-to-onnx-experimental" title="Permalink to this heading">¶</a></h2>
+<p>We provide a script to convert model to <a class="reference external" href="https://github.com/onnx/onnx">ONNX</a> format. The converted model could be visualized by tools like <a class="reference external" href="https://github.com/lutzroeder/netron">Netron</a>. Besides, we also support comparing the output results between PyTorch and ONNX model.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python tools/pytorch2onnx.py <span class="se">\</span>
+    <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="se">\</span>
+    --checkpoint <span class="si">${</span><span class="nv">CHECKPOINT_FILE</span><span class="si">}</span> <span class="se">\</span>
+    --output-file <span class="si">${</span><span class="nv">ONNX_FILE</span><span class="si">}</span> <span class="se">\</span>
+    --input-img <span class="si">${</span><span class="nv">INPUT_IMG</span><span class="si">}</span> <span class="se">\</span>
+    --shape <span class="si">${</span><span class="nv">INPUT_SHAPE</span><span class="si">}</span> <span class="se">\</span>
+    --rescale-shape <span class="si">${</span><span class="nv">RESCALE_SHAPE</span><span class="si">}</span> <span class="se">\</span>
+    --show <span class="se">\</span>
+    --verify <span class="se">\</span>
+    --dynamic-export <span class="se">\</span>
+    --cfg-options <span class="se">\</span>
+      model.test_cfg.mode<span class="o">=</span><span class="s2">&quot;whole&quot;</span>
+</pre></div>
+</div>
+<p>Description of arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> : The path of a model config file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--checkpoint</span></code> : The path of a model checkpoint file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--output-file</span></code>: The path of output ONNX model. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">tmp.onnx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--input-img</span></code> : The path of an input image for conversion and visualize.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--shape</span></code>: The height and width of input tensor to the model. If not specified, it will be set to img_scale of test_pipeline.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--rescale-shape</span></code>: rescale shape of output, set this value to avoid OOM, only work on <code class="docutils literal notranslate"><span class="pre">slide</span></code> mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show</span></code>: Determines whether to print the architecture of the exported model. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--verify</span></code>: Determines whether to verify the correctness of an exported model. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--dynamic-export</span></code>: Determines whether to export ONNX model with dynamic input and output shapes. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cfg-options</span></code>:Update config options.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tool is still experimental. Some customized operators are not supported for now.</p>
+</div>
+</section>
+<section id="evaluate-onnx-model">
+<h2>Evaluate ONNX model<a class="headerlink" href="#evaluate-onnx-model" title="Permalink to this heading">¶</a></h2>
+<p>We provide <code class="docutils literal notranslate"><span class="pre">tools/deploy_test.py</span></code> to evaluate ONNX model with different backend.</p>
+<section id="prerequisite">
+<h3>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>Install onnx and onnxruntime-gpu</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install onnx onnxruntime-gpu
+</pre></div>
+</div>
+</li>
+<li><p>Install TensorRT following <a class="reference external" href="https://mmcv.readthedocs.io/en/latest/tensorrt_plugin.html#how-to-build-tensorrt-plugins-in-mmcv">how-to-build-tensorrt-plugins-in-mmcv</a>(optional)</p></li>
+</ul>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python tools/deploy_test.py <span class="se">\</span>
+    <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="se">\</span>
+    <span class="si">${</span><span class="nv">MODEL_FILE</span><span class="si">}</span> <span class="se">\</span>
+    <span class="si">${</span><span class="nv">BACKEND</span><span class="si">}</span> <span class="se">\</span>
+    --out <span class="si">${</span><span class="nv">OUTPUT_FILE</span><span class="si">}</span> <span class="se">\</span>
+    --eval <span class="si">${</span><span class="nv">EVALUATION_METRICS</span><span class="si">}</span> <span class="se">\</span>
+    --show <span class="se">\</span>
+    --show-dir <span class="si">${</span><span class="nv">SHOW_DIRECTORY</span><span class="si">}</span> <span class="se">\</span>
+    --cfg-options <span class="si">${</span><span class="nv">CFG_OPTIONS</span><span class="si">}</span> <span class="se">\</span>
+    --eval-options <span class="si">${</span><span class="nv">EVALUATION_OPTIONS</span><span class="si">}</span> <span class="se">\</span>
+    --opacity <span class="si">${</span><span class="nv">OPACITY</span><span class="si">}</span> <span class="se">\</span>
+</pre></div>
+</div>
+<p>Description of all arguments</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: The path of a model config file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>: The path of a converted model file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">backend</span></code>: Backend of the inference, options: <code class="docutils literal notranslate"><span class="pre">onnxruntime</span></code>, <code class="docutils literal notranslate"><span class="pre">tensorrt</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--out</span></code>: The path of output result file in pickle format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--format-only</span></code> : Format the output results without perform evaluation. It is useful when you want to format the result to a specific format and submit it to the test server. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">False</span></code>. Note that this argument is <strong>mutually exclusive</strong> with <code class="docutils literal notranslate"><span class="pre">--eval</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--eval</span></code>: Evaluation metrics, which depends on the dataset, e.g., “mIoU” for generic datasets, and “cityscapes” for Cityscapes. Note that this argument is <strong>mutually exclusive</strong> with <code class="docutils literal notranslate"><span class="pre">--format-only</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show</span></code>: Show results flag.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show-dir</span></code>: Directory where painted images will be saved</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cfg-options</span></code>: Override some settings in the used config file, the key-value pair in <code class="docutils literal notranslate"><span class="pre">xxx=yyy</span></code> format will be merged into config file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--eval-options</span></code>: Custom options for evaluation, the key-value pair in <code class="docutils literal notranslate"><span class="pre">xxx=yyy</span></code> format will be kwargs for <code class="docutils literal notranslate"><span class="pre">dataset.evaluate()</span></code> function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--opacity</span></code>: Opacity of painted segmentation map. In (0, 1] range.</p></li>
+</ul>
+</section>
+<section id="results-and-models">
+<h3>Results and Models<a class="headerlink" href="#results-and-models" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: center;">Model</th>
+<th style="text-align: center;">Config</th>
+<th style="text-align: center;">Dataset</th>
+<th style="text-align: center;">Metric</th>
+<th style="text-align: center;">PyTorch</th>
+<th style="text-align: center;">ONNXRuntime</th>
+<th style="text-align: center;">TensorRT-fp32</th>
+<th style="text-align: center;">TensorRT-fp16</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">FCN</td>
+<td style="text-align: center;">fcn_r50-d8_512x1024_40k_cityscapes.py</td>
+<td style="text-align: center;">cityscapes</td>
+<td style="text-align: center;">mIoU</td>
+<td style="text-align: center;">72.2</td>
+<td style="text-align: center;">72.2</td>
+<td style="text-align: center;">72.2</td>
+<td style="text-align: center;">72.2</td>
+</tr>
+<tr>
+<td style="text-align: center;">PSPNet</td>
+<td style="text-align: center;">pspnet_r50-d8_512x1024_40k_cityscapes.py</td>
+<td style="text-align: center;">cityscapes</td>
+<td style="text-align: center;">mIoU</td>
+<td style="text-align: center;">77.8</td>
+<td style="text-align: center;">77.8</td>
+<td style="text-align: center;">77.8</td>
+<td style="text-align: center;">77.8</td>
+</tr>
+<tr>
+<td style="text-align: center;">deeplabv3</td>
+<td style="text-align: center;">deeplabv3_r50-d8_512x1024_40k_cityscapes.py</td>
+<td style="text-align: center;">cityscapes</td>
+<td style="text-align: center;">mIoU</td>
+<td style="text-align: center;">79.0</td>
+<td style="text-align: center;">79.0</td>
+<td style="text-align: center;">79.0</td>
+<td style="text-align: center;">79.0</td>
+</tr>
+<tr>
+<td style="text-align: center;">deeplabv3+</td>
+<td style="text-align: center;">deeplabv3plus_r50-d8_512x1024_40k_cityscapes.py</td>
+<td style="text-align: center;">cityscapes</td>
+<td style="text-align: center;">mIoU</td>
+<td style="text-align: center;">79.6</td>
+<td style="text-align: center;">79.5</td>
+<td style="text-align: center;">79.5</td>
+<td style="text-align: center;">79.5</td>
+</tr>
+<tr>
+<td style="text-align: center;">PSPNet</td>
+<td style="text-align: center;">pspnet_r50-d8_769x769_40k_cityscapes.py</td>
+<td style="text-align: center;">cityscapes</td>
+<td style="text-align: center;">mIoU</td>
+<td style="text-align: center;">78.2</td>
+<td style="text-align: center;">78.1</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">deeplabv3</td>
+<td style="text-align: center;">deeplabv3_r50-d8_769x769_40k_cityscapes.py</td>
+<td style="text-align: center;">cityscapes</td>
+<td style="text-align: center;">mIoU</td>
+<td style="text-align: center;">78.5</td>
+<td style="text-align: center;">78.3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">deeplabv3+</td>
+<td style="text-align: center;">deeplabv3plus_r50-d8_769x769_40k_cityscapes.py</td>
+<td style="text-align: center;">cityscapes</td>
+<td style="text-align: center;">mIoU</td>
+<td style="text-align: center;">78.9</td>
+<td style="text-align: center;">78.7</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TensorRT is only available on configs with <code class="docutils literal notranslate"><span class="pre">whole</span> <span class="pre">mode</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="convert-to-torchscript-experimental">
+<h2>Convert to TorchScript (experimental)<a class="headerlink" href="#convert-to-torchscript-experimental" title="Permalink to this heading">¶</a></h2>
+<p>We also provide a script to convert model to <a class="reference external" href="https://pytorch.org/docs/stable/jit.html">TorchScript</a> format. You can use the pytorch C++ API <a class="reference external" href="https://pytorch.org/docs/stable/cpp_index.html">LibTorch</a> inference the trained model. The converted model could be visualized by tools like <a class="reference external" href="https://github.com/lutzroeder/netron">Netron</a>. Besides, we also support comparing the output results between PyTorch and TorchScript model.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/pytorch2torchscript.py <span class="se">\</span>
+    <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="se">\</span>
+    --checkpoint <span class="si">${</span><span class="nv">CHECKPOINT_FILE</span><span class="si">}</span> <span class="se">\</span>
+    --output-file <span class="si">${</span><span class="nv">ONNX_FILE</span><span class="si">}</span>
+    --shape <span class="si">${</span><span class="nv">INPUT_SHAPE</span><span class="si">}</span>
+    --verify <span class="se">\</span>
+    --show
+</pre></div>
+</div>
+<p>Description of arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> : The path of a pytorch model config file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--checkpoint</span></code> : The path of a pytorch model checkpoint file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--output-file</span></code>: The path of output TorchScript model. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">tmp.pt</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--input-img</span></code> : The path of an input image for conversion and visualize.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--shape</span></code>: The height and width of input tensor to the model. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">512</span> <span class="pre">512</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show</span></code>: Determines whether to print the traced graph of the exported model. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--verify</span></code>: Determines whether to verify the correctness of an exported model. If not specified, it will be set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It’s only support PyTorch&gt;=1.8.0 for now.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tool is still experimental. Some customized operators are not supported for now.</p>
+</div>
+<p>Examples:</p>
+<ul>
+<li><p>Convert the cityscapes PSPNet pytorch model.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/pytorch2torchscript.py configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py <span class="se">\</span>
+--checkpoint checkpoints/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth <span class="se">\</span>
+--output-file checkpoints/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pt <span class="se">\</span>
+--shape <span class="m">512</span> <span class="m">1024</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="convert-to-tensorrt-experimental">
+<h2>Convert to TensorRT (experimental)<a class="headerlink" href="#convert-to-tensorrt-experimental" title="Permalink to this heading">¶</a></h2>
+<p>A script to convert <a class="reference external" href="https://github.com/onnx/onnx">ONNX</a> model to <a class="reference external" href="https://developer.nvidia.com/tensorrt">TensorRT</a> format.</p>
+<p>Prerequisite</p>
+<ul class="simple">
+<li><p>install <code class="docutils literal notranslate"><span class="pre">mmcv-full</span></code> with ONNXRuntime custom ops and TensorRT plugins follow <a class="reference external" href="https://mmcv.readthedocs.io/en/latest/deployment/onnxruntime_op.html">ONNXRuntime in mmcv</a> and <a class="reference external" href="https://github.com/open-mmlab/mmcv/blob/master/docs/en/deployment/tensorrt_plugin.md">TensorRT plugin in mmcv</a>.</p></li>
+<li><p>Use <span class="xref myst">pytorch2onnx</span> to convert the model from PyTorch to ONNX.</p></li>
+</ul>
+<p>Usage</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python <span class="si">${</span><span class="nv">MMSEG_PATH</span><span class="si">}</span>/tools/onnx2tensorrt.py <span class="se">\</span>
+    <span class="si">${</span><span class="nv">CFG_PATH</span><span class="si">}</span> <span class="se">\</span>
+    <span class="si">${</span><span class="nv">ONNX_PATH</span><span class="si">}</span> <span class="se">\</span>
+    --trt-file <span class="si">${</span><span class="nv">OUTPUT_TRT_PATH</span><span class="si">}</span> <span class="se">\</span>
+    --min-shape <span class="si">${</span><span class="nv">MIN_SHAPE</span><span class="si">}</span> <span class="se">\</span>
+    --max-shape <span class="si">${</span><span class="nv">MAX_SHAPE</span><span class="si">}</span> <span class="se">\</span>
+    --input-img <span class="si">${</span><span class="nv">INPUT_IMG</span><span class="si">}</span> <span class="se">\</span>
+    --show <span class="se">\</span>
+    --verify
+</pre></div>
+</div>
+<p>Description of all arguments</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> : Config file of the model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> : Path to the input ONNX model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--trt-file</span></code> : Path to the output TensorRT engine.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--max-shape</span></code> : Maximum shape of model input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--min-shape</span></code> : Minimum shape of model input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--fp16</span></code> : Enable fp16 model conversion.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--workspace-size</span></code> : Max workspace size in GiB.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--input-img</span></code> : Image for visualize.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show</span></code> : Enable result visualize.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--dataset</span></code> : Palette provider, <code class="docutils literal notranslate"><span class="pre">CityscapesDataset</span></code> as default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--verify</span></code> : Verify the outputs of ONNXRuntime and TensorRT.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--verbose</span></code> : Whether to verbose logging messages while creating TensorRT engine. Defaults to False.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only tested on whole mode.</p>
+</div>
+</section>
+</section>
+<section id="miscellaneous">
+<h1>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this heading">¶</a></h1>
+<section id="print-the-entire-config">
+<h2>Print the entire config<a class="headerlink" href="#print-the-entire-config" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">tools/print_config.py</span></code> prints the whole config verbatim, expanding all its
+imports.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/print_config.py <span class="se">\</span>
+  <span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> <span class="se">\</span>
+  --graph <span class="se">\</span>
+  --cfg-options <span class="si">${</span><span class="nv">OPTIONS</span><span class="p"> [OPTIONS...]</span><span class="si">}</span> <span class="se">\</span>
+</pre></div>
+</div>
+<p>Description of arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code> : The path of a pytorch model config file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--graph</span></code> : Determines whether to print the models graph.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cfg-options</span></code>: Custom options to replace the config file.</p></li>
+</ul>
+</section>
+<section id="plot-training-logs">
+<h2>Plot training logs<a class="headerlink" href="#plot-training-logs" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">tools/analyze_logs.py</span></code> plots loss/mIoU curves given a training log file. <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">seaborn</span></code> first to install the dependency.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/analyze_logs.py xxx.log.json <span class="o">[</span>--keys <span class="si">${</span><span class="nv">KEYS</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--legend <span class="si">${</span><span class="nv">LEGEND</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--backend <span class="si">${</span><span class="nv">BACKEND</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--style <span class="si">${</span><span class="nv">STYLE</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--out <span class="si">${</span><span class="nv">OUT_FILE</span><span class="si">}</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Examples:</p>
+<ul>
+<li><p>Plot the mIoU, mAcc, aAcc metrics.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/analyze_logs.py log.json --keys mIoU mAcc aAcc --legend mIoU mAcc aAcc
+</pre></div>
+</div>
+</li>
+<li><p>Plot loss metric.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/analyze_logs.py log.json --keys loss --legend loss
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="model-conversion">
+<h2>Model conversion<a class="headerlink" href="#model-conversion" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">tools/model_converters/</span></code> provide several scripts to convert pretrain models released by other repos to MMSegmentation style.</p>
+<section id="vit-swin-mit-transformer-models">
+<h3>ViT Swin MiT Transformer Models<a class="headerlink" href="#vit-swin-mit-transformer-models" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p>ViT</p>
+<p><code class="docutils literal notranslate"><span class="pre">tools/model_converters/vit2mmseg.py</span></code> convert keys in timm pretrained vit models to MMSegmentation style.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/model_converters/vit2mmseg.py <span class="si">${</span><span class="nv">SRC</span><span class="si">}</span> <span class="si">${</span><span class="nv">DST</span><span class="si">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Swin</p>
+<p><code class="docutils literal notranslate"><span class="pre">tools/model_converters/swin2mmseg.py</span></code> convert keys in official pretrained swin models to MMSegmentation style.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/model_converters/swin2mmseg.py <span class="si">${</span><span class="nv">SRC</span><span class="si">}</span> <span class="si">${</span><span class="nv">DST</span><span class="si">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>SegFormer</p>
+<p><code class="docutils literal notranslate"><span class="pre">tools/model_converters/mit2mmseg.py</span></code> convert keys in official pretrained mit models to MMSegmentation style.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/model_converters/mit2mmseg.py <span class="si">${</span><span class="nv">SRC</span><span class="si">}</span> <span class="si">${</span><span class="nv">DST</span><span class="si">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="model-serving">
+<h1>Model Serving<a class="headerlink" href="#model-serving" title="Permalink to this heading">¶</a></h1>
+<p>In order to serve an <code class="docutils literal notranslate"><span class="pre">MMSegmentation</span></code> model with <a class="reference external" href="https://pytorch.org/serve/"><code class="docutils literal notranslate"><span class="pre">TorchServe</span></code></a>, you can follow the steps:</p>
+<section id="convert-model-from-mmsegmentation-to-torchserve">
+<h2>1. Convert model from MMSegmentation to TorchServe<a class="headerlink" href="#convert-model-from-mmsegmentation-to-torchserve" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/torchserve/mmseg2torchserve.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">CHECKPOINT_FILE</span><span class="si">}</span> <span class="se">\</span>
+--output-folder <span class="si">${</span><span class="nv">MODEL_STORE</span><span class="si">}</span> <span class="se">\</span>
+--model-name <span class="si">${</span><span class="nv">MODEL_NAME</span><span class="si">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>${MODEL_STORE} needs to be an absolute path to a folder.</p>
+</div>
+</section>
+<section id="build-mmseg-serve-docker-image">
+<h2>2. Build <code class="docutils literal notranslate"><span class="pre">mmseg-serve</span></code> docker image<a class="headerlink" href="#build-mmseg-serve-docker-image" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker build -t mmseg-serve:latest docker/serve/
+</pre></div>
+</div>
+</section>
+<section id="run-mmseg-serve">
+<h2>3. Run <code class="docutils literal notranslate"><span class="pre">mmseg-serve</span></code><a class="headerlink" href="#run-mmseg-serve" title="Permalink to this heading">¶</a></h2>
+<p>Check the official docs for <a class="reference external" href="https://github.com/pytorch/serve/blob/master/docker/README.md#running-torchserve-in-a-production-docker-environment">running TorchServe with docker</a>.</p>
+<p>In order to run in GPU, you need to install <a class="reference external" href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html">nvidia-docker</a>. You can omit the <code class="docutils literal notranslate"><span class="pre">--gpus</span></code> argument in order to run in CPU.</p>
+<p>Example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker run --rm <span class="se">\</span>
+--cpus <span class="m">8</span> <span class="se">\</span>
+--gpus <span class="nv">device</span><span class="o">=</span><span class="m">0</span> <span class="se">\</span>
+-p8080:8080 -p8081:8081 -p8082:8082 <span class="se">\</span>
+--mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="nv">$MODEL_STORE</span>,target<span class="o">=</span>/home/model-server/model-store <span class="se">\</span>
+mmseg-serve:latest
+</pre></div>
+</div>
+<p><a class="reference external" href="https://github.com/pytorch/serve/blob/072f5d088cce9bb64b2a18af065886c9b01b317b/docs/rest_api.md">Read the docs</a> about the Inference (8080), Management (8081) and Metrics (8082) APIs</p>
+</section>
+<section id="test-deployment">
+<h2>4. Test deployment<a class="headerlink" href="#test-deployment" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl -O https://raw.githubusercontent.com/open-mmlab/mmsegmentation/master/resources/3dogs.jpg
+curl http://127.0.0.1:8080/predictions/<span class="si">${</span><span class="nv">MODEL_NAME</span><span class="si">}</span> -T 3dogs.jpg -o 3dogs_mask.png
+</pre></div>
+</div>
+<p>The response will be a “.png” mask.</p>
+<p>You can visualize the output as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">mmcv</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mmcv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;3dogs_mask.png&quot;</span><span class="p">,</span> <span class="s2">&quot;grayscale&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You should see something similar to:</p>
+<p><img alt="3dogs_mask" src="_images/3dogs_mask.png" /></p>
+<p>And you can use <code class="docutils literal notranslate"><span class="pre">test_torchserve.py</span></code> to compare result of torchserve and pytorch, and visualize them.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/torchserve/test_torchserve.py <span class="si">${</span><span class="nv">IMAGE_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">CHECKPOINT_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">MODEL_NAME</span><span class="si">}</span>
+<span class="o">[</span>--inference-addr <span class="si">${</span><span class="nv">INFERENCE_ADDR</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--result-image <span class="si">${</span><span class="nv">RESULT_IMAGE</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--device <span class="si">${</span><span class="nv">DEVICE</span><span class="si">}</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/torchserve/test_torchserve.py <span class="se">\</span>
+demo/demo.png <span class="se">\</span>
+configs/fcn/fcn_r50-d8_512x1024_40k_cityscapes.py <span class="se">\</span>
+checkpoint/fcn_r50-d8_512x1024_40k_cityscapes_20200604_192608-efe53f0d.pth <span class="se">\</span>
+fcn
+</pre></div>
+</div>
+</section>
+</section>
+<section id="confusion-matrix">
+<h1>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this heading">¶</a></h1>
+<p>In order to generate and plot a <code class="docutils literal notranslate"><span class="pre">nxn</span></code> confusion matrix where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of classes, you can follow the steps:</p>
+<section id="generate-a-prediction-result-in-pkl-format-using-test-py">
+<h2>1.Generate a prediction result in pkl format using <code class="docutils literal notranslate"><span class="pre">test.py</span></code><a class="headerlink" href="#generate-a-prediction-result-in-pkl-format-using-test-py" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/test.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">CHECKPOINT_FILE</span><span class="si">}</span> <span class="o">[</span>--out <span class="si">${</span><span class="nv">PATH_TO_RESULT_FILE</span><span class="si">}</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Note that the argument for <code class="docutils literal notranslate"><span class="pre">--eval</span></code> should be  <code class="docutils literal notranslate"><span class="pre">None</span></code> so that the result file contains numpy type of prediction results. The usage for distribution test is just the same.</p>
+<p>Example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/test.py <span class="se">\</span>
+configs/fcn/fcn_r50-d8_512x1024_40k_cityscapes.py <span class="se">\</span>
+checkpoint/fcn_r50-d8_512x1024_40k_cityscapes_20200604_192608-efe53f0d.pth <span class="se">\</span>
+--out result/pred_result.pkl
+</pre></div>
+</div>
+</section>
+<section id="use-confusion-matrix-py-to-generate-and-plot-a-confusion-matrix">
+<h2>2. Use <code class="docutils literal notranslate"><span class="pre">confusion_matrix.py</span></code> to generate and plot a confusion matrix<a class="headerlink" href="#use-confusion-matrix-py-to-generate-and-plot-a-confusion-matrix" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/confusion_matrix.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">PATH_TO_RESULT_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">SAVE_DIR</span><span class="si">}</span> --show
+</pre></div>
+</div>
+<p>Description of arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: Path to the test config file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prediction_path</span></code>: Path to the prediction .pkl result.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_dir</span></code>: Directory where confusion matrix will be saved.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show</span></code>: Enable result visualize.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--color-theme</span></code>: Theme of the matrix color map.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cfg_options</span></code>: Custom options to replace the config file.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/confusion_matrix.py <span class="se">\</span>
+configs/fcn/fcn_r50-d8_512x1024_40k_cityscapes.py <span class="se">\</span>
+result/pred_result.pkl <span class="se">\</span>
+result/confusion_matrix <span class="se">\</span>
+--show
+</pre></div>
+</div>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n"
+      rel="next">Next <img src="_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="tutorials/customize_runtime.html" class="btn btn-neutral" title="Tutorial 6: Customize Runtime Settings" accesskey="p"
+      rel="prev"><img src="_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Useful tools</a><ul>
+<li><a class="reference internal" href="#get-the-flops-and-params-experimental">Get the FLOPs and params (experimental)</a></li>
+<li><a class="reference internal" href="#publish-a-model">Publish a model</a></li>
+<li><a class="reference internal" href="#convert-to-onnx-experimental">Convert to ONNX (experimental)</a></li>
+<li><a class="reference internal" href="#evaluate-onnx-model">Evaluate ONNX model</a><ul>
+<li><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#results-and-models">Results and Models</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#convert-to-torchscript-experimental">Convert to TorchScript (experimental)</a></li>
+<li><a class="reference internal" href="#convert-to-tensorrt-experimental">Convert to TensorRT (experimental)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a><ul>
+<li><a class="reference internal" href="#print-the-entire-config">Print the entire config</a></li>
+<li><a class="reference internal" href="#plot-training-logs">Plot training logs</a></li>
+<li><a class="reference internal" href="#model-conversion">Model conversion</a><ul>
+<li><a class="reference internal" href="#vit-swin-mit-transformer-models">ViT Swin MiT Transformer Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model-serving">Model Serving</a><ul>
+<li><a class="reference internal" href="#convert-model-from-mmsegmentation-to-torchserve">1. Convert model from MMSegmentation to TorchServe</a></li>
+<li><a class="reference internal" href="#build-mmseg-serve-docker-image">2. Build <code class="docutils literal notranslate"><span class="pre">mmseg-serve</span></code> docker image</a></li>
+<li><a class="reference internal" href="#run-mmseg-serve">3. Run <code class="docutils literal notranslate"><span class="pre">mmseg-serve</span></code></a></li>
+<li><a class="reference internal" href="#test-deployment">4. Test deployment</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#confusion-matrix">Confusion Matrix</a><ul>
+<li><a class="reference internal" href="#generate-a-prediction-result-in-pkl-format-using-test-py">1.Generate a prediction result in pkl format using <code class="docutils literal notranslate"><span class="pre">test.py</span></code></a></li>
+<li><a class="reference internal" href="#use-confusion-matrix-py-to-generate-and-plot-a-confusion-matrix">2. Use <code class="docutils literal notranslate"><span class="pre">confusion_matrix.py</span></code> to generate and plot a confusion matrix</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="./"
+    src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

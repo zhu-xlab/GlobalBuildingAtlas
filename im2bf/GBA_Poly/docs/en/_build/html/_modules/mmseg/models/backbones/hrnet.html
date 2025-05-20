@@ -1,0 +1,979 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mmseg.models.backbones.hrnet &mdash; RSI-Segmentation 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../../../_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html#verification">Verification</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model Zoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../model_zoo.html">Benchmark and Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modelzoo_statistics.html">Model Zoo Statistics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Run</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../train.html">Train a model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference.html">Inference with pretrained models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/config.html">Tutorial 1: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_datasets.html">Tutorial 2: Customize Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/data_pipeline.html">Tutorial 3: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_models.html">Tutorial 4: Customize Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/training_tricks.html">Tutorial 5: Training Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_runtime.html">Tutorial 6: Customize Runtime Settings</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions (FAQ)</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../../../../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+          <li><a href="../../../index.html">Module code</a> &gt;</li>
+        
+      <li>mmseg.models.backbones.hrnet</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <h1>Source code for mmseg.models.backbones.hrnet</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">mmcv.cnn</span> <span class="kn">import</span> <span class="p">(</span><span class="n">build_conv_layer</span><span class="p">,</span> <span class="n">build_norm_layer</span><span class="p">,</span> <span class="n">constant_init</span><span class="p">,</span>
+                      <span class="n">kaiming_init</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">mmcv.runner</span> <span class="kn">import</span> <span class="n">load_checkpoint</span>
+<span class="kn">from</span> <span class="nn">mmcv.utils.parrots_wrapper</span> <span class="kn">import</span> <span class="n">_BatchNorm</span>
+
+<span class="kn">from</span> <span class="nn">mmseg.ops</span> <span class="kn">import</span> <span class="n">Upsample</span><span class="p">,</span> <span class="n">resize</span>
+<span class="kn">from</span> <span class="nn">mmseg.utils</span> <span class="kn">import</span> <span class="n">get_root_logger</span>
+<span class="kn">from</span> <span class="nn">..builder</span> <span class="kn">import</span> <span class="n">BACKBONES</span>
+<span class="kn">from</span> <span class="nn">.resnet</span> <span class="kn">import</span> <span class="n">BasicBlock</span><span class="p">,</span> <span class="n">Bottleneck</span>
+
+
+<span class="k">class</span> <span class="nc">HRModule</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;High-Resolution Module for HRNet.</span>
+
+<span class="sd">    In this module, every branch has 4 BasicBlocks/Bottlenecks. Fusion/Exchange</span>
+<span class="sd">    is in this module.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">num_branches</span><span class="p">,</span>
+                 <span class="n">blocks</span><span class="p">,</span>
+                 <span class="n">num_blocks</span><span class="p">,</span>
+                 <span class="n">in_channels</span><span class="p">,</span>
+                 <span class="n">num_channels</span><span class="p">,</span>
+                 <span class="n">multiscale_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">with_cp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">conv_cfg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">norm_cfg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;BN&#39;</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">HRModule</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_branches</span><span class="p">(</span><span class="n">num_branches</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span>
+                             <span class="n">num_channels</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span> <span class="o">=</span> <span class="n">in_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_branches</span> <span class="o">=</span> <span class="n">num_branches</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiscale_output</span> <span class="o">=</span> <span class="n">multiscale_output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span> <span class="o">=</span> <span class="n">norm_cfg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span> <span class="o">=</span> <span class="n">conv_cfg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">with_cp</span> <span class="o">=</span> <span class="n">with_cp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">branches</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_branches</span><span class="p">(</span><span class="n">num_branches</span><span class="p">,</span> <span class="n">blocks</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">,</span>
+                                            <span class="n">num_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuse_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_fuse_layers</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_check_branches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_branches</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span>
+                        <span class="n">num_channels</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check branches configuration.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">num_branches</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_blocks</span><span class="p">):</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;NUM_BRANCHES(</span><span class="si">{</span><span class="n">num_branches</span><span class="si">}</span><span class="s1">) &lt;&gt; NUM_BLOCKS(&#39;</span> \
+                        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">num_blocks</span><span class="p">)</span><span class="si">}</span><span class="s1">)&#39;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">num_branches</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_channels</span><span class="p">):</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;NUM_BRANCHES(</span><span class="si">{</span><span class="n">num_branches</span><span class="si">}</span><span class="s1">) &lt;&gt; NUM_CHANNELS(&#39;</span> \
+                        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">num_channels</span><span class="p">)</span><span class="si">}</span><span class="s1">)&#39;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">num_branches</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">in_channels</span><span class="p">):</span>
+            <span class="n">error_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;NUM_BRANCHES(</span><span class="si">{</span><span class="n">num_branches</span><span class="si">}</span><span class="s1">) &lt;&gt; NUM_INCHANNELS(&#39;</span> \
+                        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">in_channels</span><span class="p">)</span><span class="si">}</span><span class="s1">)&#39;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_one_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                         <span class="n">branch_index</span><span class="p">,</span>
+                         <span class="n">block</span><span class="p">,</span>
+                         <span class="n">num_blocks</span><span class="p">,</span>
+                         <span class="n">num_channels</span><span class="p">,</span>
+                         <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Build one branch.&quot;&quot;&quot;</span>
+        <span class="n">downsample</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">stride</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">]</span> <span class="o">!=</span> \
+                <span class="n">num_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">]</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span><span class="p">:</span>
+            <span class="n">downsample</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                <span class="n">build_conv_layer</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">],</span>
+                    <span class="n">num_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">]</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span><span class="p">,</span>
+                    <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span>
+                    <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">]</span> <span class="o">*</span>
+                                 <span class="n">block</span><span class="o">.</span><span class="n">expansion</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">block</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">],</span>
+                <span class="n">num_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">],</span>
+                <span class="n">stride</span><span class="p">,</span>
+                <span class="n">downsample</span><span class="o">=</span><span class="n">downsample</span><span class="p">,</span>
+                <span class="n">with_cp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">with_cp</span><span class="p">,</span>
+                <span class="n">norm_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span>
+                <span class="n">conv_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">]</span> <span class="o">=</span> \
+            <span class="n">num_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">]</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">[</span><span class="n">branch_index</span><span class="p">]):</span>
+            <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">block</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">],</span>
+                    <span class="n">num_channels</span><span class="p">[</span><span class="n">branch_index</span><span class="p">],</span>
+                    <span class="n">with_cp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">with_cp</span><span class="p">,</span>
+                    <span class="n">norm_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span>
+                    <span class="n">conv_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">layers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_branches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_branches</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Build multiple branch.&quot;&quot;&quot;</span>
+        <span class="n">branches</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_branches</span><span class="p">):</span>
+            <span class="n">branches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_make_one_branch</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">branches</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_fuse_layers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Build fuse layer.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_branches</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">num_branches</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_branches</span>
+        <span class="n">in_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span>
+        <span class="n">fuse_layers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_out_branches</span> <span class="o">=</span> <span class="n">num_branches</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiscale_output</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_out_branches</span><span class="p">):</span>
+            <span class="n">fuse_layer</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_branches</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">fuse_layer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                            <span class="n">build_conv_layer</span><span class="p">(</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+                                <span class="n">in_channels</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                                <span class="n">in_channels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                            <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="c1"># we set align_corners=False for HRNet</span>
+                            <span class="n">Upsample</span><span class="p">(</span>
+                                <span class="n">scale_factor</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">),</span>
+                                <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span>
+                                <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">fuse_layer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">conv_downsamples</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">i</span> <span class="o">-</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="n">conv_downsamples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                                    <span class="n">build_conv_layer</span><span class="p">(</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+                                        <span class="n">in_channels</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                                        <span class="n">in_channels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                        <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                        <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                        <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                        <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                                    <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span>
+                                                     <span class="n">in_channels</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">1</span><span class="p">]))</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">conv_downsamples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                                    <span class="n">build_conv_layer</span><span class="p">(</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+                                        <span class="n">in_channels</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                                        <span class="n">in_channels</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                                        <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                        <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                        <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                        <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                                    <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span>
+                                                     <span class="n">in_channels</span><span class="p">[</span><span class="n">j</span><span class="p">])[</span><span class="mi">1</span><span class="p">],</span>
+                                    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+                    <span class="n">fuse_layer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">conv_downsamples</span><span class="p">))</span>
+            <span class="n">fuse_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">fuse_layer</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">fuse_layers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Forward function.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_branches</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">branches</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_branches</span><span class="p">):</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">branches</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+        <span class="n">x_fuse</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fuse_layers</span><span class="p">)):</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_branches</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+                    <span class="n">y</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">resize</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">fuse_layers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">](</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span>
+                        <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span>
+                        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span>
+                        <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">y</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuse_layers</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">](</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">x_fuse</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">x_fuse</span>
+
+
+<div class="viewcode-block" id="HRNet"><a class="viewcode-back" href="../../../../api.html#mmseg.models.backbones.HRNet">[docs]</a><span class="nd">@BACKBONES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">HRNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;HRNet backbone.</span>
+
+<span class="sd">    High-Resolution Representations for Labeling Pixels and Regions</span>
+<span class="sd">    arXiv: https://arxiv.org/abs/1904.04514</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        extra (dict): detailed configuration for each stage of HRNet.</span>
+<span class="sd">        in_channels (int): Number of input image channels. Normally 3.</span>
+<span class="sd">        conv_cfg (dict): dictionary to construct and config conv layer.</span>
+<span class="sd">        norm_cfg (dict): dictionary to construct and config norm layer.</span>
+<span class="sd">        norm_eval (bool): Whether to set norm layers to eval mode, namely,</span>
+<span class="sd">            freeze running stats (mean and var). Note: Effect on Batch Norm</span>
+<span class="sd">            and its variants only.</span>
+<span class="sd">        with_cp (bool): Use checkpoint or not. Using checkpoint will save some</span>
+<span class="sd">            memory while slowing down the training speed.</span>
+<span class="sd">        zero_init_residual (bool): whether to use zero init for last norm layer</span>
+<span class="sd">            in resblocks to let them behave as identity.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; from mmseg.models import HRNet</span>
+<span class="sd">        &gt;&gt;&gt; import torch</span>
+<span class="sd">        &gt;&gt;&gt; extra = dict(</span>
+<span class="sd">        &gt;&gt;&gt;     stage1=dict(</span>
+<span class="sd">        &gt;&gt;&gt;         num_modules=1,</span>
+<span class="sd">        &gt;&gt;&gt;         num_branches=1,</span>
+<span class="sd">        &gt;&gt;&gt;         block=&#39;BOTTLENECK&#39;,</span>
+<span class="sd">        &gt;&gt;&gt;         num_blocks=(4, ),</span>
+<span class="sd">        &gt;&gt;&gt;         num_channels=(64, )),</span>
+<span class="sd">        &gt;&gt;&gt;     stage2=dict(</span>
+<span class="sd">        &gt;&gt;&gt;         num_modules=1,</span>
+<span class="sd">        &gt;&gt;&gt;         num_branches=2,</span>
+<span class="sd">        &gt;&gt;&gt;         block=&#39;BASIC&#39;,</span>
+<span class="sd">        &gt;&gt;&gt;         num_blocks=(4, 4),</span>
+<span class="sd">        &gt;&gt;&gt;         num_channels=(32, 64)),</span>
+<span class="sd">        &gt;&gt;&gt;     stage3=dict(</span>
+<span class="sd">        &gt;&gt;&gt;         num_modules=4,</span>
+<span class="sd">        &gt;&gt;&gt;         num_branches=3,</span>
+<span class="sd">        &gt;&gt;&gt;         block=&#39;BASIC&#39;,</span>
+<span class="sd">        &gt;&gt;&gt;         num_blocks=(4, 4, 4),</span>
+<span class="sd">        &gt;&gt;&gt;         num_channels=(32, 64, 128)),</span>
+<span class="sd">        &gt;&gt;&gt;     stage4=dict(</span>
+<span class="sd">        &gt;&gt;&gt;         num_modules=3,</span>
+<span class="sd">        &gt;&gt;&gt;         num_branches=4,</span>
+<span class="sd">        &gt;&gt;&gt;         block=&#39;BASIC&#39;,</span>
+<span class="sd">        &gt;&gt;&gt;         num_blocks=(4, 4, 4, 4),</span>
+<span class="sd">        &gt;&gt;&gt;         num_channels=(32, 64, 128, 256)))</span>
+<span class="sd">        &gt;&gt;&gt; self = HRNet(extra, in_channels=1)</span>
+<span class="sd">        &gt;&gt;&gt; self.eval()</span>
+<span class="sd">        &gt;&gt;&gt; inputs = torch.rand(1, 1, 32, 32)</span>
+<span class="sd">        &gt;&gt;&gt; level_outputs = self.forward(inputs)</span>
+<span class="sd">        &gt;&gt;&gt; for level_out in level_outputs:</span>
+<span class="sd">        ...     print(tuple(level_out.shape))</span>
+<span class="sd">        (1, 32, 8, 8)</span>
+<span class="sd">        (1, 64, 4, 4)</span>
+<span class="sd">        (1, 128, 2, 2)</span>
+<span class="sd">        (1, 256, 1, 1)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">blocks_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;BASIC&#39;</span><span class="p">:</span> <span class="n">BasicBlock</span><span class="p">,</span> <span class="s1">&#39;BOTTLENECK&#39;</span><span class="p">:</span> <span class="n">Bottleneck</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">extra</span><span class="p">,</span>
+                 <span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                 <span class="n">conv_cfg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">norm_cfg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;BN&#39;</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                 <span class="n">norm_eval</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">with_cp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">zero_init_residual</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">HRNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra</span> <span class="o">=</span> <span class="n">extra</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span> <span class="o">=</span> <span class="n">conv_cfg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span> <span class="o">=</span> <span class="n">norm_cfg</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_eval</span> <span class="o">=</span> <span class="n">norm_eval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">with_cp</span> <span class="o">=</span> <span class="n">with_cp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zero_init_residual</span> <span class="o">=</span> <span class="n">zero_init_residual</span>
+
+        <span class="c1"># stem net</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm1_name</span><span class="p">,</span> <span class="n">norm1</span> <span class="o">=</span> <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">postfix</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm2_name</span><span class="p">,</span> <span class="n">norm2</span> <span class="o">=</span> <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">postfix</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">build_conv_layer</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+            <span class="n">in_channels</span><span class="p">,</span>
+            <span class="mi">64</span><span class="p">,</span>
+            <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm1_name</span><span class="p">,</span> <span class="n">norm1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">build_conv_layer</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+            <span class="mi">64</span><span class="p">,</span>
+            <span class="mi">64</span><span class="p">,</span>
+            <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm2_name</span><span class="p">,</span> <span class="n">norm2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># stage 1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage1_cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra</span><span class="p">[</span><span class="s1">&#39;stage1&#39;</span><span class="p">]</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage1_cfg</span><span class="p">[</span><span class="s1">&#39;num_channels&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">block_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage1_cfg</span><span class="p">[</span><span class="s1">&#39;block&#39;</span><span class="p">]</span>
+        <span class="n">num_blocks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage1_cfg</span><span class="p">[</span><span class="s1">&#39;num_blocks&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks_dict</span><span class="p">[</span><span class="n">block_type</span><span class="p">]</span>
+        <span class="n">stage1_out_channels</span> <span class="o">=</span> <span class="n">num_channels</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_layer</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">,</span> <span class="n">num_blocks</span><span class="p">)</span>
+
+        <span class="c1"># stage 2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage2_cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra</span><span class="p">[</span><span class="s1">&#39;stage2&#39;</span><span class="p">]</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage2_cfg</span><span class="p">[</span><span class="s1">&#39;num_channels&#39;</span><span class="p">]</span>
+        <span class="n">block_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage2_cfg</span><span class="p">[</span><span class="s1">&#39;block&#39;</span><span class="p">]</span>
+
+        <span class="n">block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks_dict</span><span class="p">[</span><span class="n">block_type</span><span class="p">]</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="p">[</span><span class="n">channel</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span> <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">num_channels</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transition1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_transition_layer</span><span class="p">([</span><span class="n">stage1_out_channels</span><span class="p">],</span>
+                                                       <span class="n">num_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage2</span><span class="p">,</span> <span class="n">pre_stage_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_stage</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stage2_cfg</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">)</span>
+
+        <span class="c1"># stage 3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage3_cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra</span><span class="p">[</span><span class="s1">&#39;stage3&#39;</span><span class="p">]</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage3_cfg</span><span class="p">[</span><span class="s1">&#39;num_channels&#39;</span><span class="p">]</span>
+        <span class="n">block_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage3_cfg</span><span class="p">[</span><span class="s1">&#39;block&#39;</span><span class="p">]</span>
+
+        <span class="n">block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks_dict</span><span class="p">[</span><span class="n">block_type</span><span class="p">]</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="p">[</span><span class="n">channel</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span> <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">num_channels</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transition2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_transition_layer</span><span class="p">(</span><span class="n">pre_stage_channels</span><span class="p">,</span>
+                                                       <span class="n">num_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage3</span><span class="p">,</span> <span class="n">pre_stage_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_stage</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stage3_cfg</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">)</span>
+
+        <span class="c1"># stage 4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage4_cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra</span><span class="p">[</span><span class="s1">&#39;stage4&#39;</span><span class="p">]</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage4_cfg</span><span class="p">[</span><span class="s1">&#39;num_channels&#39;</span><span class="p">]</span>
+        <span class="n">block_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage4_cfg</span><span class="p">[</span><span class="s1">&#39;block&#39;</span><span class="p">]</span>
+
+        <span class="n">block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks_dict</span><span class="p">[</span><span class="n">block_type</span><span class="p">]</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="p">[</span><span class="n">channel</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span> <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">num_channels</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transition3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_transition_layer</span><span class="p">(</span><span class="n">pre_stage_channels</span><span class="p">,</span>
+                                                       <span class="n">num_channels</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage4</span><span class="p">,</span> <span class="n">pre_stage_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_stage</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stage4_cfg</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">norm1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;nn.Module: the normalization layer named &quot;norm1&quot; &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm1_name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">norm2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;nn.Module: the normalization layer named &quot;norm2&quot; &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm2_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_transition_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_channels_pre_layer</span><span class="p">,</span>
+                               <span class="n">num_channels_cur_layer</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make transition layer.&quot;&quot;&quot;</span>
+        <span class="n">num_branches_cur</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_channels_cur_layer</span><span class="p">)</span>
+        <span class="n">num_branches_pre</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_channels_pre_layer</span><span class="p">)</span>
+
+        <span class="n">transition_layers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_branches_cur</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_branches_pre</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">num_channels_cur_layer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">num_channels_pre_layer</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="n">transition_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                            <span class="n">build_conv_layer</span><span class="p">(</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+                                <span class="n">num_channels_pre_layer</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                <span class="n">num_channels_cur_layer</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                            <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span>
+                                             <span class="n">num_channels_cur_layer</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">transition_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">conv_downsamples</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">num_branches_pre</span><span class="p">):</span>
+                    <span class="n">in_channels</span> <span class="o">=</span> <span class="n">num_channels_pre_layer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">out_channels</span> <span class="o">=</span> <span class="n">num_channels_cur_layer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> \
+                        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">i</span> <span class="o">-</span> <span class="n">num_branches_pre</span> <span class="k">else</span> <span class="n">in_channels</span>
+                    <span class="n">conv_downsamples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                            <span class="n">build_conv_layer</span><span class="p">(</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+                                <span class="n">in_channels</span><span class="p">,</span>
+                                <span class="n">out_channels</span><span class="p">,</span>
+                                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                            <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+                <span class="n">transition_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">conv_downsamples</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="n">transition_layers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">inplanes</span><span class="p">,</span> <span class="n">planes</span><span class="p">,</span> <span class="n">blocks</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make each layer.&quot;&quot;&quot;</span>
+        <span class="n">downsample</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">stride</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">inplanes</span> <span class="o">!=</span> <span class="n">planes</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span><span class="p">:</span>
+            <span class="n">downsample</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+                <span class="n">build_conv_layer</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">,</span>
+                    <span class="n">inplanes</span><span class="p">,</span>
+                    <span class="n">planes</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span><span class="p">,</span>
+                    <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">,</span>
+                    <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                <span class="n">build_norm_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span> <span class="n">planes</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">block</span><span class="p">(</span>
+                <span class="n">inplanes</span><span class="p">,</span>
+                <span class="n">planes</span><span class="p">,</span>
+                <span class="n">stride</span><span class="p">,</span>
+                <span class="n">downsample</span><span class="o">=</span><span class="n">downsample</span><span class="p">,</span>
+                <span class="n">with_cp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">with_cp</span><span class="p">,</span>
+                <span class="n">norm_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span>
+                <span class="n">conv_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">))</span>
+        <span class="n">inplanes</span> <span class="o">=</span> <span class="n">planes</span> <span class="o">*</span> <span class="n">block</span><span class="o">.</span><span class="n">expansion</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">blocks</span><span class="p">):</span>
+            <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">block</span><span class="p">(</span>
+                    <span class="n">inplanes</span><span class="p">,</span>
+                    <span class="n">planes</span><span class="p">,</span>
+                    <span class="n">with_cp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">with_cp</span><span class="p">,</span>
+                    <span class="n">norm_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span>
+                    <span class="n">conv_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">layers</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_stage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_config</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">multiscale_output</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make each stage.&quot;&quot;&quot;</span>
+        <span class="n">num_modules</span> <span class="o">=</span> <span class="n">layer_config</span><span class="p">[</span><span class="s1">&#39;num_modules&#39;</span><span class="p">]</span>
+        <span class="n">num_branches</span> <span class="o">=</span> <span class="n">layer_config</span><span class="p">[</span><span class="s1">&#39;num_branches&#39;</span><span class="p">]</span>
+        <span class="n">num_blocks</span> <span class="o">=</span> <span class="n">layer_config</span><span class="p">[</span><span class="s1">&#39;num_blocks&#39;</span><span class="p">]</span>
+        <span class="n">num_channels</span> <span class="o">=</span> <span class="n">layer_config</span><span class="p">[</span><span class="s1">&#39;num_channels&#39;</span><span class="p">]</span>
+        <span class="n">block</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks_dict</span><span class="p">[</span><span class="n">layer_config</span><span class="p">[</span><span class="s1">&#39;block&#39;</span><span class="p">]]</span>
+
+        <span class="n">hr_modules</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_modules</span><span class="p">):</span>
+            <span class="c1"># multi_scale_output is only used for the last module</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">multiscale_output</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">==</span> <span class="n">num_modules</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">reset_multiscale_output</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">reset_multiscale_output</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="n">hr_modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">HRModule</span><span class="p">(</span>
+                    <span class="n">num_branches</span><span class="p">,</span>
+                    <span class="n">block</span><span class="p">,</span>
+                    <span class="n">num_blocks</span><span class="p">,</span>
+                    <span class="n">in_channels</span><span class="p">,</span>
+                    <span class="n">num_channels</span><span class="p">,</span>
+                    <span class="n">reset_multiscale_output</span><span class="p">,</span>
+                    <span class="n">with_cp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">with_cp</span><span class="p">,</span>
+                    <span class="n">norm_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_cfg</span><span class="p">,</span>
+                    <span class="n">conv_cfg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">conv_cfg</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">hr_modules</span><span class="p">),</span> <span class="n">in_channels</span>
+
+<div class="viewcode-block" id="HRNet.init_weights"><a class="viewcode-back" href="../../../../api.html#mmseg.models.backbones.HRNet.init_weights">[docs]</a>    <span class="k">def</span> <span class="nf">init_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the weights in backbone.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pretrained (str, optional): Path to pre-trained weights.</span>
+<span class="sd">                Defaults to None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pretrained</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">logger</span> <span class="o">=</span> <span class="n">get_root_logger</span><span class="p">()</span>
+            <span class="n">load_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pretrained</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pretrained</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">):</span>
+                    <span class="n">kaiming_init</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">(</span><span class="n">_BatchNorm</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">GroupNorm</span><span class="p">)):</span>
+                    <span class="n">constant_init</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_init_residual</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">Bottleneck</span><span class="p">):</span>
+                        <span class="n">constant_init</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">norm3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">BasicBlock</span><span class="p">):</span>
+                        <span class="n">constant_init</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">norm2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;pretrained must be a str or None&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HRNet.forward"><a class="viewcode-back" href="../../../../api.html#mmseg.models.backbones.HRNet.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Forward function.&quot;&quot;&quot;</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stage2_cfg</span><span class="p">[</span><span class="s1">&#39;num_branches&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transition1</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">x</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage2</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
+
+        <span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stage3_cfg</span><span class="p">[</span><span class="s1">&#39;num_branches&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transition2</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">y_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">y_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage3</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
+
+        <span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stage4_cfg</span><span class="p">[</span><span class="s1">&#39;num_branches&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transition3</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">y_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">y_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage4</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">y_list</span></div>
+
+<div class="viewcode-block" id="HRNet.train"><a class="viewcode-back" href="../../../../api.html#mmseg.models.backbones.HRNet.train">[docs]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert the model into training mode whill keeping the normalization</span>
+<span class="sd">        layer freezed.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">HRNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm_eval</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">():</span>
+                <span class="c1"># trick: eval have effect on BatchNorm only</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">_BatchNorm</span><span class="p">):</span>
+                    <span class="n">m</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span></div></div>
+</pre></div>
+
+              </article>
+              
+            </div>
+            <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../../../"
+    src="../../../../_static/documentation_options.js"></script>
+  <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+  <script src="../../../../_static/jquery.js"></script>
+  <script src="../../../../_static/underscore.js"></script>
+  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/clipboard.min.js"></script>
+  <script src="../../../../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

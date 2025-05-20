@@ -1,0 +1,563 @@
+import os
+import tarfile
+import enum
+import functools
+import pathlib
+from tqdm import tqdm
+import h5py
+import torch
+from typing import Any, Dict, List, Optional, Tuple, BinaryIO, cast, Union
+from xml.etree import ElementTree
+from Dataset4EO import transforms
+import pdb
+import numpy as np
+import math
+from ..utils import clip_big_image
+import geopandas as gpd
+import rasterio
+import shapely.geometry as shgeo
+import shapely
+import cv2
+import json
+import geojson
+from pycocotools.coco import COCO as COCO
+from rasterio.windows import from_bounds
+from rasterio.enums import Resampling
+from rasterio.transform import rowcol
+from rasterio.windows import from_bounds, Window
+import glob
+import itertools
+import shutil
+import re
+
+
+from torchdata.datapipes.iter import FileLister, FileOpener, StreamReader, Concater
+from torchdata.datapipes.iter import (
+    IterDataPipe,
+    Mapper,
+    Filter,
+    Demultiplexer,
+    IterKeyZipper,
+    LineReader,
+    Zipper,
+    IterableWrapper
+)
+
+from torchdata.datapipes.map import SequenceWrapper
+
+from Dataset4EO.datasets.utils import OnlineResource, HttpResource, Dataset, ManualDownloadResource
+from Dataset4EO.datasets.utils._internal import (
+    path_accessor,
+    getitem,
+    INFINITE_BUFFER_SIZE,
+    path_comparator,
+    hint_sharding,
+    hint_shuffling,
+    read_categories_file,
+)
+from Dataset4EO.features import BoundingBox, Label, EncodedImage
+
+from .._api import register_dataset, register_info
+
+NAME = "inria_polygonized"
+_TRAIN_LEN = 6615
+_TEST_LEN = 2205
+
+@register_info(NAME)
+def _info() -> Dict[str, Any]:
+    return dict(categories=read_categories_file(NAME))
+
+class InriaPolygonizedResource(ManualDownloadResource):
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__("Register on https://project.inria.fr/aerialimagelabeling/ and follow the instructions there.", **kwargs)
+
+
+@register_dataset(NAME)
+class InriaPolygonized(Dataset):
+    """
+    - **homepage**: https://project.inria.fr/aerialimagelabeling/
+    """
+
+    def __init__(
+        self,
+        root: Union[str, pathlib.Path],
+        *,
+        split: str = "train",
+        skip_integrity_check: bool = True,
+        crop_size =  [1024, 1024],
+        stride: int = [768, 768],
+        collect_keys=['img', 'seg', 'ann']
+    ) -> None:
+
+        assert split in ('train', 'test', 'test_100')
+
+        self._split = split
+        self.root = root
+        self._categories = _info()["categories"]
+        self.CLASSES = self._categories
+        self.PALETTE = [[0,0,0], [255,255,255]]
+        self.crop_size = crop_size
+        self.stride=stride
+        self.cat_ids = [1]
+        self.cat2label = {1: 1}
+        self.collect_keys = collect_keys
+
+        super().__init__(root, skip_integrity_check=skip_integrity_check)
+
+    def _resources(self) -> List[OnlineResource]:
+
+        shp_resource = InriaPolygonizedResource(
+            file_name = 'train/gt_polygonized',
+            preprocess = None,
+            sha256 = None
+        )
+
+        raster_resource = InriaPolygonizedResource(
+            file_name = 'train/images',
+            preprocess = None,
+            sha256 = None
+        )
+
+        seg_resource = InriaPolygonizedResource(
+            file_name = 'train/gt',
+            preprocess = None,
+            sha256 = None
+        )
+
+        return [raster_resource, seg_resource, shp_resource]
+
+    def _classify_dp(self, data):
+        path = pathlib.Path(data[0])
+        flag = False
+        for i, (key, value) in enumerate(_POSTFIX_MAP.items()):
+            if path.name.endswith(key):
+                flag = True
+                return i
+
+        return len(_POSTFIX_MAP)
+
+    def split_images(self, image, windows, window_transforms, out_dir, img_name, window_names=None,
+                     window_masks=None, crop_size=None):
+        if crop_size is None:
+            crop_size = self.crop_size
+
+        for img_idx, window in enumerate(tqdm(windows)):
+            start_x, start_y = int(window.col_off), int(window.row_off)
+            # crop_img_name = img_name + f'_{start_x}x{start_y}'
+            crop_img_name = window_names[img_idx] if window_names is not None else img_name + f'_{start_x}x{start_y}'
+            crop_img_path = os.path.join(out_dir, crop_img_name + '.tif')
+
+            # # window = from_bounds(start_x, start_y, end_x, end_y, image.transform)
+            # window = rasterio.windows.Window(start_x, start_y, end_x - start_x, end_y - start_y)
+            img_h, img_w = image.shape
+
+            eps = 1e-8
+            if window.col_off >= -eps and window.row_off >= -eps \
+               and window.col_off + window.width <= img_w + eps and window.row_off + window.height <= img_h + eps:
+
+                window_data = image.read(window=window, resampling=Resampling.nearest)
+                if window_data.shape[1:] != tuple(crop_size):
+                    raise Exception(f'The cropped image generated by {window} gives an unexpected shape {window_data.shape[1:]}')
+
+                out_meta = image.meta.copy()
+                out_meta.update({
+                            "driver": "GTiff",
+                            "height": window_data.shape[1],
+                            "width": window_data.shape[2],
+                            "transform": window_transforms[img_idx]
+                        })
+                with rasterio.open(crop_img_path, "w", **out_meta) as dest:
+                    dest.write(window_data)
+            else:
+                raise Exception(f'The given window {window} is out of the bound of {img_name}, which is {image.shape} when clipping the image!')
+
+    def split_features(self, image, features, windows, out_dir, ann_name, transform):
+
+        def get_within_feature_ids(crop_box, bounds, type='has_intersection'):
+            """
+            type could be has_intersection or contain
+            """
+
+            start_x, start_y, end_x, end_y = crop_box
+            if type == 'contain':
+                flag1 = bounds[:,0] >= start_x
+                flag2 = bounds[:,2] < end_x
+                flag3 = bounds[:,1] >= start_y
+                flag4 = bounds[:,3] < end_y
+
+                return flag1 & flag2 & flag3 & flag4
+            else:
+                flag1 = bounds[:,0] >= end_x
+                flag2 = bounds[:,2] <= start_x
+                flag3 = bounds[:,1] >= end_y
+                flag4 = bounds[:,3] <= start_y
+
+                return (~(flag1 | flag2)) & (~(flag3 | flag4))
+
+        def has_intersect(points, bbox):
+            flag1 = (points[:,0] >= start_x) & (points[:,0] < end_x)
+            flag2 = (points[:,1] >= start_y) &(points[:,1] < end_y)
+            return (flag1 & flag2).any()
+
+        # polygons = []
+        bounds = []
+        geo_jsons = []
+        # for index, row in tqdm(gdf.iterrows(), desc='processing the .shp file'):
+        for index, feat_json in enumerate(tqdm(features, desc='processing the .shp file')):
+
+            if feat_json['type'] == 'Polygon':
+                coords = feat_json['coordinates']
+                exterior = coords[0]
+                interiors = coords[1:] if len(coords) > 1 else None
+                geometry = shapely.Polygon(shell=exterior, holes=interiors)
+
+                cur_bound = np.array(geometry.bounds)
+                # cur_pixel_bound = np.array([~transform * (x, y) for x, y in cur_bound]).reshape(4,)
+                bounds.append(cur_bound)
+
+                # geo_json = shgeo.mapping(geometry)
+                # pixel_rings = []
+
+                # pdb.set_trace()
+                # for ring in geo_json['coordinates']:
+                #     pixel_ring = [~transform * (x, y) for x, y in ring]
+                #     pixel_rings.append(pixel_ring)
+
+                # geo_json['coordinates'] = pixel_rings
+
+                # bounds.append(cur_pixel_bound)
+
+                geo_jsons.append(feat_json)
+            else:
+                pdb.set_trace()
+
+        bounds = np.stack(bounds, axis=0)
+
+        # if transform[0] < 0:
+        #     bounds[:, [0,2]] = bounds[:, [2,0]]
+
+        # if transform[4] < 0:
+        #     bounds[:, [1,3]] = bounds[:, [3,1]]
+        # bounds = bounds[:,[0,3,2,1]]
+
+        ann_id = 0
+        # annotations = []
+        feature_list = []
+        img_h, img_w = image.shape
+        for img_id, window in enumerate(tqdm(windows, desc='writing annotations into disk for each bounding box...')):
+
+            start_x, start_y = window.col_off, window.row_off
+            end_x, end_y = start_x + window.width, start_y + window.height
+
+            eps = 1e-8
+            if window.col_off >= -eps and window.row_off >= -eps \
+               and window.col_off + window.width <= img_w + eps and window.row_off + window.height <= img_h + eps:
+
+                crop_box = (start_x, start_y, end_x, end_y)
+
+                ids = get_within_feature_ids(crop_box, bounds, type='has_intersection')
+                ids = list(np.where(ids)[0])
+                cur_features = [self.add_offset_to_features(geo_jsons[idx], (start_x, start_y)) for idx in ids]
+
+                # crop_ann_name = ann_name + f'_{int(start_x)}x{int(start_y)}' if window_names is None else window_names[img_id]
+                crop_ann_name = ann_name + f'_{int(start_x)}x{int(start_y)}'
+                crop_ann_path = os.path.join(out_dir, crop_ann_name + '.geojson')
+
+                with open(crop_ann_path, 'w') as f:
+                    if len(cur_features) > 0:
+                        json.dump(cur_features, f)
+            else:
+                raise Exception(f'The given window {window} is out of the bound of {img_name} when clipping the annotations')
+
+    def _filter_shp(self, data):
+        return data[0].endswith('.geojson')
+
+    def _filter_udm(self, data):
+        return not data[0].endswith('_udm.tif')
+
+    def _filter_city(self, data, city_list=None):
+        city_name = data.split('/')[-1].split('.')[0]
+        for city in city_list:
+            if city_name == city:
+                return True
+        return False
+
+    def _get_path(self, data):
+        return data[0]
+
+    def _key_fn(self, data):
+        key = data.split('/')[-1].split('.')[0]
+        return key
+
+    def _classify_fn(self, data):
+        if data[0].endswith('.tif'):
+            return 0
+        elif data[0].endswith('.geojson'):
+            return 1
+        else:
+            return 2
+
+    def _parse_dp(self, data, city_name):
+
+        results = dict(
+            city_name=city_name,
+            # continent_name=cities_to_continents[city_name] if city_name in cities_to_continents else None
+        )
+        for i, key in enumerate(self.collect_keys):
+            results[key + '_path'] = data[i][0]
+
+        return results
+
+    def _filter_split(self, city_name):
+        pattern = r'\d+$'
+        if re.search(pattern, city_name):
+            numbers = int(re.search(pattern, city_name).group())
+
+            if self._split.startswith('train'):
+                return numbers <= 27
+            else:
+                return numbers > 27
+
+        raise ValueError(f'invalid filename {city_name}')
+
+    def _datapipe(self, resource_dps: List[IterDataPipe]) -> IterDataPipe[Dict[str, Any]]:
+
+        raster_dp, seg_dp, shp_dp = resource_dps
+
+        # raster_dp = Filter(raster_dp, self._filter_split)
+        raster_dp = Mapper(raster_dp, self._get_path)
+        rasters = list(raster_dp)
+        raster_list = [x.split('/')[-1].split('.')[0] for x in rasters]
+
+        shp_dp = Filter(shp_dp, self._filter_shp)
+        shp_dp = Mapper(shp_dp, self._get_path)
+        shapes = list(shp_dp)
+        shape_list = [x.split('/')[-1].split('.')[0] for x in shapes]
+
+        seg_dp = Mapper(seg_dp, self._get_path)
+        segs = list(seg_dp)
+        seg_list = [x.split('/')[-1].split('.')[0] for x in segs]
+
+        common_list = list(set(raster_list).intersection(set(shape_list)).intersection(set(seg_list)))
+        common_list = list(filter(self._filter_split, common_list))
+
+        raster_dp = Filter(IterableWrapper(rasters), functools.partial(self._filter_city, city_list=common_list))
+        seg_dp = Filter(IterableWrapper(segs), functools.partial(self._filter_city, city_list=common_list))
+        shp_dp = Filter(IterableWrapper(shapes), functools.partial(self._filter_city, city_list=common_list))
+
+        all_data_infos = []
+        crop_size, stride = self.crop_size, self.stride
+        city_dps = []
+        for i, (raster_path, shp_path, seg_path) in enumerate(Zipper(raster_dp, shp_dp, seg_dp)):
+            city_name = raster_path.split('/')[-1].split('.')[0]
+
+            clip_dir = os.path.join(self.root, 'clipped', 'c{}_s{}'.format(crop_size[0], stride[0]), city_name)
+
+            clip_dir_img = os.path.join(clip_dir, f'img_dir')
+            clip_dir_seg = os.path.join(clip_dir, f'seg_dir')
+            clip_dir_ann = os.path.join(clip_dir, f'ann_dir')
+
+            os.makedirs(clip_dir, exist_ok=True)
+            img_paths = []
+
+            img_tif = rasterio.open(raster_path)
+            H, W = img_tif.shape
+            geo_transform = img_tif.transform
+
+            new_crop_size = []
+            new_crop_size.append(H if crop_size[0] > H else crop_size[0])
+            new_crop_size.append(W if crop_size[1] > W else crop_size[1])
+
+            new_stride = []
+            new_stride.append(H if crop_size[0] > H else stride[0])
+            new_stride.append(W if crop_size[1] > W else stride[1])
+
+            crop_boxes = self.get_crop_boxes(H, W, new_crop_size, new_stride)
+
+            for key in ['img', 'seg']:
+
+                cur_clip_dir = eval(f'clip_dir_{key}')
+                # split images according to the boxes (if not exists)
+                if not os.path.exists(cur_clip_dir):
+                    print(f'clipping the {key} data for {city_name}...')
+                    os.makedirs(cur_clip_dir)
+
+                    img_tif = rasterio.open(raster_path if key == 'img' else seg_path)
+                    H, W = img_tif.shape
+                    geo_transform = img_tif.transform
+
+                    # start_x, start_y, end_x, end_y = crop_boxes
+                    # windows = [from_bounds(start_x, start_y, end_x, end_y, geo_transform) for (start_x, start_y, end_x, end_y) in crop_boxes]
+                    windows = [rasterio.windows.Window(start_x, start_y, end_x - start_x, end_y - start_y) for (start_x, start_y, end_x, end_y) in crop_boxes]
+                    window_transforms = [self.calculate_window_geo_transform(geo_transform, window) for window in crop_boxes]
+
+                    self.split_images(
+                        image=img_tif,
+                        windows=windows,
+                        window_transforms=window_transforms,
+                        window_names=None,
+                        out_dir=cur_clip_dir,
+                        img_name=city_name,
+                        crop_size=new_crop_size
+                    )
+
+            if not os.path.exists(clip_dir_ann):
+                print(f'clipping the shape file for {city_name}...')
+                # if windows is None:
+                #     windows, window_transforms, window_names = self.get_crop_boxes_by_tifs(self.window_root, city_name, geo_transform)
+
+                with open(shp_path) as f:
+                    features = geojson.load(f)['geometries']
+
+                windows = [rasterio.windows.Window(start_x, start_y, end_x - start_x, end_y - start_y) for (start_x, start_y, end_x, end_y) in crop_boxes]
+                window_transforms = [self.calculate_window_geo_transform(geo_transform, window) for window in crop_boxes]
+
+                os.makedirs(clip_dir_ann)
+                self.split_features(
+                    image=img_tif,
+                    features=features,
+                    windows=windows,
+                    out_dir=clip_dir_ann,
+                    ann_name=city_name,
+                    transform=img_tif.transform,
+                )
+
+            collected_dps = []
+            for key in self.collect_keys:
+                cur_dp = InriaPolygonizedResource(
+                    file_name = os.path.join(clip_dir, f'{key}_dir'),
+                    preprocess = None,
+                    sha256 = None
+                ).load('')
+                collected_dps.append(cur_dp)
+
+            city_dp = Zipper(*collected_dps)
+            # city_dp = hint_shuffling(city_dp)
+            # city_dp = hint_sharding(city_dp)
+            city_dp = Mapper(city_dp, functools.partial(self._parse_dp, city_name=city_name))
+            city_dps.append(city_dp)
+
+        print(f'Total number of cities: {len(city_dps)}')
+        dp = Concater(*city_dps)
+        if self._split == 'test_100':
+            dp = itertools.islice(dp, 100)
+
+        return dp
+
+    def calchalf_iou(self, poly1, poly2):
+        """
+            It is not the iou on usual, the iou is the value of intersection over poly1
+        """
+        inter_poly = poly1.intersection(poly2)
+        inter_area = inter_poly.area
+        poly1_area = poly1.area
+        half_iou = inter_area / poly1_area
+        return inter_poly, half_iou
+
+    def polyorig2sub(self, left, up, poly):
+        polyInsub = np.zeros(len(poly))
+        for i in range(int(len(poly)/2)):
+            polyInsub[i * 2] = int(poly[i * 2] - left)
+            polyInsub[i * 2 + 1] = int(poly[i * 2 + 1] - up)
+        return polyInsub
+
+    def add_offset_to_features(self, features, offset):
+        np_offset = np.array(offset).reshape(1,2)
+        new_rings = []
+        for ring in features['coordinates']:
+
+            new_ring = (np.array(ring) - offset).tolist()
+            new_rings.append(new_ring)
+
+        new_features = features.copy()
+        new_features['coordinates'] = new_rings
+        return new_features
+
+    def get_crop_boxes_by_tifs(self, root, city_name, transform):
+        tif_list = glob.glob(f'{root}/{city_name}*')
+        windows = []
+        window_transforms = []
+        window_names = []
+        for tif in tif_list:
+            img_tif = rasterio.open(tif)
+            bounds = img_tif.bounds
+            window = from_bounds(*bounds, transform)
+            windows.append(
+                Window(
+                    col_off=int(round(window.col_off)),
+                    row_off=int(round(window.row_off)),
+                    width=int(round(window.width)),
+                    height=int(round(window.height))
+                    # width=self.crop_size[0],
+                    # height=self.crop_size[1]
+                )
+            )
+            window_transforms.append(img_tif.transform)
+            window_names.append(tif.split('/')[-1].split('.')[0])
+
+        return windows, window_transforms, window_names
+
+
+    def get_crop_boxes(self, img_H, img_W, crop_size=(256, 256), stride=(192, 192)):
+        # prepare locations to crop
+
+        num_rows = math.ceil((img_H - crop_size[0]) / stride[0]) if \
+            math.ceil((img_H - crop_size[0]) / stride[0]) * stride[0] + crop_size[0] >= img_H \
+            else math.ceil( (img_H - crop_size[0]) / stride[0]) + 1
+
+        num_cols = math.ceil((img_W - crop_size[1]) / stride[1]) if math.ceil(
+            (img_W - crop_size[1]) /
+            stride[1]) * stride[1] + crop_size[1] >= img_W else math.ceil(
+                (img_W - crop_size[1]) / stride[1]) + 1
+
+        x, y = np.meshgrid(np.arange(num_cols + 1), np.arange(num_rows + 1))
+        xmin = x * stride[1]
+        ymin = y * stride[0]
+
+        xmin = xmin.ravel()
+        ymin = ymin.ravel()
+        xmin_offset = np.where(xmin + crop_size[1] > img_W, img_W - xmin - crop_size[1],
+                               np.zeros_like(xmin))
+        ymin_offset = np.where(ymin + crop_size[0] > img_H, img_H - ymin - crop_size[0],
+                               np.zeros_like(ymin))
+        boxes = np.stack([
+            xmin + xmin_offset, ymin + ymin_offset,
+            np.minimum(xmin + crop_size[1], img_W),
+            np.minimum(ymin + crop_size[0], img_H)
+        ], axis=1)
+
+        return boxes
+
+    def calculate_window_geo_transform(self, original_geo_transform, window):
+        """
+        Calculate the geo-transform for a specific window based on the original geo-transform.
+        
+        Parameters:
+        - original_geo_transform: The original geo-transform of the raster.
+        - window: A tuple of (start_x, start_y, end_x, end_y) defining the window's pixel coordinates.
+        
+        Returns:
+        - A geo-transform for the window.
+        """
+        (start_x, start_y, end_x, end_y) = window
+        ox, oy = original_geo_transform[0], original_geo_transform[3]  # Original top-left coordinates
+        px, py = original_geo_transform[1], original_geo_transform[5]  # Pixel width and height
+        
+        # Calculate new top-left coordinates
+        new_ox = ox + (start_x * px)
+        new_oy = oy + (start_y * py)
+        
+        # The rest of the geo-transform remains unchanged
+        return rasterio.transform.Affine(new_ox, original_geo_transform[1],
+                                         original_geo_transform[2], new_oy,
+                                         original_geo_transform[4], original_geo_transform[5])
+
+
+    def __len__(self) -> int:
+        base_len = {
+            'train': eval(f'_TRAIN_LEN'),
+            'test': eval(f'_TEST_LEN'),
+            # 'test_100': eval(f'_TEST_LEN_{self.num_bands}BAND_100'),
+        }[self._split]
+
+        return base_len

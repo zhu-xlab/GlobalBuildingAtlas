@@ -1,0 +1,563 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Inference with pretrained models &mdash; RSI-Segmentation 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="&lt;no title&gt;" href="tutorials/index.html" />
+  <link rel="prev" title="Train a model" href="train.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html#installation">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model Zoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model_zoo.html">Benchmark and Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelzoo_statistics.html">Model Zoo Statistics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Run</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="train.html">Train a model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Inference with pretrained models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/config.html">Tutorial 1: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_datasets.html">Tutorial 2: Customize Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_pipeline.html">Tutorial 3: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_models.html">Tutorial 4: Customize Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/training_tricks.html">Tutorial 5: Training Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_runtime.html">Tutorial 6: Customize Runtime Settings</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Inference with pretrained models</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="_sources/inference.md.txt" rel="nofollow"><img src="_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="inference-with-pretrained-models">
+<h1>Inference with pretrained models<a class="headerlink" href="#inference-with-pretrained-models" title="Permalink to this heading">¶</a></h1>
+<p>We provide testing scripts to evaluate a whole dataset (Cityscapes, PASCAL VOC, ADE20k, etc.),
+and also some high-level apis for easier integration to other projects.</p>
+<section id="test-a-dataset">
+<h2>Test a dataset<a class="headerlink" href="#test-a-dataset" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>single GPU</p></li>
+<li><p>CPU</p></li>
+<li><p>single node multiple GPU</p></li>
+<li><p>multiple node</p></li>
+</ul>
+<p>You can use the following commands to test a dataset.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># single-gpu testing</span>
+python tools/test.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">CHECKPOINT_FILE</span><span class="si">}</span> <span class="o">[</span>--out <span class="si">${</span><span class="nv">RESULT_FILE</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--eval <span class="si">${</span><span class="nv">EVAL_METRICS</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--show<span class="o">]</span>
+
+<span class="c1"># CPU: If GPU unavailable, directly running single-gpu testing command above</span>
+<span class="c1"># CPU: If GPU available, disable GPUs and run single-gpu testing script</span>
+<span class="nb">export</span> <span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span>-1
+python tools/test.py <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">CHECKPOINT_FILE</span><span class="si">}</span> <span class="o">[</span>--out <span class="si">${</span><span class="nv">RESULT_FILE</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--eval <span class="si">${</span><span class="nv">EVAL_METRICS</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--show<span class="o">]</span>
+
+<span class="c1"># multi-gpu testing</span>
+./tools/dist_test.sh <span class="si">${</span><span class="nv">CONFIG_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">CHECKPOINT_FILE</span><span class="si">}</span> <span class="si">${</span><span class="nv">GPU_NUM</span><span class="si">}</span> <span class="o">[</span>--out <span class="si">${</span><span class="nv">RESULT_FILE</span><span class="si">}</span><span class="o">]</span> <span class="o">[</span>--eval <span class="si">${</span><span class="nv">EVAL_METRICS</span><span class="si">}</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Optional arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RESULT_FILE</span></code>: Filename of the output results in pickle format. If not specified, the results will not be saved to a file. (After mmseg v0.17, the output results become pre-evaluation results or format result paths)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EVAL_METRICS</span></code>: Items to be evaluated on the results. Allowed values depend on the dataset, e.g., <code class="docutils literal notranslate"><span class="pre">mIoU</span></code> is available for all dataset. Cityscapes could be evaluated by <code class="docutils literal notranslate"><span class="pre">cityscapes</span></code> as well as standard <code class="docutils literal notranslate"><span class="pre">mIoU</span></code> metrics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show</span></code>: If specified, segmentation results will be plotted on the images and shown in a new window. It is only applicable to single GPU testing and used for debugging and visualization. Please make sure that GUI is available in your environment, otherwise you may encounter the error like <code class="docutils literal notranslate"><span class="pre">cannot</span> <span class="pre">connect</span> <span class="pre">to</span> <span class="pre">X</span> <span class="pre">server</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--show-dir</span></code>: If specified, segmentation results will be plotted on the images and saved to the specified directory. It is only applicable to single GPU testing and used for debugging and visualization. You do NOT need a GUI available in your environment for using this option.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--eval-options</span></code>: Optional parameters for <code class="docutils literal notranslate"><span class="pre">dataset.format_results</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset.evaluate</span></code> during evaluation. When <code class="docutils literal notranslate"><span class="pre">efficient_test=True</span></code>, it will save intermediate results to local files to save CPU memory. Make sure that you have enough local storage space (more than 20GB). (<code class="docutils literal notranslate"><span class="pre">efficient_test</span></code> argument does not have effect after mmseg v0.17, we use a progressive mode to evaluation and format results which can largely save memory cost and evaluation time.)</p></li>
+</ul>
+<p>Examples:</p>
+<p>Assume that you have already downloaded the checkpoints to the directory <code class="docutils literal notranslate"><span class="pre">checkpoints/</span></code>.</p>
+<ol class="arabic">
+<li><p>Test PSPNet and visualize the results. Press any key for the next image.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/test.py configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py <span class="se">\</span>
+    checkpoints/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth <span class="se">\</span>
+    --show
+</pre></div>
+</div>
+</li>
+<li><p>Test PSPNet and save the painted images for latter visualization.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/test.py configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py <span class="se">\</span>
+    checkpoints/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth <span class="se">\</span>
+    --show-dir psp_r50_512x1024_40ki_cityscapes_results
+</pre></div>
+</div>
+</li>
+<li><p>Test PSPNet on PASCAL VOC (without saving the test results) and evaluate the mIoU.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/test.py configs/pspnet/pspnet_r50-d8_512x1024_20k_voc12aug.py <span class="se">\</span>
+    checkpoints/pspnet_r50-d8_512x1024_20k_voc12aug_20200605_003338-c57ef100.pth <span class="se">\</span>
+    --eval mAP
+</pre></div>
+</div>
+</li>
+<li><p>Test PSPNet with 4 GPUs, and evaluate the standard mIoU and cityscapes metric.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./tools/dist_test.sh configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py <span class="se">\</span>
+    checkpoints/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth <span class="se">\</span>
+    <span class="m">4</span> --out results.pkl --eval mIoU cityscapes
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is some gap (~0.1%) between cityscapes mIoU and our mIoU. The reason is that cityscapes average each class with class size by default.
+We use the simple version without average for all datasets.</p>
+</div>
+<ol class="arabic" start="5">
+<li><p>Test PSPNet on cityscapes test split with 4 GPUs, and generate the png files to be submit to the official evaluation server.</p>
+<p>First, add following to config file <code class="docutils literal notranslate"><span class="pre">configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py</span></code>,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">test</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">img_dir</span><span class="o">=</span><span class="s1">&#39;leftImg8bit/test&#39;</span><span class="p">,</span>
+        <span class="n">ann_dir</span><span class="o">=</span><span class="s1">&#39;gtFine/test&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then run test.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./tools/dist_test.sh configs/pspnet/pspnet_r50-d8_512x1024_40k_cityscapes.py <span class="se">\</span>
+    checkpoints/pspnet_r50-d8_512x1024_40k_cityscapes_20200605_003338-2966598c.pth <span class="se">\</span>
+    <span class="m">4</span> --format-only --eval-options <span class="s2">&quot;imgfile_prefix=./pspnet_test_results&quot;</span>
+</pre></div>
+</div>
+<p>You will get png files under <code class="docutils literal notranslate"><span class="pre">./pspnet_test_results</span></code> directory.
+You may run <code class="docutils literal notranslate"><span class="pre">zip</span> <span class="pre">-r</span> <span class="pre">results.zip</span> <span class="pre">pspnet_test_results/</span></code> and submit the zip file to <a class="reference external" href="https://www.cityscapes-dataset.com/submit/">evaluation server</a>.</p>
+</li>
+<li><p>CPU memory efficient test DeeplabV3+ on Cityscapes (without saving the test results) and evaluate the mIoU.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python tools/test.py <span class="se">\</span>
+configs/deeplabv3plus/deeplabv3plus_r18-d8_512x1024_80k_cityscapes.py <span class="se">\</span>
+deeplabv3plus_r18-d8_512x1024_80k_cityscapes_20201226_080942-cff257fe.pth <span class="se">\</span>
+--eval-options <span class="nv">efficient_test</span><span class="o">=</span>True <span class="se">\</span>
+--eval mIoU
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">pmap</span></code> to view CPU memory footprint, it used 2.25GB CPU memory with <code class="docutils literal notranslate"><span class="pre">efficient_test=True</span></code> and 11.06GB CPU memory with <code class="docutils literal notranslate"><span class="pre">efficient_test=False</span></code> . This optional parameter can save a lot of memory. (After mmseg v0.17, efficient_test has not effect and we use a progressive mode to evaluation and format results efficiently by default.)</p>
+</li>
+<li><p>Test PSPNet on LoveDA test split with 1 GPU, and generate the png files to be submit to the official evaluation server.</p>
+<p>First, add following to config file <code class="docutils literal notranslate"><span class="pre">configs/pspnet/pspnet_r50-d8_512x512_80k_loveda.py</span></code>,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">test</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">img_dir</span><span class="o">=</span><span class="s1">&#39;img_dir/test&#39;</span><span class="p">,</span>
+        <span class="n">ann_dir</span><span class="o">=</span><span class="s1">&#39;ann_dir/test&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then run test.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python ./tools/test.py configs/pspnet/pspnet_r50-d8_512x512_80k_loveda.py <span class="se">\</span>
+    checkpoints/pspnet_r50-d8_512x512_80k_loveda_20211104_155728-88610f9f.pth <span class="se">\</span>
+    --format-only --eval-options <span class="s2">&quot;imgfile_prefix=./pspnet_test_results&quot;</span>
+</pre></div>
+</div>
+<p>You will get png files under <code class="docutils literal notranslate"><span class="pre">./pspnet_test_results</span></code> directory.
+You may run <code class="docutils literal notranslate"><span class="pre">zip</span> <span class="pre">-r</span> <span class="pre">-j</span> <span class="pre">Results.zip</span> <span class="pre">pspnet_test_results/</span></code> and submit the zip file to <a class="reference external" href="https://codalab.lisn.upsaclay.fr/competitions/421">evaluation server</a>.</p>
+</li>
+</ol>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="tutorials/index.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n"
+      rel="next">Next <img src="_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="train.html" class="btn btn-neutral" title="Train a model" accesskey="p"
+      rel="prev"><img src="_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Inference with pretrained models</a><ul>
+<li><a class="reference internal" href="#test-a-dataset">Test a dataset</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="./"
+    src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

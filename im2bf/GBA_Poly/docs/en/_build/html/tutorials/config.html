@@ -1,0 +1,822 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial 1: Learn about Configs &mdash; RSI-Segmentation 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Tutorial 2: Customize Datasets" href="customize_datasets.html" />
+  <link rel="prev" title="&lt;no title&gt;" href="index.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html#installation">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model Zoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../model_zoo.html">Benchmark and Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelzoo_statistics.html">Model Zoo Statistics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Run</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../train.html">Train a model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inference.html">Inference with pretrained models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial 1: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customize_datasets.html">Tutorial 2: Customize Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_pipeline.html">Tutorial 3: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customize_models.html">Tutorial 4: Customize Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training_tricks.html">Tutorial 5: Training Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customize_runtime.html">Tutorial 6: Customize Runtime Settings</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions (FAQ)</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+          <li><a href="index.html">&lt;no title&gt;</a> &gt;</li>
+        
+      <li>Tutorial 1: Learn about Configs</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/config.md.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="tutorial-1-learn-about-configs">
+<h1>Tutorial 1: Learn about Configs<a class="headerlink" href="#tutorial-1-learn-about-configs" title="Permalink to this heading">¶</a></h1>
+<p>We incorporate modular and inheritance design into our config system, which is convenient to conduct various experiments.
+If you wish to inspect the config file, you may run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">tools/print_config.py</span> <span class="pre">/PATH/TO/CONFIG</span></code> to see the complete config.
+You may also pass <code class="docutils literal notranslate"><span class="pre">--cfg-options</span> <span class="pre">xxx.yyy=zzz</span></code> to see updated config.</p>
+<section id="config-file-structure">
+<h2>Config File Structure<a class="headerlink" href="#config-file-structure" title="Permalink to this heading">¶</a></h2>
+<p>There are 4 basic component types under <code class="docutils literal notranslate"><span class="pre">config/_base_</span></code>, dataset, model, schedule, default_runtime.
+Many methods could be easily constructed with one of each like DeepLabV3, PSPNet.
+The configs that are composed by components from <code class="docutils literal notranslate"><span class="pre">_base_</span></code> are called <em>primitive</em>.</p>
+<p>For all configs under the same folder, it is recommended to have only <strong>one</strong> <em>primitive</em> config. All other configs should inherit from the <em>primitive</em> config. In this way, the maximum of inheritance level is 3.</p>
+<p>For easy understanding, we recommend contributors to inherit from existing methods.
+For example, if some modification is made base on DeepLabV3, user may first inherit the basic DeepLabV3 structure by specifying <code class="docutils literal notranslate"><span class="pre">_base_</span> <span class="pre">=</span> <span class="pre">../deeplabv3/deeplabv3_r50_512x1024_40ki_cityscapes.py</span></code>, then modify the necessary fields in the config files.</p>
+<p>If you are building an entirely new method that does not share the structure with any of the existing methods, you may create a folder <code class="docutils literal notranslate"><span class="pre">xxxnet</span></code> under <code class="docutils literal notranslate"><span class="pre">configs</span></code>,</p>
+<p>Please refer to <a class="reference external" href="https://mmcv.readthedocs.io/en/latest/understand_mmcv/config.html">mmcv</a> for detailed documentation.</p>
+</section>
+<section id="config-name-style">
+<h2>Config Name Style<a class="headerlink" href="#config-name-style" title="Permalink to this heading">¶</a></h2>
+<p>We follow the below style to name config files. Contributors are advised to follow the same style.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">model</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">backbone</span><span class="p">}</span><span class="n">_</span><span class="p">[</span><span class="n">misc</span><span class="p">]</span><span class="n">_</span><span class="p">[</span><span class="n">gpu</span> <span class="n">x</span> <span class="n">batch_per_gpu</span><span class="p">]</span><span class="n">_</span><span class="p">{</span><span class="n">resolution</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">iterations</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">dataset</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">{xxx}</span></code> is required field and <code class="docutils literal notranslate"><span class="pre">[yyy]</span></code> is optional.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{model}</span></code>: model type like <code class="docutils literal notranslate"><span class="pre">psp</span></code>, <code class="docutils literal notranslate"><span class="pre">deeplabv3</span></code>, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{backbone}</span></code>: backbone type like <code class="docutils literal notranslate"><span class="pre">r50</span></code> (ResNet-50), <code class="docutils literal notranslate"><span class="pre">x101</span></code> (ResNeXt-101).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[misc]</span></code>: miscellaneous setting/plugins of model, e.g. <code class="docutils literal notranslate"><span class="pre">dconv</span></code>, <code class="docutils literal notranslate"><span class="pre">gcb</span></code>, <code class="docutils literal notranslate"><span class="pre">attention</span></code>, <code class="docutils literal notranslate"><span class="pre">mstrain</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[gpu</span> <span class="pre">x</span> <span class="pre">batch_per_gpu]</span></code>: GPUs and samples per GPU, <code class="docutils literal notranslate"><span class="pre">8x2</span></code> is used by default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{iterations}</span></code>: number of training iterations like <code class="docutils literal notranslate"><span class="pre">160k</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{dataset}</span></code>: dataset like <code class="docutils literal notranslate"><span class="pre">cityscapes</span></code>, <code class="docutils literal notranslate"><span class="pre">voc12aug</span></code>, <code class="docutils literal notranslate"><span class="pre">ade</span></code>.</p></li>
+</ul>
+</section>
+<section id="an-example-of-pspnet">
+<h2>An Example of PSPNet<a class="headerlink" href="#an-example-of-pspnet" title="Permalink to this heading">¶</a></h2>
+<p>To help the users have a basic idea of a complete config and the modules in a modern semantic segmentation system,
+we make brief comments on the config of PSPNet using ResNet50V1c as the following.
+For more detailed usage and the corresponding alternative for each module, please refer to the API documentation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">norm_cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;SyncBN&#39;</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Segmentation usually uses SyncBN</span>
+<span class="n">model</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;EncoderDecoder&#39;</span><span class="p">,</span>  <span class="c1"># Name of segmentor</span>
+    <span class="n">pretrained</span><span class="o">=</span><span class="s1">&#39;open-mmlab://resnet50_v1c&#39;</span><span class="p">,</span>  <span class="c1"># The ImageNet pretrained backbone to be loaded</span>
+    <span class="n">backbone</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ResNetV1c&#39;</span><span class="p">,</span>  <span class="c1"># The type of backbone. Please refer to mmseg/models/backbones/resnet.py for details.</span>
+        <span class="n">depth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>  <span class="c1"># Depth of backbone. Normally 50, 101 are used.</span>
+        <span class="n">num_stages</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># Number of stages of backbone.</span>
+        <span class="n">out_indices</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>  <span class="c1"># The index of output feature maps produced in each stages.</span>
+        <span class="n">dilations</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># The dilation rate of each layer.</span>
+        <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># The stride of each layer.</span>
+        <span class="n">norm_cfg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>  <span class="c1"># The configuration of norm layer.</span>
+            <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;SyncBN&#39;</span><span class="p">,</span>  <span class="c1"># Type of norm layer. Usually it is SyncBN.</span>
+            <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>   <span class="c1"># Whether to train the gamma and beta in norm</span>
+        <span class="n">norm_eval</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Whether to freeze the statistics in BN</span>
+        <span class="n">style</span><span class="o">=</span><span class="s1">&#39;pytorch&#39;</span><span class="p">,</span>  <span class="c1"># The style of backbone, &#39;pytorch&#39; means that stride 2 layers are in 3x3 conv, &#39;caffe&#39; means stride 2 layers are in 1x1 convs.</span>
+        <span class="n">contract_dilation</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>  <span class="c1"># When dilation &gt; 1, whether contract first layer of dilation.</span>
+    <span class="n">decode_head</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;PSPHead&#39;</span><span class="p">,</span>  <span class="c1"># Type of decode head. Please refer to mmseg/models/decode_heads for available options.</span>
+        <span class="n">in_channels</span><span class="o">=</span><span class="mi">2048</span><span class="p">,</span>  <span class="c1"># Input channel of decode head.</span>
+        <span class="n">in_index</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># The index of feature map to select.</span>
+        <span class="n">channels</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>  <span class="c1"># The intermediate channels of decode head.</span>
+        <span class="n">pool_scales</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>  <span class="c1"># The avg pooling scales of PSPHead. Please refer to paper for details.</span>
+        <span class="n">dropout_ratio</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># The dropout ratio before final classification layer.</span>
+        <span class="n">num_classes</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span>  <span class="c1"># Number of segmentation class. Usually 19 for cityscapes, 21 for VOC, 150 for ADE20k.</span>
+        <span class="n">norm_cfg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;SyncBN&#39;</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>  <span class="c1"># The configuration of norm layer.</span>
+        <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># The align_corners argument for resize in decoding.</span>
+        <span class="n">loss_decode</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>  <span class="c1"># Config of loss function for the decode_head.</span>
+            <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;CrossEntropyLoss&#39;</span><span class="p">,</span>  <span class="c1"># Type of loss used for segmentation.</span>
+            <span class="n">use_sigmoid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Whether use sigmoid activation for segmentation.</span>
+            <span class="n">loss_weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)),</span>  <span class="c1"># Loss weight of decode head.</span>
+    <span class="n">auxiliary_head</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;FCNHead&#39;</span><span class="p">,</span>  <span class="c1"># Type of auxiliary head. Please refer to mmseg/models/decode_heads for available options.</span>
+        <span class="n">in_channels</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>  <span class="c1"># Input channel of auxiliary head.</span>
+        <span class="n">in_index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># The index of feature map to select.</span>
+        <span class="n">channels</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>  <span class="c1"># The intermediate channels of decode head.</span>
+        <span class="n">num_convs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Number of convs in FCNHead. It is usually 1 in auxiliary head.</span>
+        <span class="n">concat_input</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Whether concat output of convs with input before classification layer.</span>
+        <span class="n">dropout_ratio</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># The dropout ratio before final classification layer.</span>
+        <span class="n">num_classes</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span>  <span class="c1"># Number of segmentation class. Usually 19 for cityscapes, 21 for VOC, 150 for ADE20k.</span>
+        <span class="n">norm_cfg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;SyncBN&#39;</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>  <span class="c1"># The configuration of norm layer.</span>
+        <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># The align_corners argument for resize in decoding.</span>
+        <span class="n">loss_decode</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>  <span class="c1"># Config of loss function for the decode_head.</span>
+            <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;CrossEntropyLoss&#39;</span><span class="p">,</span>  <span class="c1"># Type of loss used for segmentation.</span>
+            <span class="n">use_sigmoid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Whether use sigmoid activation for segmentation.</span>
+            <span class="n">loss_weight</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)))</span>  <span class="c1"># Loss weight of auxiliary head, which is usually 0.4 of decode head.</span>
+<span class="n">train_cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># train_cfg is just a place holder for now.</span>
+<span class="n">test_cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;whole&#39;</span><span class="p">)</span>  <span class="c1"># The test mode, options are &#39;whole&#39; and &#39;sliding&#39;. &#39;whole&#39;: whole image fully-convolutional test. &#39;sliding&#39;: sliding crop window on the image.</span>
+<span class="n">dataset_type</span> <span class="o">=</span> <span class="s1">&#39;CityscapesDataset&#39;</span>  <span class="c1"># Dataset type, this will be used to define the dataset.</span>
+<span class="n">data_root</span> <span class="o">=</span> <span class="s1">&#39;data/cityscapes/&#39;</span>  <span class="c1"># Root path of data.</span>
+<span class="n">img_norm_cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>  <span class="c1"># Image normalization config to normalize the input images.</span>
+    <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">123.675</span><span class="p">,</span> <span class="mf">116.28</span><span class="p">,</span> <span class="mf">103.53</span><span class="p">],</span>  <span class="c1"># Mean values used to pre-training the pre-trained backbone models.</span>
+    <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">58.395</span><span class="p">,</span> <span class="mf">57.12</span><span class="p">,</span> <span class="mf">57.375</span><span class="p">],</span>  <span class="c1"># Standard variance used to pre-training the pre-trained backbone models.</span>
+    <span class="n">to_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># The channel orders of image used to pre-training the pre-trained backbone models.</span>
+<span class="n">crop_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>  <span class="c1"># The crop size during training.</span>
+<span class="n">train_pipeline</span> <span class="o">=</span> <span class="p">[</span>  <span class="c1"># Training pipeline.</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadImageFromFile&#39;</span><span class="p">),</span>  <span class="c1"># First pipeline to load images from file path.</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadAnnotations&#39;</span><span class="p">),</span>  <span class="c1"># Second pipeline to load annotations for current image.</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Resize&#39;</span><span class="p">,</span>  <span class="c1"># Augmentation pipeline that resize the images and their annotations.</span>
+        <span class="n">img_scale</span><span class="o">=</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>  <span class="c1"># The largest scale of image.</span>
+        <span class="n">ratio_range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)),</span> <span class="c1"># The augmented scale range as ratio.</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomCrop&#39;</span><span class="p">,</span>  <span class="c1"># Augmentation pipeline that randomly crop a patch from current image.</span>
+        <span class="n">crop_size</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>  <span class="c1"># The crop size of patch.</span>
+        <span class="n">cat_max_ratio</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>  <span class="c1"># The max area ratio that could be occupied by single category.</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomFlip&#39;</span><span class="p">,</span>  <span class="c1"># Augmentation pipeline that flip the images and their annotations</span>
+        <span class="n">flip_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>  <span class="c1"># The ratio or probability to flip</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;PhotoMetricDistortion&#39;</span><span class="p">),</span>  <span class="c1"># Augmentation pipeline that distort current image with several photo metric methods.</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Normalize&#39;</span><span class="p">,</span>  <span class="c1"># Augmentation pipeline that normalize the input images</span>
+        <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">123.675</span><span class="p">,</span> <span class="mf">116.28</span><span class="p">,</span> <span class="mf">103.53</span><span class="p">],</span>  <span class="c1"># These keys are the same of img_norm_cfg since the</span>
+        <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">58.395</span><span class="p">,</span> <span class="mf">57.12</span><span class="p">,</span> <span class="mf">57.375</span><span class="p">],</span>  <span class="c1"># keys of img_norm_cfg are used here as arguments</span>
+        <span class="n">to_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Pad&#39;</span><span class="p">,</span>  <span class="c1"># Augmentation pipeline that pad the image to specified size.</span>
+        <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>  <span class="c1"># The output size of padding.</span>
+        <span class="n">pad_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># The padding value for image.</span>
+        <span class="n">seg_pad_val</span><span class="o">=</span><span class="mi">255</span><span class="p">),</span>  <span class="c1"># The padding value of &#39;gt_semantic_seg&#39;.</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;DefaultFormatBundle&#39;</span><span class="p">),</span>  <span class="c1"># Default format bundle to gather data in the pipeline</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Collect&#39;</span><span class="p">,</span>  <span class="c1"># Pipeline that decides which keys in the data should be passed to the segmentor</span>
+        <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="s1">&#39;gt_semantic_seg&#39;</span><span class="p">])</span>
+<span class="p">]</span>
+<span class="n">test_pipeline</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadImageFromFile&#39;</span><span class="p">),</span>  <span class="c1"># First pipeline to load images from file path</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;MultiScaleFlipAug&#39;</span><span class="p">,</span>  <span class="c1"># An encapsulation that encapsulates the test time augmentations</span>
+        <span class="n">img_scale</span><span class="o">=</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>  <span class="c1"># Decides the largest scale for testing, used for the Resize pipeline</span>
+        <span class="n">flip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Whether to flip images during testing</span>
+        <span class="n">transforms</span><span class="o">=</span><span class="p">[</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Resize&#39;</span><span class="p">,</span>  <span class="c1"># Use resize augmentation</span>
+                 <span class="n">keep_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>  <span class="c1"># Whether to keep the ratio between height and width, the img_scale set here will be suppressed by the img_scale set above.</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomFlip&#39;</span><span class="p">),</span>  <span class="c1"># Thought RandomFlip is added in pipeline, it is not used when flip=False</span>
+            <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Normalize&#39;</span><span class="p">,</span>  <span class="c1"># Normalization config, the values are from img_norm_cfg</span>
+                <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">123.675</span><span class="p">,</span> <span class="mf">116.28</span><span class="p">,</span> <span class="mf">103.53</span><span class="p">],</span>
+                <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">58.395</span><span class="p">,</span> <span class="mf">57.12</span><span class="p">,</span> <span class="mf">57.375</span><span class="p">],</span>
+                <span class="n">to_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ImageToTensor&#39;</span><span class="p">,</span> <span class="c1"># Convert image to tensor</span>
+                <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Collect&#39;</span><span class="p">,</span> <span class="c1"># Collect pipeline that collect necessary keys for testing.</span>
+                <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">])</span>
+        <span class="p">])</span>
+<span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">samples_per_gpu</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Batch size of a single GPU</span>
+    <span class="n">workers_per_gpu</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Worker to pre-fetch data for each single GPU</span>
+    <span class="n">train</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>  <span class="c1"># Train dataset config</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;CityscapesDataset&#39;</span><span class="p">,</span>  <span class="c1"># Type of dataset, refer to mmseg/datasets/ for details.</span>
+        <span class="n">data_root</span><span class="o">=</span><span class="s1">&#39;data/cityscapes/&#39;</span><span class="p">,</span>  <span class="c1"># The root of dataset.</span>
+        <span class="n">img_dir</span><span class="o">=</span><span class="s1">&#39;leftImg8bit/train&#39;</span><span class="p">,</span>  <span class="c1"># The image directory of dataset.</span>
+        <span class="n">ann_dir</span><span class="o">=</span><span class="s1">&#39;gtFine/train&#39;</span><span class="p">,</span>  <span class="c1"># The annotation directory of dataset.</span>
+        <span class="n">pipeline</span><span class="o">=</span><span class="p">[</span>  <span class="c1"># pipeline, this is passed by the train_pipeline created before.</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadImageFromFile&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadAnnotations&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Resize&#39;</span><span class="p">,</span> <span class="n">img_scale</span><span class="o">=</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span> <span class="n">ratio_range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomCrop&#39;</span><span class="p">,</span> <span class="n">crop_size</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span> <span class="n">cat_max_ratio</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomFlip&#39;</span><span class="p">,</span> <span class="n">flip_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;PhotoMetricDistortion&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Normalize&#39;</span><span class="p">,</span>
+                <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">123.675</span><span class="p">,</span> <span class="mf">116.28</span><span class="p">,</span> <span class="mf">103.53</span><span class="p">],</span>
+                <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">58.395</span><span class="p">,</span> <span class="mf">57.12</span><span class="p">,</span> <span class="mf">57.375</span><span class="p">],</span>
+                <span class="n">to_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Pad&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span> <span class="n">pad_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">seg_pad_val</span><span class="o">=</span><span class="mi">255</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;DefaultFormatBundle&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Collect&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="s1">&#39;gt_semantic_seg&#39;</span><span class="p">])</span>
+        <span class="p">]),</span>
+    <span class="n">val</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>  <span class="c1"># Validation dataset config</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;CityscapesDataset&#39;</span><span class="p">,</span>
+        <span class="n">data_root</span><span class="o">=</span><span class="s1">&#39;data/cityscapes/&#39;</span><span class="p">,</span>
+        <span class="n">img_dir</span><span class="o">=</span><span class="s1">&#39;leftImg8bit/val&#39;</span><span class="p">,</span>
+        <span class="n">ann_dir</span><span class="o">=</span><span class="s1">&#39;gtFine/val&#39;</span><span class="p">,</span>
+        <span class="n">pipeline</span><span class="o">=</span><span class="p">[</span>  <span class="c1"># Pipeline is passed by test_pipeline created before</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadImageFromFile&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;MultiScaleFlipAug&#39;</span><span class="p">,</span>
+                <span class="n">img_scale</span><span class="o">=</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>
+                <span class="n">flip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">transforms</span><span class="o">=</span><span class="p">[</span>
+                    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Resize&#39;</span><span class="p">,</span> <span class="n">keep_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomFlip&#39;</span><span class="p">),</span>
+                    <span class="nb">dict</span><span class="p">(</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Normalize&#39;</span><span class="p">,</span>
+                        <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">123.675</span><span class="p">,</span> <span class="mf">116.28</span><span class="p">,</span> <span class="mf">103.53</span><span class="p">],</span>
+                        <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">58.395</span><span class="p">,</span> <span class="mf">57.12</span><span class="p">,</span> <span class="mf">57.375</span><span class="p">],</span>
+                        <span class="n">to_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ImageToTensor&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]),</span>
+                    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Collect&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">])</span>
+                <span class="p">])</span>
+        <span class="p">]),</span>
+    <span class="n">test</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;CityscapesDataset&#39;</span><span class="p">,</span>
+        <span class="n">data_root</span><span class="o">=</span><span class="s1">&#39;data/cityscapes/&#39;</span><span class="p">,</span>
+        <span class="n">img_dir</span><span class="o">=</span><span class="s1">&#39;leftImg8bit/val&#39;</span><span class="p">,</span>
+        <span class="n">ann_dir</span><span class="o">=</span><span class="s1">&#39;gtFine/val&#39;</span><span class="p">,</span>
+        <span class="n">pipeline</span><span class="o">=</span><span class="p">[</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadImageFromFile&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;MultiScaleFlipAug&#39;</span><span class="p">,</span>
+                <span class="n">img_scale</span><span class="o">=</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>
+                <span class="n">flip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">transforms</span><span class="o">=</span><span class="p">[</span>
+                    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Resize&#39;</span><span class="p">,</span> <span class="n">keep_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomFlip&#39;</span><span class="p">),</span>
+                    <span class="nb">dict</span><span class="p">(</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Normalize&#39;</span><span class="p">,</span>
+                        <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">123.675</span><span class="p">,</span> <span class="mf">116.28</span><span class="p">,</span> <span class="mf">103.53</span><span class="p">],</span>
+                        <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">58.395</span><span class="p">,</span> <span class="mf">57.12</span><span class="p">,</span> <span class="mf">57.375</span><span class="p">],</span>
+                        <span class="n">to_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ImageToTensor&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]),</span>
+                    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Collect&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">])</span>
+                <span class="p">])</span>
+        <span class="p">]))</span>
+<span class="n">log_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>  <span class="c1"># config to register logger hook</span>
+    <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>  <span class="c1"># Interval to print the log</span>
+    <span class="n">hooks</span><span class="o">=</span><span class="p">[</span>
+        <span class="c1"># dict(type=&#39;TensorboardLoggerHook&#39;)  # The Tensorboard logger is also supported</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;TextLoggerHook&#39;</span><span class="p">,</span> <span class="n">by_epoch</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="p">])</span>
+<span class="n">dist_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">&#39;nccl&#39;</span><span class="p">)</span>  <span class="c1"># Parameters to setup distributed training, the port can also be set.</span>
+<span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;INFO&#39;</span>  <span class="c1"># The level of logging.</span>
+<span class="n">load_from</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># load models as a pre-trained model from a given path. This will not resume training.</span>
+<span class="n">resume_from</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Resume checkpoints from a given path, the training will be resumed from the iteration when the checkpoint&#39;s is saved.</span>
+<span class="n">workflow</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>  <span class="c1"># Workflow for runner. [(&#39;train&#39;, 1)] means there is only one workflow and the workflow named &#39;train&#39; is executed once. The workflow trains the model by 40000 iterations according to the `runner.max_iters`.</span>
+<span class="n">cudnn_benchmark</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Whether use cudnn_benchmark to speed up, which is fast for fixed input size.</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>  <span class="c1"># Config used to build optimizer, support all the optimizers in PyTorch whose arguments are also the same as those in PyTorch</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;SGD&#39;</span><span class="p">,</span>  <span class="c1"># Type of optimizers, refer to https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/optimizer/default_constructor.py#L13 for more details</span>
+    <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>  <span class="c1"># Learning rate of optimizers, see detail usages of the parameters in the documentation of PyTorch</span>
+    <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>  <span class="c1"># Momentum</span>
+    <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">)</span>  <span class="c1"># Weight decay of SGD</span>
+<span class="n">optimizer_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># Config used to build the optimizer hook, refer to https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/optimizer.py#L8 for implementation details.</span>
+<span class="n">lr_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">policy</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span>  <span class="c1"># The policy of scheduler, also support Step, CosineAnnealing, Cyclic, etc. Refer to details of supported LrUpdater from https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/lr_updater.py#L9.</span>
+    <span class="n">power</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>  <span class="c1"># The power of polynomial decay.</span>
+    <span class="n">min_lr</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>  <span class="c1"># The minimum learning rate to stable the training.</span>
+    <span class="n">by_epoch</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Whether count by epoch or not.</span>
+<span class="n">runner</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;IterBasedRunner&#39;</span><span class="p">,</span> <span class="c1"># Type of runner to use (i.e. IterBasedRunner or EpochBasedRunner)</span>
+    <span class="n">max_iters</span><span class="o">=</span><span class="mi">40000</span><span class="p">)</span> <span class="c1"># Total number of iterations. For EpochBasedRunner use `max_epochs`</span>
+<span class="n">checkpoint_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>  <span class="c1"># Config to set the checkpoint hook, Refer to https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/checkpoint.py for implementation.</span>
+    <span class="n">by_epoch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Whether count by epoch or not.</span>
+    <span class="n">interval</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span>  <span class="c1"># The save interval.</span>
+<span class="n">evaluation</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>  <span class="c1"># The config to build the evaluation hook. Please refer to mmseg/core/evaluation/eval_hook.py for details.</span>
+    <span class="n">interval</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span>  <span class="c1"># The interval of evaluation.</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;mIoU&#39;</span><span class="p">)</span>  <span class="c1"># The evaluation metric.</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="faq">
+<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h2>
+<section id="ignore-some-fields-in-the-base-configs">
+<h3>Ignore some fields in the base configs<a class="headerlink" href="#ignore-some-fields-in-the-base-configs" title="Permalink to this heading">¶</a></h3>
+<p>Sometimes, you may set <code class="docutils literal notranslate"><span class="pre">_delete_=True</span></code> to ignore some of the fields in base configs.
+You may refer to <a class="reference external" href="https://mmcv.readthedocs.io/en/latest/understand_mmcv/config.html#inherit-from-base-config-with-ignored-fields">mmcv</a> for simple illustration.</p>
+<p>In MMSegmentation, for example, to change the backbone of PSPNet with the following config.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">norm_cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;SyncBN&#39;</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;MaskRCNN&#39;</span><span class="p">,</span>
+    <span class="n">pretrained</span><span class="o">=</span><span class="s1">&#39;torchvision://resnet50&#39;</span><span class="p">,</span>
+    <span class="n">backbone</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ResNetV1c&#39;</span><span class="p">,</span>
+        <span class="n">depth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">num_stages</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">out_indices</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="n">dilations</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">norm_cfg</span><span class="o">=</span><span class="n">norm_cfg</span><span class="p">,</span>
+        <span class="n">norm_eval</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">style</span><span class="o">=</span><span class="s1">&#39;pytorch&#39;</span><span class="p">,</span>
+        <span class="n">contract_dilation</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">decode_head</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
+    <span class="n">auxiliary_head</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ResNet</span></code> and <code class="docutils literal notranslate"><span class="pre">HRNet</span></code> use different keywords to construct.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_base_</span> <span class="o">=</span> <span class="s1">&#39;../pspnet/psp_r50_512x1024_40ki_cityscpaes.py&#39;</span>
+<span class="n">norm_cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;SyncBN&#39;</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">pretrained</span><span class="o">=</span><span class="s1">&#39;open-mmlab://msra/hrnetv2_w32&#39;</span><span class="p">,</span>
+    <span class="n">backbone</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">_delete_</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;HRNet&#39;</span><span class="p">,</span>
+        <span class="n">norm_cfg</span><span class="o">=</span><span class="n">norm_cfg</span><span class="p">,</span>
+        <span class="n">extra</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">stage1</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">num_modules</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">num_branches</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">block</span><span class="o">=</span><span class="s1">&#39;BOTTLENECK&#39;</span><span class="p">,</span>
+                <span class="n">num_blocks</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">),</span>
+                <span class="n">num_channels</span><span class="o">=</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">)),</span>
+            <span class="n">stage2</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">num_modules</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">num_branches</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">block</span><span class="o">=</span><span class="s1">&#39;BASIC&#39;</span><span class="p">,</span>
+                <span class="n">num_blocks</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+                <span class="n">num_channels</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">)),</span>
+            <span class="n">stage3</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">num_modules</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                <span class="n">num_branches</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                <span class="n">block</span><span class="o">=</span><span class="s1">&#39;BASIC&#39;</span><span class="p">,</span>
+                <span class="n">num_blocks</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+                <span class="n">num_channels</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">)),</span>
+            <span class="n">stage4</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">num_modules</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                <span class="n">num_branches</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                <span class="n">block</span><span class="o">=</span><span class="s1">&#39;BASIC&#39;</span><span class="p">,</span>
+                <span class="n">num_blocks</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+                <span class="n">num_channels</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">)))),</span>
+    <span class="n">decode_head</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
+    <span class="n">auxiliary_head</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">_delete_=True</span></code> would replace all old keys in <code class="docutils literal notranslate"><span class="pre">backbone</span></code> field with new keys.</p>
+</section>
+<section id="use-intermediate-variables-in-configs">
+<h3>Use intermediate variables in configs<a class="headerlink" href="#use-intermediate-variables-in-configs" title="Permalink to this heading">¶</a></h3>
+<p>Some intermediate variables are used in the configs files, like <code class="docutils literal notranslate"><span class="pre">train_pipeline</span></code>/<code class="docutils literal notranslate"><span class="pre">test_pipeline</span></code> in datasets.
+It’s worth noting that when modifying intermediate variables in the children configs, user need to pass the intermediate variables into corresponding fields again.
+For example, we would like to change multi scale strategy to train/test a PSPNet. <code class="docutils literal notranslate"><span class="pre">train_pipeline</span></code>/<code class="docutils literal notranslate"><span class="pre">test_pipeline</span></code> are intermediate variable we would like to modify.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_base_</span> <span class="o">=</span> <span class="s1">&#39;../pspnet/psp_r50_512x1024_40ki_cityscapes.py&#39;</span>
+<span class="n">crop_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+<span class="n">img_norm_cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">123.675</span><span class="p">,</span> <span class="mf">116.28</span><span class="p">,</span> <span class="mf">103.53</span><span class="p">],</span> <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">58.395</span><span class="p">,</span> <span class="mf">57.12</span><span class="p">,</span> <span class="mf">57.375</span><span class="p">],</span> <span class="n">to_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">train_pipeline</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadImageFromFile&#39;</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadAnnotations&#39;</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Resize&#39;</span><span class="p">,</span> <span class="n">img_scale</span><span class="o">=</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span> <span class="n">ratio_range</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)),</span>  <span class="c1"># change to [1., 2.]</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomCrop&#39;</span><span class="p">,</span> <span class="n">crop_size</span><span class="o">=</span><span class="n">crop_size</span><span class="p">,</span> <span class="n">cat_max_ratio</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomFlip&#39;</span><span class="p">,</span> <span class="n">flip_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;PhotoMetricDistortion&#39;</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Normalize&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">img_norm_cfg</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Pad&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">crop_size</span><span class="p">,</span> <span class="n">pad_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">seg_pad_val</span><span class="o">=</span><span class="mi">255</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;DefaultFormatBundle&#39;</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Collect&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">,</span> <span class="s1">&#39;gt_semantic_seg&#39;</span><span class="p">]),</span>
+<span class="p">]</span>
+<span class="n">test_pipeline</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;LoadImageFromFile&#39;</span><span class="p">),</span>
+    <span class="nb">dict</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;MultiScaleFlipAug&#39;</span><span class="p">,</span>
+        <span class="n">img_scale</span><span class="o">=</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>
+        <span class="n">img_ratios</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">],</span>  <span class="c1"># change to multi scale testing</span>
+        <span class="n">flip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">transforms</span><span class="o">=</span><span class="p">[</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Resize&#39;</span><span class="p">,</span> <span class="n">keep_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;RandomFlip&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Normalize&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">img_norm_cfg</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ImageToTensor&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Collect&#39;</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]),</span>
+        <span class="p">])</span>
+<span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">train</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="n">train_pipeline</span><span class="p">),</span>
+    <span class="n">val</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="n">test_pipeline</span><span class="p">),</span>
+    <span class="n">test</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="n">test_pipeline</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We first define the new <code class="docutils literal notranslate"><span class="pre">train_pipeline</span></code>/<code class="docutils literal notranslate"><span class="pre">test_pipeline</span></code> and pass them into <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<p>Similarly, if we would like to switch from <code class="docutils literal notranslate"><span class="pre">SyncBN</span></code> to <code class="docutils literal notranslate"><span class="pre">BN</span></code> or <code class="docutils literal notranslate"><span class="pre">MMSyncBN</span></code>, we need to substitute every <code class="docutils literal notranslate"><span class="pre">norm_cfg</span></code> in the config.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_base_</span> <span class="o">=</span> <span class="s1">&#39;../pspnet/psp_r50_512x1024_40ki_cityscpaes.py&#39;</span>
+<span class="n">norm_cfg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;BN&#39;</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">backbone</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">norm_cfg</span><span class="o">=</span><span class="n">norm_cfg</span><span class="p">),</span>
+    <span class="n">decode_head</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">norm_cfg</span><span class="o">=</span><span class="n">norm_cfg</span><span class="p">),</span>
+    <span class="n">auxiliary_head</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">norm_cfg</span><span class="o">=</span><span class="n">norm_cfg</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="customize_datasets.html" class="btn btn-neutral float-right" title="Tutorial 2: Customize Datasets" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="index.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Tutorial 1: Learn about Configs</a><ul>
+<li><a class="reference internal" href="#config-file-structure">Config File Structure</a></li>
+<li><a class="reference internal" href="#config-name-style">Config Name Style</a></li>
+<li><a class="reference internal" href="#an-example-of-pspnet">An Example of PSPNet</a></li>
+<li><a class="reference internal" href="#faq">FAQ</a><ul>
+<li><a class="reference internal" href="#ignore-some-fields-in-the-base-configs">Ignore some fields in the base configs</a></li>
+<li><a class="reference internal" href="#use-intermediate-variables-in-configs">Use intermediate variables in configs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/clipboard.min.js"></script>
+  <script src="../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,756 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial 5: Customize Runtime Settings &mdash; Dataset4EO 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Tutorial 6: Run Benchmarks" href="6_benchmarks.html" />
+  <link rel="prev" title="Tutorial 4: Customize Schedule" href="4_schedule.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://dataset4eo.readthedocs.io/en/latest/"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO/blob/main/demo/dataset4eo_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO" target="_blank">GitHub</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                About
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/open-mmlab/mmcv" target="_blank">
+                  <span class="dropdown-title">MMCV </span>
+                  <p>Foundational library for computer vision</p>
+                </a>
+              </div>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html#using-multiple-mmselfsup-versions">Using multiple MMSelfSup versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prepare_data.html">Prepare Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_config.html">Tutorial 0: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_new_dataset.html">Tutorial 1: Adding New Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_data_pipeline.html">Tutorial 2: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_new_module.html">Tutorial 3: Adding New Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_schedule.html">Tutorial 4: Customize Schedule</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial 5: Customize Runtime Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_benchmarks.html">Tutorial 6: Run Benchmarks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Tutorial 5: Customize Runtime Settings</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/5_runtime.md.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="tutorial-5-customize-runtime-settings">
+<h1>Tutorial 5: Customize Runtime Settings<a class="headerlink" href="#tutorial-5-customize-runtime-settings" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#tutorial-5-customize-runtime-settings"><span class="std std-doc">Tutorial 5: Customize Runtime Settings</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#customize-workflow"><span class="std std-doc">Customize Workflow</span></a></p></li>
+<li><p><a class="reference internal" href="#hooks"><span class="std std-doc">Hooks</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#default-training-hooks"><span class="std std-doc">default training hooks</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#checkpointhook"><span class="std std-doc">CheckpointHook</span></a></p></li>
+<li><p><a class="reference internal" href="#loggerhooks"><span class="std std-doc">LoggerHooks</span></a></p></li>
+<li><p><a class="reference internal" href="#evalhook"><span class="std std-doc">EvalHook</span></a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#use-other-implemented-hooks"><span class="std std-doc">Use other implemented hooks</span></a></p></li>
+<li><p><a class="reference internal" href="#customize-self-implemented-hooks"><span class="std std-doc">Customize self-implemented hooks</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#implement-a-new-hook"><span class="std std-doc">1. Implement a new hook</span></a></p></li>
+<li><p><a class="reference internal" href="#import-the-new-hook"><span class="std std-doc">2. Import the new hook</span></a></p></li>
+<li><p><a class="reference internal" href="#modify-the-config"><span class="std std-doc">3. Modify the config</span></a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>In this tutorial, we will introduce some methods about how to customize workflow and hooks when running your own settings for the project.</p>
+<section id="customize-workflow">
+<h2>Customize Workflow<a class="headerlink" href="#customize-workflow" title="Permalink to this heading">¶</a></h2>
+<p>Workflow is a list of (phase, duration) to specify the running order and duration. The meaning of “duration” depends on the runner’s type.</p>
+<p>For example, we use epoch-based runner by default, and the “duration” means how many epochs the phase to be executed in a cycle. Usually, we only want to execute training phase, just use the following config.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Sometimes we may want to check some metrics (e.g. loss, accuracy) about the model on the validate set. In such case, we can set the workflow as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>so we will run training and valiation for one epoch iteratively.</p>
+<p>By default, we recommend using <code class="docutils literal notranslate"><span class="pre">EvalHook</span></code> to do evaluation after the training epoch.</p>
+</section>
+<section id="hooks">
+<h2>Hooks<a class="headerlink" href="#hooks" title="Permalink to this heading">¶</a></h2>
+<p>The hook mechanism is widely used in the OpenMMLab open-source algorithm library. Inserted in the <code class="docutils literal notranslate"><span class="pre">Runner</span></code>, the entire life cycle of the training process can be managed easily. You can learn more about the hook through <a class="reference external" href="https://www.calltutors.com/blog/what-is-hook/">related article</a>.</p>
+<p>Hooks only work after being registered into the runner. At present, hooks are mainly divided into two categories:</p>
+<ul class="simple">
+<li><p>default training hooks</p></li>
+</ul>
+<p>Those hooks are registered by the runner by default. Generally, they fulfill some basic functions, and have default priority, you don’t need to modify the priority.</p>
+<ul class="simple">
+<li><p>custom hooks</p></li>
+</ul>
+<p>The custom hooks are registered through custom_hooks. Generally, they are hooks with enhanced functions. The priority needs to be specified in the configuration file. If you do not specify the priority of the hook, it will be set to ‘NORMAL’ by default.</p>
+<p>Priority list</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: center;">Level</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">HIGHEST</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">VERY_HIGH</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr>
+<td style="text-align: center;">HIGH</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr>
+<td style="text-align: center;">ABOVE_NORMAL</td>
+<td style="text-align: center;">40</td>
+</tr>
+<tr>
+<td style="text-align: center;">NORMAL(default)</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr>
+<td style="text-align: center;">BELOW_NORMAL</td>
+<td style="text-align: center;">60</td>
+</tr>
+<tr>
+<td style="text-align: center;">LOW</td>
+<td style="text-align: center;">70</td>
+</tr>
+<tr>
+<td style="text-align: center;">VERY_LOW</td>
+<td style="text-align: center;">90</td>
+</tr>
+<tr>
+<td style="text-align: center;">LOWEST</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+<p>The priority determines the execution order of the hooks. Before training, the log will print out the execution order of the hooks at each stage to facilitate debugging.</p>
+<section id="default-training-hooks">
+<h3>default training hooks<a class="headerlink" href="#default-training-hooks" title="Permalink to this heading">¶</a></h3>
+<p>Some common hooks are not registered through <code class="docutils literal notranslate"><span class="pre">custom_hooks</span></code>, they are</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th style="text-align: center;">Hooks</th>
+<th style="text-align: center;">Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>LrUpdaterHook</code></td>
+<td style="text-align: center;">VERY_HIGH (10)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>MomentumUpdaterHook</code></td>
+<td style="text-align: center;">HIGH (30)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>OptimizerHook</code></td>
+<td style="text-align: center;">ABOVE_NORMAL (40)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>CheckpointHook</code></td>
+<td style="text-align: center;">NORMAL (50)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>IterTimerHook</code></td>
+<td style="text-align: center;">LOW (70)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>EvalHook</code></td>
+<td style="text-align: center;">LOW (70)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>LoggerHook(s)</code></td>
+<td style="text-align: center;">VERY_LOW (90)</td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">OptimizerHook</span></code>, <code class="docutils literal notranslate"><span class="pre">MomentumUpdaterHook</span></code> and <code class="docutils literal notranslate"><span class="pre">LrUpdaterHook</span></code> have been introduced in <a class="reference internal" href="4_schedule.html"><span class="doc std std-doc">schedule strategy</span></a>. <code class="docutils literal notranslate"><span class="pre">IterTimerHook</span></code> is used to record elapsed time and does not support modification.</p>
+<p>Here we reveal how to customize <code class="docutils literal notranslate"><span class="pre">CheckpointHook</span></code>, <code class="docutils literal notranslate"><span class="pre">LoggerHooks</span></code>, and <code class="docutils literal notranslate"><span class="pre">EvalHook</span></code>.</p>
+<section id="checkpointhook">
+<h4>CheckpointHook<a class="headerlink" href="#checkpointhook" title="Permalink to this heading">¶</a></h4>
+<p>The MMCV runner will use <code class="docutils literal notranslate"><span class="pre">checkpoint_config</span></code> to initialize <a class="reference external" href="https://github.com/open-mmlab/mmcv/blob/9ecd6b0d5ff9d2172c49a182eaa669e9f27bb8e7/mmcv/runner/hooks/checkpoint.py"><code class="docutils literal notranslate"><span class="pre">CheckpointHook</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">checkpoint_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We could set <code class="docutils literal notranslate"><span class="pre">max_keep_ckpts</span></code> to save only a small number of checkpoints or decide whether to store state dict of optimizer by <code class="docutils literal notranslate"><span class="pre">save_optimizer</span></code>. More details of the arguments are <a class="reference external" href="https://mmcv.readthedocs.io/en/latest/api.html#mmcv.runner.CheckpointHook">here</a></p>
+</section>
+<section id="loggerhooks">
+<h4>LoggerHooks<a class="headerlink" href="#loggerhooks" title="Permalink to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">log_config</span></code> wraps multiple logger hooks and enables to set intervals. Now MMCV supports <code class="docutils literal notranslate"><span class="pre">TextLoggerHook</span></code>, <code class="docutils literal notranslate"><span class="pre">WandbLoggerHook</span></code>, <code class="docutils literal notranslate"><span class="pre">MlflowLoggerHook</span></code>, <code class="docutils literal notranslate"><span class="pre">NeptuneLoggerHook</span></code>, <code class="docutils literal notranslate"><span class="pre">DvcliveLoggerHook</span></code> and <code class="docutils literal notranslate"><span class="pre">TensorboardLoggerHook</span></code>.
+The detailed usages can be found in the <a class="reference external" href="https://mmcv.readthedocs.io/en/latest/api.html#mmcv.runner.LoggerHook">doc</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">log_config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">hooks</span><span class="o">=</span><span class="p">[</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;TextLoggerHook&#39;</span><span class="p">),</span>
+        <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;TensorboardLoggerHook&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="evalhook">
+<h4>EvalHook<a class="headerlink" href="#evalhook" title="Permalink to this heading">¶</a></h4>
+<p>The config of <code class="docutils literal notranslate"><span class="pre">evaluation</span></code> will be used to initialize the <a class="reference external" href="https://github.com/open-mmlab/mmclassification/blob/master/mmcls/core/evaluation/eval_hooks.py"><code class="docutils literal notranslate"><span class="pre">EvalHook</span></code></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EvalHook</span></code> has some reserved keys, such as <code class="docutils literal notranslate"><span class="pre">interval</span></code>, <code class="docutils literal notranslate"><span class="pre">save_best</span></code> and <code class="docutils literal notranslate"><span class="pre">start</span></code>, and the other arguments such as <code class="docutils literal notranslate"><span class="pre">metrics</span></code> will be passed to the <code class="docutils literal notranslate"><span class="pre">dataset.evaluate()</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluation</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="n">metric_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;topk&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">)})</span>
+</pre></div>
+</div>
+<p>You can save the model weight when the best verification result is obtained by modifying the parameter <code class="docutils literal notranslate"><span class="pre">save_best</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;auto&quot; means automatically select the metrics to compare.</span>
+<span class="c1"># You can also use a specific key like &quot;accuracy_top-1&quot;.</span>
+<span class="n">evaluation</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">save_best</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="n">metric_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;topk&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">)})</span>
+</pre></div>
+</div>
+<p>When running some large-scale experiments, you can skip the validation step at the beginning of training by modifying the parameter <code class="docutils literal notranslate"><span class="pre">start</span></code> as below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evaluation</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="n">metric_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;topk&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">)})</span>
+</pre></div>
+</div>
+<p>This indicates that, during the first 200 epochs, evaluation will not be executed. From the 200th epoch, evaluation will be executed after the training process.</p>
+</section>
+</section>
+</section>
+<section id="use-other-implemented-hooks">
+<h2>Use other implemented hooks<a class="headerlink" href="#use-other-implemented-hooks" title="Permalink to this heading">¶</a></h2>
+<p>Some hooks have been already implemented in MMCV and MMClassification, they are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/ema.py">EMAHook</a></p></li>
+<li><p><a class="reference external" href="https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/sync_buffer.py">SyncBuffersHook</a></p></li>
+<li><p><a class="reference external" href="https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/memory.py">EmptyCacheHook</a></p></li>
+<li><p><a class="reference external" href="https://github.com/open-mmlab/mmcv/blob/master/mmcv/runner/hooks/profiler.py">ProfilerHook</a></p></li>
+<li><p>……</p></li>
+</ul>
+<p>If the hook is already implemented in MMCV, you can directly modify the config to use the hook as below</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mmcv_hooks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;MMCVHook&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a_value</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b_value</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="s1">&#39;NORMAL&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>such as using <code class="docutils literal notranslate"><span class="pre">EMAHook</span></code>, interval is 100 iters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">custom_hooks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;EMAHook&#39;</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="s1">&#39;HIGH&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="customize-self-implemented-hooks">
+<h2>Customize self-implemented hooks<a class="headerlink" href="#customize-self-implemented-hooks" title="Permalink to this heading">¶</a></h2>
+<section id="implement-a-new-hook">
+<h3>1. Implement a new hook<a class="headerlink" href="#implement-a-new-hook" title="Permalink to this heading">¶</a></h3>
+<p>Here we give an example of creating a new hook in MMSelfSup.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mmcv.runner</span> <span class="kn">import</span> <span class="n">HOOKS</span><span class="p">,</span> <span class="n">Hook</span>
+
+
+<span class="nd">@HOOKS.register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">MyHook</span><span class="p">(</span><span class="n">Hook</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">before_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">after_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">before_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">after_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">before_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">after_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Depending on your intention of this hook, you need to implement different functionalities in <code class="docutils literal notranslate"><span class="pre">before_run</span></code>, <code class="docutils literal notranslate"><span class="pre">after_run</span></code>, <code class="docutils literal notranslate"><span class="pre">before_epoch</span></code>, <code class="docutils literal notranslate"><span class="pre">after_epoch</span></code>, <code class="docutils literal notranslate"><span class="pre">before_iter</span></code>, and <code class="docutils literal notranslate"><span class="pre">after_iter</span></code>.</p>
+</section>
+<section id="import-the-new-hook">
+<h3>2. Import the new hook<a class="headerlink" href="#import-the-new-hook" title="Permalink to this heading">¶</a></h3>
+<p>Then we need to ensure <code class="docutils literal notranslate"><span class="pre">MyHook</span></code> imported. Assuming <code class="docutils literal notranslate"><span class="pre">MyHook</span></code> is in <code class="docutils literal notranslate"><span class="pre">mmselfsup/core/hooks/my_hook.py</span></code>, there are two ways to import it:</p>
+<ul class="simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">mmselfsup/core/hooks/__init__.py</span></code> as below</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.my_hook</span> <span class="kn">import</span> <span class="n">MyHook</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">MyHook</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">custom_imports</span></code> in the config to manually import it</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">custom_imports</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">imports</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mmselfsup.core.hooks.my_hook&#39;</span><span class="p">],</span> <span class="n">allow_failed_imports</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-config">
+<h3>3. Modify the config<a class="headerlink" href="#modify-the-config" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">custom_hooks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;MyHook&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a_value</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b_value</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>You can also set the priority of the hook as below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">custom_hooks</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;MyHook&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a_value</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b_value</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="s1">&#39;ABOVE_NORMAL&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>By default, the hook’s priority is set as <code class="docutils literal notranslate"><span class="pre">NORMAL</span></code> during registration.</p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="6_benchmarks.html" class="btn btn-neutral float-right" title="Tutorial 6: Run Benchmarks" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="4_schedule.html" class="btn btn-neutral" title="Tutorial 4: Customize Schedule" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Tutorial 5: Customize Runtime Settings</a><ul>
+<li><a class="reference internal" href="#customize-workflow">Customize Workflow</a></li>
+<li><a class="reference internal" href="#hooks">Hooks</a><ul>
+<li><a class="reference internal" href="#default-training-hooks">default training hooks</a><ul>
+<li><a class="reference internal" href="#checkpointhook">CheckpointHook</a></li>
+<li><a class="reference internal" href="#loggerhooks">LoggerHooks</a></li>
+<li><a class="reference internal" href="#evalhook">EvalHook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#use-other-implemented-hooks">Use other implemented hooks</a></li>
+<li><a class="reference internal" href="#customize-self-implemented-hooks">Customize self-implemented hooks</a><ul>
+<li><a class="reference internal" href="#implement-a-new-hook">1. Implement a new hook</a></li>
+<li><a class="reference internal" href="#import-the-new-hook">2. Import the new hook</a></li>
+<li><a class="reference internal" href="#modify-the-config">3. Modify the config</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/clipboard.min.js"></script>
+  <script src="../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://dataset4eo.readthedocs.io/en/latest/" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO/blob/main/demo/dataset4eo_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/Dataset4EO" target="_blank">GitHub</a>
+          </li>
+          <li class="resources-mobile-menu-title" >
+            About
+          </li>
+          <ul class="resources-mobile-menu-items">
+            <li>
+              <a href="https://github.com/open-mmlab/mmcv" target="_blank">MMCV</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

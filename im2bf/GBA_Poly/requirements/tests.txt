@@ -1,0 +1,6 @@
+codecov
+flake8
+interrogate
+pytest
+xdoctest>=0.10.0
+yapf

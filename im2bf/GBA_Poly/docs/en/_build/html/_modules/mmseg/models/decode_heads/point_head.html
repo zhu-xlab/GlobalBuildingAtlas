@@ -1,0 +1,773 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mmseg.models.decode_heads.point_head &mdash; RSI-Segmentation 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../../../_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html#verification">Verification</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model Zoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../model_zoo.html">Benchmark and Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modelzoo_statistics.html">Model Zoo Statistics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Run</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../train.html">Train a model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference.html">Inference with pretrained models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/config.html">Tutorial 1: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_datasets.html">Tutorial 2: Customize Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/data_pipeline.html">Tutorial 3: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_models.html">Tutorial 4: Customize Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/training_tricks.html">Tutorial 5: Training Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_runtime.html">Tutorial 6: Customize Runtime Settings</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions (FAQ)</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../../../../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+          <li><a href="../../../index.html">Module code</a> &gt;</li>
+        
+      <li>mmseg.models.decode_heads.point_head</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <h1>Source code for mmseg.models.decode_heads.point_head</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Modified from https://github.com/facebookresearch/detectron2/tree/master/projects/PointRend/point_head/point_head.py  # noqa</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">mmcv.cnn</span> <span class="kn">import</span> <span class="n">ConvModule</span><span class="p">,</span> <span class="n">normal_init</span>
+<span class="kn">from</span> <span class="nn">mmcv.ops</span> <span class="kn">import</span> <span class="n">point_sample</span>
+
+<span class="kn">from</span> <span class="nn">mmseg.models.builder</span> <span class="kn">import</span> <span class="n">HEADS</span>
+<span class="kn">from</span> <span class="nn">mmseg.ops</span> <span class="kn">import</span> <span class="n">resize</span>
+<span class="kn">from</span> <span class="nn">..losses</span> <span class="kn">import</span> <span class="n">accuracy</span>
+<span class="kn">from</span> <span class="nn">.cascade_decode_head</span> <span class="kn">import</span> <span class="n">BaseCascadeDecodeHead</span>
+
+
+<span class="k">def</span> <span class="nf">calculate_uncertainty</span><span class="p">(</span><span class="n">seg_logits</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Estimate uncertainty based on seg logits.</span>
+
+<span class="sd">    For each location of the prediction ``seg_logits`` we estimate</span>
+<span class="sd">    uncertainty as the difference between top first and top second</span>
+<span class="sd">    predicted logits.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        seg_logits (Tensor): Semantic segmentation logits,</span>
+<span class="sd">            shape (batch_size, num_classes, height, width).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        scores (Tensor): T uncertainty scores with the most uncertain</span>
+<span class="sd">            locations having the highest uncertainty score, shape (</span>
+<span class="sd">            batch_size, 1, height, width)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">top2_scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">seg_logits</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">top2_scores</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">top2_scores</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PointHead"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead">[docs]</a><span class="nd">@HEADS</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">PointHead</span><span class="p">(</span><span class="n">BaseCascadeDecodeHead</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A mask point head use in PointRend.</span>
+
+<span class="sd">    ``PointHead`` use shared multi-layer perceptron (equivalent to</span>
+<span class="sd">    nn.Conv1d) to predict the logit of input points. The fine-grained feature</span>
+<span class="sd">    and coarse feature will be concatenate together for predication.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        num_fcs (int): Number of fc layers in the head. Default: 3.</span>
+<span class="sd">        in_channels (int): Number of input channels. Default: 256.</span>
+<span class="sd">        fc_channels (int): Number of fc channels. Default: 256.</span>
+<span class="sd">        num_classes (int): Number of classes for logits. Default: 80.</span>
+<span class="sd">        class_agnostic (bool): Whether use class agnostic classification.</span>
+<span class="sd">            If so, the output channels of logits will be 1. Default: False.</span>
+<span class="sd">        coarse_pred_each_layer (bool): Whether concatenate coarse feature with</span>
+<span class="sd">            the output of each fc layer. Default: True.</span>
+<span class="sd">        conv_cfg (dict|None): Dictionary to construct and config conv layer.</span>
+<span class="sd">            Default: dict(type=&#39;Conv1d&#39;))</span>
+<span class="sd">        norm_cfg (dict|None): Dictionary to construct and config norm layer.</span>
+<span class="sd">            Default: None.</span>
+<span class="sd">        loss_point (dict): Dictionary to construct and config loss layer of</span>
+<span class="sd">            point head. Default: dict(type=&#39;CrossEntropyLoss&#39;, use_mask=True,</span>
+<span class="sd">            loss_weight=1.0).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">num_fcs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                 <span class="n">coarse_pred_each_layer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">conv_cfg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Conv1d&#39;</span><span class="p">),</span>
+                 <span class="n">norm_cfg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">act_cfg</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;ReLU&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PointHead</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">input_transform</span><span class="o">=</span><span class="s1">&#39;multiple_select&#39;</span><span class="p">,</span>
+            <span class="n">conv_cfg</span><span class="o">=</span><span class="n">conv_cfg</span><span class="p">,</span>
+            <span class="n">norm_cfg</span><span class="o">=</span><span class="n">norm_cfg</span><span class="p">,</span>
+            <span class="n">act_cfg</span><span class="o">=</span><span class="n">act_cfg</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_fcs</span> <span class="o">=</span> <span class="n">num_fcs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coarse_pred_each_layer</span> <span class="o">=</span> <span class="n">coarse_pred_each_layer</span>
+
+        <span class="n">fc_in_channels</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span>
+        <span class="n">fc_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fcs</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_fcs</span><span class="p">):</span>
+            <span class="n">fc</span> <span class="o">=</span> <span class="n">ConvModule</span><span class="p">(</span>
+                <span class="n">fc_in_channels</span><span class="p">,</span>
+                <span class="n">fc_channels</span><span class="p">,</span>
+                <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">conv_cfg</span><span class="o">=</span><span class="n">conv_cfg</span><span class="p">,</span>
+                <span class="n">norm_cfg</span><span class="o">=</span><span class="n">norm_cfg</span><span class="p">,</span>
+                <span class="n">act_cfg</span><span class="o">=</span><span class="n">act_cfg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fcs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span>
+            <span class="n">fc_in_channels</span> <span class="o">=</span> <span class="n">fc_channels</span>
+            <span class="n">fc_in_channels</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coarse_pred_each_layer</span> \
+                <span class="k">else</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc_seg</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span>
+            <span class="n">fc_in_channels</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span><span class="p">,</span>
+            <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout_ratio</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dropout_ratio</span><span class="p">)</span>
+        <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;conv_seg&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PointHead.init_weights"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead.init_weights">[docs]</a>    <span class="k">def</span> <span class="nf">init_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize weights of classification layer.&quot;&quot;&quot;</span>
+        <span class="n">normal_init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc_seg</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PointHead.cls_seg"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead.cls_seg">[docs]</a>    <span class="k">def</span> <span class="nf">cls_seg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Classify each pixel with fc.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">feat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">feat</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc_seg</span><span class="p">(</span><span class="n">feat</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="PointHead.forward"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fine_grained_point_feats</span><span class="p">,</span> <span class="n">coarse_point_feats</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">fine_grained_point_feats</span><span class="p">,</span> <span class="n">coarse_point_feats</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">fc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fcs</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">fc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">coarse_pred_each_layer</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">coarse_point_feats</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls_seg</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_fine_grained_point_feats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample from fine grained features.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            x (list[Tensor]): Feature pyramid from by neck or backbone.</span>
+<span class="sd">            points (Tensor): Point coordinates, shape (batch_size,</span>
+<span class="sd">                num_points, 2).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            fine_grained_feats (Tensor): Sampled fine grained feature,</span>
+<span class="sd">                shape (batch_size, sum(channels of x), num_points).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">fine_grained_feats_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">point_sample</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">align_corners</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">align_corners</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">x</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fine_grained_feats_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">fine_grained_feats</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">fine_grained_feats_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fine_grained_feats</span> <span class="o">=</span> <span class="n">fine_grained_feats_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">fine_grained_feats</span>
+
+    <span class="k">def</span> <span class="nf">_get_coarse_point_feats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prev_output</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample from fine grained features.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            prev_output (list[Tensor]): Prediction of previous decode head.</span>
+<span class="sd">            points (Tensor): Point coordinates, shape (batch_size,</span>
+<span class="sd">                num_points, 2).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            coarse_feats (Tensor): Sampled coarse feature, shape (batch_size,</span>
+<span class="sd">                num_classes, num_points).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">coarse_feats</span> <span class="o">=</span> <span class="n">point_sample</span><span class="p">(</span>
+            <span class="n">prev_output</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">align_corners</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">align_corners</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">coarse_feats</span>
+
+<div class="viewcode-block" id="PointHead.forward_train"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead.forward_train">[docs]</a>    <span class="k">def</span> <span class="nf">forward_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">prev_output</span><span class="p">,</span> <span class="n">img_metas</span><span class="p">,</span> <span class="n">gt_semantic_seg</span><span class="p">,</span>
+                      <span class="n">train_cfg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Forward function for training.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            inputs (list[Tensor]): List of multi-level img features.</span>
+<span class="sd">            prev_output (Tensor): The output of previous decode head.</span>
+<span class="sd">            img_metas (list[dict]): List of image info dict where each dict</span>
+<span class="sd">                has: &#39;img_shape&#39;, &#39;scale_factor&#39;, &#39;flip&#39;, and may also contain</span>
+<span class="sd">                &#39;filename&#39;, &#39;ori_shape&#39;, &#39;pad_shape&#39;, and &#39;img_norm_cfg&#39;.</span>
+<span class="sd">                For details on the values of these keys see</span>
+<span class="sd">                `mmseg/datasets/pipelines/formatting.py:Collect`.</span>
+<span class="sd">            gt_semantic_seg (Tensor): Semantic segmentation masks</span>
+<span class="sd">                used if the architecture supports semantic segmentation task.</span>
+<span class="sd">            train_cfg (dict): The training config.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict[str, Tensor]: a dictionary of loss components</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_inputs</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_points_train</span><span class="p">(</span>
+                <span class="n">prev_output</span><span class="p">,</span> <span class="n">calculate_uncertainty</span><span class="p">,</span> <span class="n">cfg</span><span class="o">=</span><span class="n">train_cfg</span><span class="p">)</span>
+        <span class="n">fine_grained_point_feats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_fine_grained_point_feats</span><span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
+        <span class="n">coarse_point_feats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_coarse_point_feats</span><span class="p">(</span><span class="n">prev_output</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
+        <span class="n">point_logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">fine_grained_point_feats</span><span class="p">,</span>
+                                    <span class="n">coarse_point_feats</span><span class="p">)</span>
+        <span class="n">point_label</span> <span class="o">=</span> <span class="n">point_sample</span><span class="p">(</span>
+            <span class="n">gt_semantic_seg</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span>
+            <span class="n">points</span><span class="p">,</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span>
+            <span class="n">align_corners</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">align_corners</span><span class="p">)</span>
+        <span class="n">point_label</span> <span class="o">=</span> <span class="n">point_label</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+
+        <span class="n">losses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">losses</span><span class="p">(</span><span class="n">point_logits</span><span class="p">,</span> <span class="n">point_label</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">losses</span></div>
+
+<div class="viewcode-block" id="PointHead.forward_test"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead.forward_test">[docs]</a>    <span class="k">def</span> <span class="nf">forward_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">prev_output</span><span class="p">,</span> <span class="n">img_metas</span><span class="p">,</span> <span class="n">test_cfg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Forward function for testing.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            inputs (list[Tensor]): List of multi-level img features.</span>
+<span class="sd">            prev_output (Tensor): The output of previous decode head.</span>
+<span class="sd">            img_metas (list[dict]): List of image info dict where each dict</span>
+<span class="sd">                has: &#39;img_shape&#39;, &#39;scale_factor&#39;, &#39;flip&#39;, and may also contain</span>
+<span class="sd">                &#39;filename&#39;, &#39;ori_shape&#39;, &#39;pad_shape&#39;, and &#39;img_norm_cfg&#39;.</span>
+<span class="sd">                For details on the values of these keys see</span>
+<span class="sd">                `mmseg/datasets/pipelines/formatting.py:Collect`.</span>
+<span class="sd">            test_cfg (dict): The testing config.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tensor: Output segmentation map.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_inputs</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">refined_seg_logits</span> <span class="o">=</span> <span class="n">prev_output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">test_cfg</span><span class="o">.</span><span class="n">subdivision_steps</span><span class="p">):</span>
+            <span class="n">refined_seg_logits</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span>
+                <span class="n">refined_seg_logits</span><span class="p">,</span>
+                <span class="n">scale_factor</span><span class="o">=</span><span class="n">test_cfg</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">,</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span>
+                <span class="n">align_corners</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">align_corners</span><span class="p">)</span>
+            <span class="n">batch_size</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">refined_seg_logits</span><span class="o">.</span><span class="n">shape</span>
+            <span class="n">point_indices</span><span class="p">,</span> <span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_points_test</span><span class="p">(</span>
+                <span class="n">refined_seg_logits</span><span class="p">,</span> <span class="n">calculate_uncertainty</span><span class="p">,</span> <span class="n">cfg</span><span class="o">=</span><span class="n">test_cfg</span><span class="p">)</span>
+            <span class="n">fine_grained_point_feats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_fine_grained_point_feats</span><span class="p">(</span>
+                <span class="n">x</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
+            <span class="n">coarse_point_feats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_coarse_point_feats</span><span class="p">(</span>
+                <span class="n">prev_output</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
+            <span class="n">point_logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">fine_grained_point_feats</span><span class="p">,</span>
+                                        <span class="n">coarse_point_feats</span><span class="p">)</span>
+
+            <span class="n">point_indices</span> <span class="o">=</span> <span class="n">point_indices</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">refined_seg_logits</span> <span class="o">=</span> <span class="n">refined_seg_logits</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+                <span class="n">batch_size</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">height</span> <span class="o">*</span> <span class="n">width</span><span class="p">)</span>
+            <span class="n">refined_seg_logits</span> <span class="o">=</span> <span class="n">refined_seg_logits</span><span class="o">.</span><span class="n">scatter_</span><span class="p">(</span>
+                <span class="mi">2</span><span class="p">,</span> <span class="n">point_indices</span><span class="p">,</span> <span class="n">point_logits</span><span class="p">)</span>
+            <span class="n">refined_seg_logits</span> <span class="o">=</span> <span class="n">refined_seg_logits</span><span class="o">.</span><span class="n">view</span><span class="p">(</span>
+                <span class="n">batch_size</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">refined_seg_logits</span></div>
+
+<div class="viewcode-block" id="PointHead.losses"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead.losses">[docs]</a>    <span class="k">def</span> <span class="nf">losses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point_logits</span><span class="p">,</span> <span class="n">point_label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute segmentation loss.&quot;&quot;&quot;</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">loss</span><span class="p">[</span><span class="s1">&#39;loss_point&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_decode</span><span class="p">(</span>
+            <span class="n">point_logits</span><span class="p">,</span> <span class="n">point_label</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ignore_index</span><span class="p">)</span>
+        <span class="n">loss</span><span class="p">[</span><span class="s1">&#39;acc_point&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">point_logits</span><span class="p">,</span> <span class="n">point_label</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss</span></div>
+
+<div class="viewcode-block" id="PointHead.get_points_train"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead.get_points_train">[docs]</a>    <span class="k">def</span> <span class="nf">get_points_train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seg_logits</span><span class="p">,</span> <span class="n">uncertainty_func</span><span class="p">,</span> <span class="n">cfg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample points for training.</span>
+
+<span class="sd">        Sample points in [0, 1] x [0, 1] coordinate space based on their</span>
+<span class="sd">        uncertainty. The uncertainties are calculated for each point using</span>
+<span class="sd">        &#39;uncertainty_func&#39; function that takes point&#39;s logit prediction as</span>
+<span class="sd">        input.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            seg_logits (Tensor): Semantic segmentation logits, shape (</span>
+<span class="sd">                batch_size, num_classes, height, width).</span>
+<span class="sd">            uncertainty_func (func): uncertainty calculation function.</span>
+<span class="sd">            cfg (dict): Training config of point head.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            point_coords (Tensor): A tensor of shape (batch_size, num_points,</span>
+<span class="sd">                2) that contains the coordinates of ``num_points`` sampled</span>
+<span class="sd">                points.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_points</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">num_points</span>
+        <span class="n">oversample_ratio</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">oversample_ratio</span>
+        <span class="n">importance_sample_ratio</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">importance_sample_ratio</span>
+        <span class="k">assert</span> <span class="n">oversample_ratio</span> <span class="o">&gt;=</span> <span class="mi">1</span>
+        <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">importance_sample_ratio</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">seg_logits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_sampled</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_points</span> <span class="o">*</span> <span class="n">oversample_ratio</span><span class="p">)</span>
+        <span class="n">point_coords</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span>
+            <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_sampled</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">seg_logits</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">point_logits</span> <span class="o">=</span> <span class="n">point_sample</span><span class="p">(</span><span class="n">seg_logits</span><span class="p">,</span> <span class="n">point_coords</span><span class="p">)</span>
+        <span class="c1"># It is crucial to calculate uncertainty based on the sampled</span>
+        <span class="c1"># prediction value for the points. Calculating uncertainties of the</span>
+        <span class="c1"># coarse predictions first and sampling them for points leads to</span>
+        <span class="c1"># incorrect results.  To illustrate this: assume uncertainty func(</span>
+        <span class="c1"># logits)=-abs(logits), a sampled point between two coarse</span>
+        <span class="c1"># predictions with -1 and 1 logits has 0 logits, and therefore 0</span>
+        <span class="c1"># uncertainty value. However, if we calculate uncertainties for the</span>
+        <span class="c1"># coarse predictions first, both will have -1 uncertainty,</span>
+        <span class="c1"># and sampled point will get -1 uncertainty.</span>
+        <span class="n">point_uncertainties</span> <span class="o">=</span> <span class="n">uncertainty_func</span><span class="p">(</span><span class="n">point_logits</span><span class="p">)</span>
+        <span class="n">num_uncertain_points</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">importance_sample_ratio</span> <span class="o">*</span> <span class="n">num_points</span><span class="p">)</span>
+        <span class="n">num_random_points</span> <span class="o">=</span> <span class="n">num_points</span> <span class="o">-</span> <span class="n">num_uncertain_points</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span>
+            <span class="n">point_uncertainties</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">k</span><span class="o">=</span><span class="n">num_uncertain_points</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="n">num_sampled</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>
+            <span class="n">batch_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">seg_logits</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">idx</span> <span class="o">+=</span> <span class="n">shift</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="n">point_coords</span> <span class="o">=</span> <span class="n">point_coords</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)[</span><span class="n">idx</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">:]</span><span class="o">.</span><span class="n">view</span><span class="p">(</span>
+            <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_uncertain_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">num_random_points</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rand_point_coords</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span>
+                <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_random_points</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">seg_logits</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">point_coords</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">point_coords</span><span class="p">,</span> <span class="n">rand_point_coords</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">point_coords</span></div>
+
+<div class="viewcode-block" id="PointHead.get_points_test"><a class="viewcode-back" href="../../../../api.html#mmseg.models.decode_heads.PointHead.get_points_test">[docs]</a>    <span class="k">def</span> <span class="nf">get_points_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seg_logits</span><span class="p">,</span> <span class="n">uncertainty_func</span><span class="p">,</span> <span class="n">cfg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sample points for testing.</span>
+
+<span class="sd">        Find ``num_points`` most uncertain points from ``uncertainty_map``.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            seg_logits (Tensor): A tensor of shape (batch_size, num_classes,</span>
+<span class="sd">                height, width) for class-specific or class-agnostic prediction.</span>
+<span class="sd">            uncertainty_func (func): uncertainty calculation function.</span>
+<span class="sd">            cfg (dict): Testing config of point head.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            point_indices (Tensor): A tensor of shape (batch_size, num_points)</span>
+<span class="sd">                that contains indices from [0, height x width) of the most</span>
+<span class="sd">                uncertain points.</span>
+<span class="sd">            point_coords (Tensor): A tensor of shape (batch_size, num_points,</span>
+<span class="sd">                2) that contains [0, 1] x [0, 1] normalized coordinates of the</span>
+<span class="sd">                most uncertain points from the ``height x width`` grid .</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">num_points</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">subdivision_num_points</span>
+        <span class="n">uncertainty_map</span> <span class="o">=</span> <span class="n">uncertainty_func</span><span class="p">(</span><span class="n">seg_logits</span><span class="p">)</span>
+        <span class="n">batch_size</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">uncertainty_map</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">h_step</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">height</span>
+        <span class="n">w_step</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">width</span>
+
+        <span class="n">uncertainty_map</span> <span class="o">=</span> <span class="n">uncertainty_map</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">height</span> <span class="o">*</span> <span class="n">width</span><span class="p">)</span>
+        <span class="n">num_points</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>
+        <span class="n">point_indices</span> <span class="o">=</span> <span class="n">uncertainty_map</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">num_points</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">point_coords</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="n">batch_size</span><span class="p">,</span>
+            <span class="n">num_points</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="n">seg_logits</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">point_coords</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">w_step</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">point_indices</span> <span class="o">%</span>
+                                                <span class="n">width</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="o">*</span> <span class="n">w_step</span>
+        <span class="n">point_coords</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">h_step</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">point_indices</span> <span class="o">//</span>
+                                                <span class="n">width</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="o">*</span> <span class="n">h_step</span>
+        <span class="k">return</span> <span class="n">point_indices</span><span class="p">,</span> <span class="n">point_coords</span></div></div>
+</pre></div>
+
+              </article>
+              
+            </div>
+            <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../../../"
+    src="../../../../_static/documentation_options.js"></script>
+  <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+  <script src="../../../../_static/jquery.js"></script>
+  <script src="../../../../_static/underscore.js"></script>
+  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/clipboard.min.js"></script>
+  <script src="../../../../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

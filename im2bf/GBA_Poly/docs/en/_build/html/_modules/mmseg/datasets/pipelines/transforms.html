@@ -1,0 +1,1314 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mmseg.datasets.pipelines.transforms &mdash; RSI-Segmentation 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../../../_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_started.html#verification">Verification</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model Zoo</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../model_zoo.html">Benchmark and Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modelzoo_statistics.html">Model Zoo Statistics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Run</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../train.html">Train a model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../inference.html">Inference with pretrained models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/config.html">Tutorial 1: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_datasets.html">Tutorial 2: Customize Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/data_pipeline.html">Tutorial 3: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_models.html">Tutorial 4: Customize Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/training_tricks.html">Tutorial 5: Training Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/customize_runtime.html">Tutorial 6: Customize Runtime Settings</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">Frequently Asked Questions (FAQ)</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../../../../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+          <li><a href="../../../index.html">Module code</a> &gt;</li>
+        
+      <li>mmseg.datasets.pipelines.transforms</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <h1>Source code for mmseg.datasets.pipelines.transforms</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">mmcv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">mmcv.utils</span> <span class="kn">import</span> <span class="n">deprecated_api_warning</span><span class="p">,</span> <span class="n">is_tuple_of</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="kn">from</span> <span class="nn">..builder</span> <span class="kn">import</span> <span class="n">PIPELINES</span>
+
+
+<div class="viewcode-block" id="Resize"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.Resize">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">Resize</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Resize images &amp; seg.</span>
+
+<span class="sd">    This transform resizes the input image to some scale. If the input dict</span>
+<span class="sd">    contains the key &quot;scale&quot;, then the scale in the input dict is used,</span>
+<span class="sd">    otherwise the specified scale in the init method is used.</span>
+
+<span class="sd">    ``img_scale`` can be Nong, a tuple (single-scale) or a list of tuple</span>
+<span class="sd">    (multi-scale). There are 4 multiscale modes:</span>
+
+<span class="sd">    - ``ratio_range is not None``:</span>
+<span class="sd">    1. When img_scale is None, img_scale is the shape of image in results</span>
+<span class="sd">        (img_scale = results[&#39;img&#39;].shape[:2]) and the image is resized based</span>
+<span class="sd">        on the original size. (mode 1)</span>
+<span class="sd">    2. When img_scale is a tuple (single-scale), randomly sample a ratio from</span>
+<span class="sd">        the ratio range and multiply it with the image scale. (mode 2)</span>
+
+<span class="sd">    - ``ratio_range is None and multiscale_mode == &quot;range&quot;``: randomly sample a</span>
+<span class="sd">    scale from the a range. (mode 3)</span>
+
+<span class="sd">    - ``ratio_range is None and multiscale_mode == &quot;value&quot;``: randomly sample a</span>
+<span class="sd">    scale from multiple scales. (mode 4)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        img_scale (tuple or list[tuple]): Images scales for resizing.</span>
+<span class="sd">        multiscale_mode (str): Either &quot;range&quot; or &quot;value&quot;.</span>
+<span class="sd">        ratio_range (tuple[float]): (min_ratio, max_ratio)</span>
+<span class="sd">        keep_ratio (bool): Whether to keep the aspect ratio when resizing the</span>
+<span class="sd">            image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">img_scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">multiscale_mode</span><span class="o">=</span><span class="s1">&#39;range&#39;</span><span class="p">,</span>
+                 <span class="n">ratio_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">keep_ratio</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">img_scale</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">img_scale</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span> <span class="o">=</span> <span class="n">img_scale</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span> <span class="o">=</span> <span class="p">[</span><span class="n">img_scale</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">is_list_of</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ratio_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># mode 1: given img_scale=None and a range of image ratio</span>
+            <span class="c1"># mode 2: given a scale and a range of image ratio</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># mode 3 and 4: given multiple scales or a range of scales</span>
+            <span class="k">assert</span> <span class="n">multiscale_mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="s1">&#39;range&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiscale_mode</span> <span class="o">=</span> <span class="n">multiscale_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ratio_range</span> <span class="o">=</span> <span class="n">ratio_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep_ratio</span> <span class="o">=</span> <span class="n">keep_ratio</span>
+
+<div class="viewcode-block" id="Resize.random_select"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.Resize.random_select">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">random_select</span><span class="p">(</span><span class="n">img_scales</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Randomly select an img_scale from given candidates.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            img_scales (list[tuple]): Images scales for selection.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (tuple, int): Returns a tuple ``(img_scale, scale_dix)``,</span>
+<span class="sd">                where ``img_scale`` is the selected image scale and</span>
+<span class="sd">                ``scale_idx`` is the selected index in the given candidates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">is_list_of</span><span class="p">(</span><span class="n">img_scales</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
+        <span class="n">scale_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">img_scales</span><span class="p">))</span>
+        <span class="n">img_scale</span> <span class="o">=</span> <span class="n">img_scales</span><span class="p">[</span><span class="n">scale_idx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">img_scale</span><span class="p">,</span> <span class="n">scale_idx</span></div>
+
+<div class="viewcode-block" id="Resize.random_sample"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.Resize.random_sample">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">random_sample</span><span class="p">(</span><span class="n">img_scales</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Randomly sample an img_scale when ``multiscale_mode==&#39;range&#39;``.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            img_scales (list[tuple]): Images scale range for sampling.</span>
+<span class="sd">                There must be two tuples in img_scales, which specify the lower</span>
+<span class="sd">                and uper bound of image scales.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (tuple, None): Returns a tuple ``(img_scale, None)``, where</span>
+<span class="sd">                ``img_scale`` is sampled scale and None is just a placeholder</span>
+<span class="sd">                to be consistent with :func:`random_select`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">is_list_of</span><span class="p">(</span><span class="n">img_scales</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_scales</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="n">img_scale_long</span> <span class="o">=</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">img_scales</span><span class="p">]</span>
+        <span class="n">img_scale_short</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">img_scales</span><span class="p">]</span>
+        <span class="n">long_edge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
+            <span class="nb">min</span><span class="p">(</span><span class="n">img_scale_long</span><span class="p">),</span>
+            <span class="nb">max</span><span class="p">(</span><span class="n">img_scale_long</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">short_edge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
+            <span class="nb">min</span><span class="p">(</span><span class="n">img_scale_short</span><span class="p">),</span>
+            <span class="nb">max</span><span class="p">(</span><span class="n">img_scale_short</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">img_scale</span> <span class="o">=</span> <span class="p">(</span><span class="n">long_edge</span><span class="p">,</span> <span class="n">short_edge</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img_scale</span><span class="p">,</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Resize.random_sample_ratio"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.Resize.random_sample_ratio">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">random_sample_ratio</span><span class="p">(</span><span class="n">img_scale</span><span class="p">,</span> <span class="n">ratio_range</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Randomly sample an img_scale when ``ratio_range`` is specified.</span>
+
+<span class="sd">        A ratio will be randomly sampled from the range specified by</span>
+<span class="sd">        ``ratio_range``. Then it would be multiplied with ``img_scale`` to</span>
+<span class="sd">        generate sampled scale.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            img_scale (tuple): Images scale base to multiply with ratio.</span>
+<span class="sd">            ratio_range (tuple[float]): The minimum and maximum ratio to scale</span>
+<span class="sd">                the ``img_scale``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (tuple, None): Returns a tuple ``(scale, None)``, where</span>
+<span class="sd">                ``scale`` is sampled ratio multiplied with ``img_scale`` and</span>
+<span class="sd">                None is just a placeholder to be consistent with</span>
+<span class="sd">                :func:`random_select`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">img_scale</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_scale</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="n">min_ratio</span><span class="p">,</span> <span class="n">max_ratio</span> <span class="o">=</span> <span class="n">ratio_range</span>
+        <span class="k">assert</span> <span class="n">min_ratio</span> <span class="o">&lt;=</span> <span class="n">max_ratio</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_ratio</span> <span class="o">-</span> <span class="n">min_ratio</span><span class="p">)</span> <span class="o">+</span> <span class="n">min_ratio</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img_scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">img_scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">scale</span><span class="p">,</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">_random_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Randomly sample an img_scale according to ``ratio_range`` and</span>
+<span class="sd">        ``multiscale_mode``.</span>
+
+<span class="sd">        If ``ratio_range`` is specified, a ratio will be sampled and be</span>
+<span class="sd">        multiplied with ``img_scale``.</span>
+<span class="sd">        If multiple scales are specified by ``img_scale``, a scale will be</span>
+<span class="sd">        sampled according to ``multiscale_mode``.</span>
+<span class="sd">        Otherwise, single scale will be used.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from :obj:`dataset`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Two new keys &#39;scale` and &#39;scale_idx` are added into</span>
+<span class="sd">                ``results``, which would be used by subsequent pipelines.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">scale</span><span class="p">,</span> <span class="n">scale_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_sample_ratio</span><span class="p">((</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span>
+                                                            <span class="bp">self</span><span class="o">.</span><span class="n">ratio_range</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">scale</span><span class="p">,</span> <span class="n">scale_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_sample_ratio</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratio_range</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">scale</span><span class="p">,</span> <span class="n">scale_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiscale_mode</span> <span class="o">==</span> <span class="s1">&#39;range&#39;</span><span class="p">:</span>
+            <span class="n">scale</span><span class="p">,</span> <span class="n">scale_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiscale_mode</span> <span class="o">==</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span>
+            <span class="n">scale</span><span class="p">,</span> <span class="n">scale_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;scale_idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale_idx</span>
+
+    <span class="k">def</span> <span class="nf">_resize_img</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resize images with ``results[&#39;scale&#39;]``.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_ratio</span><span class="p">:</span>
+            <span class="n">img</span><span class="p">,</span> <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imrescale</span><span class="p">(</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">],</span> <span class="n">return_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># the w_scale and h_scale has minor difference</span>
+            <span class="c1"># a real fix should be done in the mmcv.imrescale in the future</span>
+            <span class="n">new_h</span><span class="p">,</span> <span class="n">new_w</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">w_scale</span> <span class="o">=</span> <span class="n">new_w</span> <span class="o">/</span> <span class="n">w</span>
+            <span class="n">h_scale</span> <span class="o">=</span> <span class="n">new_h</span> <span class="o">/</span> <span class="n">h</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">img</span><span class="p">,</span> <span class="n">w_scale</span><span class="p">,</span> <span class="n">h_scale</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imresize</span><span class="p">(</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">],</span> <span class="n">return_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">w_scale</span><span class="p">,</span> <span class="n">h_scale</span><span class="p">,</span> <span class="n">w_scale</span><span class="p">,</span> <span class="n">h_scale</span><span class="p">],</span>
+                                <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img_shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;pad_shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>  <span class="c1"># in case that there is no padding</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;scale_factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scale_factor</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;keep_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_ratio</span>
+
+    <span class="k">def</span> <span class="nf">_resize_seg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resize semantic segmentation map with ``results[&#39;scale&#39;]``.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;seg_fields&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_ratio</span><span class="p">:</span>
+                <span class="n">gt_seg</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imrescale</span><span class="p">(</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gt_seg</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imresize</span><span class="p">(</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">gt_seg</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to resize images, bounding boxes, masks, semantic</span>
+<span class="sd">        segmentation map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Resized results, &#39;img_shape&#39;, &#39;pad_shape&#39;, &#39;scale_factor&#39;,</span>
+<span class="sd">                &#39;keep_ratio&#39; keys are added into result dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="s1">&#39;scale&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_random_scale</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resize_img</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resize_seg</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(img_scale=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">img_scale</span><span class="si">}</span><span class="s1">, &#39;</span>
+                     <span class="sa">f</span><span class="s1">&#39;multiscale_mode=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">multiscale_mode</span><span class="si">}</span><span class="s1">, &#39;</span>
+                     <span class="sa">f</span><span class="s1">&#39;ratio_range=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">ratio_range</span><span class="si">}</span><span class="s1">, &#39;</span>
+                     <span class="sa">f</span><span class="s1">&#39;keep_ratio=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">keep_ratio</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+
+
+<div class="viewcode-block" id="RandomFlip"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.RandomFlip">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">RandomFlip</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Flip the image &amp; seg.</span>
+
+<span class="sd">    If the input dict contains the key &quot;flip&quot;, then the flag will be used,</span>
+<span class="sd">    otherwise it will be randomly decided by a ratio specified in the init</span>
+<span class="sd">    method.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        prob (float, optional): The flipping probability. Default: None.</span>
+<span class="sd">        direction(str, optional): The flipping direction. Options are</span>
+<span class="sd">            &#39;horizontal&#39; and &#39;vertical&#39;. Default: &#39;horizontal&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@deprecated_api_warning</span><span class="p">({</span><span class="s1">&#39;flip_ratio&#39;</span><span class="p">:</span> <span class="s1">&#39;prob&#39;</span><span class="p">},</span> <span class="n">cls_name</span><span class="o">=</span><span class="s1">&#39;RandomFlip&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prob</span> <span class="o">=</span> <span class="n">prob</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
+        <span class="k">if</span> <span class="n">prob</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">prob</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">prob</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+        <span class="k">assert</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="s1">&#39;vertical&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to flip bounding boxes, masks, semantic segmentation</span>
+<span class="sd">        maps.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Flipped results, &#39;flip&#39;, &#39;flip_direction&#39; keys are added into</span>
+<span class="sd">                result dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="s1">&#39;flip&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="n">flip</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">prob</span> <span class="k">else</span> <span class="kc">False</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;flip&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flip</span>
+        <span class="k">if</span> <span class="s1">&#39;flip_direction&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;flip_direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span>
+        <span class="k">if</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;flip&#39;</span><span class="p">]:</span>
+            <span class="c1"># flip image</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imflip</span><span class="p">(</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">],</span> <span class="n">direction</span><span class="o">=</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;flip_direction&#39;</span><span class="p">])</span>
+
+            <span class="c1"># flip segs</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;seg_fields&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+                <span class="c1"># use copy() to make numpy stride positive</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imflip</span><span class="p">(</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">direction</span><span class="o">=</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;flip_direction&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;(prob=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prob</span><span class="si">}</span><span class="s1">)&#39;</span></div>
+
+
+<div class="viewcode-block" id="Pad"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.Pad">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">Pad</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Pad the image &amp; mask.</span>
+
+<span class="sd">    There are two padding modes: (1) pad to a fixed size and (2) pad to the</span>
+<span class="sd">    minimum size that is divisible by some number.</span>
+<span class="sd">    Added keys are &quot;pad_shape&quot;, &quot;pad_fixed_size&quot;, &quot;pad_size_divisor&quot;,</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        size (tuple, optional): Fixed padding size.</span>
+<span class="sd">        size_divisor (int, optional): The divisor of padded size.</span>
+<span class="sd">        pad_val (float, optional): Padding value. Default: 0.</span>
+<span class="sd">        seg_pad_val (float, optional): Padding value of segmentation map.</span>
+<span class="sd">            Default: 255.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">size_divisor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">pad_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">seg_pad_val</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size_divisor</span> <span class="o">=</span> <span class="n">size_divisor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pad_val</span> <span class="o">=</span> <span class="n">pad_val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seg_pad_val</span> <span class="o">=</span> <span class="n">seg_pad_val</span>
+        <span class="c1"># only one of size and size_divisor should be valid</span>
+        <span class="k">assert</span> <span class="n">size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">size_divisor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">assert</span> <span class="n">size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">size_divisor</span> <span class="ow">is</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_pad_img</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Pad images according to ``self.size``.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">padded_img</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">impad</span><span class="p">(</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">pad_val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_val</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_divisor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">padded_img</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">impad_to_multiple</span><span class="p">(</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_divisor</span><span class="p">,</span> <span class="n">pad_val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_val</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">padded_img</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;pad_shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">padded_img</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;pad_fixed_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;pad_size_divisor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_divisor</span>
+
+    <span class="k">def</span> <span class="nf">_pad_seg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Pad masks according to ``results[&#39;pad_shape&#39;]``.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;seg_fields&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">impad</span><span class="p">(</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;pad_shape&#39;</span><span class="p">][:</span><span class="mi">2</span><span class="p">],</span>
+                <span class="n">pad_val</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seg_pad_val</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to pad images, masks, semantic segmentation maps.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Updated result dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pad_img</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pad_seg</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;(size=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s1">, size_divisor=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">size_divisor</span><span class="si">}</span><span class="s1">, &#39;</span> \
+                    <span class="sa">f</span><span class="s1">&#39;pad_val=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pad_val</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+
+
+<div class="viewcode-block" id="Normalize"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.Normalize">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">Normalize</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Normalize the image.</span>
+
+<span class="sd">    Added key is &quot;img_norm_cfg&quot;.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mean (sequence): Mean values of 3 channels.</span>
+<span class="sd">        std (sequence): Std values of 3 channels.</span>
+<span class="sd">        to_rgb (bool): Whether to convert the image from BGR to RGB,</span>
+<span class="sd">            default is true.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">to_rgb</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">std</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_rgb</span> <span class="o">=</span> <span class="n">to_rgb</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to normalize images.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Normalized results, &#39;img_norm_cfg&#39; key is added into</span>
+<span class="sd">                result dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imnormalize</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="p">,</span>
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">to_rgb</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img_norm_cfg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="n">to_rgb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">to_rgb</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;(mean=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="si">}</span><span class="s1">, std=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="si">}</span><span class="s1">, to_rgb=&#39;</span> \
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">to_rgb</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+
+
+<div class="viewcode-block" id="Rerange"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.Rerange">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">Rerange</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Rerange the image pixel value.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        min_value (float or int): Minimum value of the reranged image.</span>
+<span class="sd">            Default: 0.</span>
+<span class="sd">        max_value (float or int): Maximum value of the reranged image.</span>
+<span class="sd">            Default: 255.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">max_value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">min_value</span> <span class="o">&lt;</span> <span class="n">max_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_value</span> <span class="o">=</span> <span class="n">min_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_value</span> <span class="o">=</span> <span class="n">max_value</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to rerange images.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Reranged results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span>
+        <span class="n">img_min_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="n">img_max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">img_min_value</span> <span class="o">&lt;</span> <span class="n">img_max_value</span>
+        <span class="c1"># rerange to [0, 1]</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="p">(</span><span class="n">img</span> <span class="o">-</span> <span class="n">img_min_value</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">img_max_value</span> <span class="o">-</span> <span class="n">img_min_value</span><span class="p">)</span>
+        <span class="c1"># rerange to [min_value, max_value]</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_value</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_value</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;(min_value=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_value</span><span class="si">}</span><span class="s1">, max_value=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_value</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+
+
+<div class="viewcode-block" id="CLAHE"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.CLAHE">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">CLAHE</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Use CLAHE method to process the image.</span>
+
+<span class="sd">    See `ZUIDERVELD,K. Contrast Limited Adaptive Histogram Equalization[J].</span>
+<span class="sd">    Graphics Gems, 1994:474-485.` for more information.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        clip_limit (float): Threshold for contrast limiting. Default: 40.0.</span>
+<span class="sd">        tile_grid_size (tuple[int]): Size of grid for histogram equalization.</span>
+<span class="sd">            Input image will be divided into equally sized rectangular tiles.</span>
+<span class="sd">            It defines the number of tiles in row and column. Default: (8, 8).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clip_limit</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">tile_grid_size</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">clip_limit</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clip_limit</span> <span class="o">=</span> <span class="n">clip_limit</span>
+        <span class="k">assert</span> <span class="n">is_tuple_of</span><span class="p">(</span><span class="n">tile_grid_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">tile_grid_size</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tile_grid_size</span> <span class="o">=</span> <span class="n">tile_grid_size</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to Use CLAHE method process images.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Processed results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">clahe</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">][:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clip_limit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tile_grid_size</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;(clip_limit=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">clip_limit</span><span class="si">}</span><span class="s1">, &#39;</span>\
+                    <span class="sa">f</span><span class="s1">&#39;tile_grid_size=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tile_grid_size</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+
+
+<div class="viewcode-block" id="RandomCrop"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.RandomCrop">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">RandomCrop</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Random crop the image &amp; seg.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        crop_size (tuple): Expected size after cropping, (h, w).</span>
+<span class="sd">        cat_max_ratio (float): The maximum ratio that single category could</span>
+<span class="sd">            occupy.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crop_size</span><span class="p">,</span> <span class="n">cat_max_ratio</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="mi">255</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">crop_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">crop_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crop_size</span> <span class="o">=</span> <span class="n">crop_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cat_max_ratio</span> <span class="o">=</span> <span class="n">cat_max_ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignore_index</span> <span class="o">=</span> <span class="n">ignore_index</span>
+
+<div class="viewcode-block" id="RandomCrop.get_crop_bbox"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.RandomCrop.get_crop_bbox">[docs]</a>    <span class="k">def</span> <span class="nf">get_crop_bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Randomly get a crop bounding box.&quot;&quot;&quot;</span>
+        <span class="n">margin_h</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">margin_w</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">offset_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">margin_h</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">offset_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">margin_w</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">crop_y1</span><span class="p">,</span> <span class="n">crop_y2</span> <span class="o">=</span> <span class="n">offset_h</span><span class="p">,</span> <span class="n">offset_h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">crop_x1</span><span class="p">,</span> <span class="n">crop_x2</span> <span class="o">=</span> <span class="n">offset_w</span><span class="p">,</span> <span class="n">offset_w</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">crop_y1</span><span class="p">,</span> <span class="n">crop_y2</span><span class="p">,</span> <span class="n">crop_x1</span><span class="p">,</span> <span class="n">crop_x2</span></div>
+
+<div class="viewcode-block" id="RandomCrop.crop"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.RandomCrop.crop">[docs]</a>    <span class="k">def</span> <span class="nf">crop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">crop_bbox</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Crop from ``img``&quot;&quot;&quot;</span>
+        <span class="n">crop_y1</span><span class="p">,</span> <span class="n">crop_y2</span><span class="p">,</span> <span class="n">crop_x1</span><span class="p">,</span> <span class="n">crop_x2</span> <span class="o">=</span> <span class="n">crop_bbox</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">crop_y1</span><span class="p">:</span><span class="n">crop_y2</span><span class="p">,</span> <span class="n">crop_x1</span><span class="p">:</span><span class="n">crop_x2</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">img</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to randomly crop images, semantic segmentation maps.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Randomly cropped results, &#39;img_shape&#39; key in result dict is</span>
+<span class="sd">                updated according to crop size.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span>
+        <span class="n">crop_bbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_crop_bbox</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_max_ratio</span> <span class="o">&lt;</span> <span class="mf">1.</span><span class="p">:</span>
+            <span class="c1"># Repeat 10 times</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+                <span class="n">seg_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;gt_semantic_seg&#39;</span><span class="p">],</span> <span class="n">crop_bbox</span><span class="p">)</span>
+                <span class="n">labels</span><span class="p">,</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">seg_temp</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">cnt</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">labels</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_index</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+                        <span class="n">cnt</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_max_ratio</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">crop_bbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_crop_bbox</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="c1"># crop the image</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">crop_bbox</span><span class="p">)</span>
+        <span class="n">img_shape</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img_shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img_shape</span>
+
+        <span class="c1"># crop semantic seg</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;seg_fields&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">crop_bbox</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;(crop_size=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">crop_size</span><span class="si">}</span><span class="s1">)&#39;</span></div>
+
+
+<div class="viewcode-block" id="RandomRotate"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.RandomRotate">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">RandomRotate</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Rotate the image &amp; seg.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        prob (float): The rotation probability.</span>
+<span class="sd">        degree (float, tuple[float]): Range of degrees to select from. If</span>
+<span class="sd">            degree is a number instead of tuple like (min, max),</span>
+<span class="sd">            the range of degree will be (``-degree``, ``+degree``)</span>
+<span class="sd">        pad_val (float, optional): Padding value of image. Default: 0.</span>
+<span class="sd">        seg_pad_val (float, optional): Padding value of segmentation map.</span>
+<span class="sd">            Default: 255.</span>
+<span class="sd">        center (tuple[float], optional): Center point (w, h) of the rotation in</span>
+<span class="sd">            the source image. If not specified, the center of the image will be</span>
+<span class="sd">            used. Default: None.</span>
+<span class="sd">        auto_bound (bool): Whether to adjust the image size to cover the whole</span>
+<span class="sd">            rotated image. Default: False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">prob</span><span class="p">,</span>
+                 <span class="n">degree</span><span class="p">,</span>
+                 <span class="n">pad_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">seg_pad_val</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+                 <span class="n">center</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">auto_bound</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prob</span> <span class="o">=</span> <span class="n">prob</span>
+        <span class="k">assert</span> <span class="n">prob</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">prob</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+            <span class="k">assert</span> <span class="n">degree</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;degree </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1"> should be positive&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">degree</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">=</span> <span class="n">degree</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;degree </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="si">}</span><span class="s1"> should be a &#39;</span> \
+                                      <span class="sa">f</span><span class="s1">&#39;tuple of (min, max)&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pal_val</span> <span class="o">=</span> <span class="n">pad_val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seg_pad_val</span> <span class="o">=</span> <span class="n">seg_pad_val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">center</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auto_bound</span> <span class="o">=</span> <span class="n">auto_bound</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to rotate image, semantic segmentation maps.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Rotated results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">rotate</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">prob</span> <span class="k">else</span> <span class="kc">False</span>
+        <span class="n">degree</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">rotate</span><span class="p">:</span>
+            <span class="c1"># rotate image</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imrotate</span><span class="p">(</span>
+                <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">],</span>
+                <span class="n">angle</span><span class="o">=</span><span class="n">degree</span><span class="p">,</span>
+                <span class="n">border_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pal_val</span><span class="p">,</span>
+                <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span>
+                <span class="n">auto_bound</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auto_bound</span><span class="p">)</span>
+
+            <span class="c1"># rotate segs</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;seg_fields&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imrotate</span><span class="p">(</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
+                    <span class="n">angle</span><span class="o">=</span><span class="n">degree</span><span class="p">,</span>
+                    <span class="n">border_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seg_pad_val</span><span class="p">,</span>
+                    <span class="n">center</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">,</span>
+                    <span class="n">auto_bound</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auto_bound</span><span class="p">,</span>
+                    <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;(prob=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prob</span><span class="si">}</span><span class="s1">, &#39;</span> \
+                    <span class="sa">f</span><span class="s1">&#39;degree=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span><span class="si">}</span><span class="s1">, &#39;</span> \
+                    <span class="sa">f</span><span class="s1">&#39;pad_val=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pal_val</span><span class="si">}</span><span class="s1">, &#39;</span> \
+                    <span class="sa">f</span><span class="s1">&#39;seg_pad_val=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">seg_pad_val</span><span class="si">}</span><span class="s1">, &#39;</span> \
+                    <span class="sa">f</span><span class="s1">&#39;center=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="si">}</span><span class="s1">, &#39;</span> \
+                    <span class="sa">f</span><span class="s1">&#39;auto_bound=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">auto_bound</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+
+
+<div class="viewcode-block" id="RGB2Gray"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.RGB2Gray">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">RGB2Gray</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert RGB image to grayscale image.</span>
+
+<span class="sd">    This transform calculate the weighted mean of input image channels with</span>
+<span class="sd">    ``weights`` and then expand the channels to ``out_channels``. When</span>
+<span class="sd">    ``out_channels`` is None, the number of output channels is the same as</span>
+<span class="sd">    input channels.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        out_channels (int): Expected number of output channels after</span>
+<span class="sd">            transforming. Default: None.</span>
+<span class="sd">        weights (tuple[float]): The weights to calculate the weighted mean.</span>
+<span class="sd">            Default: (0.299, 0.587, 0.114).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="mf">0.299</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">,</span> <span class="mf">0.114</span><span class="p">)):</span>
+        <span class="k">assert</span> <span class="n">out_channels</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">out_channels</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_channels</span> <span class="o">=</span> <span class="n">out_channels</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">weights</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to convert RGB image to grayscale image.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Result dict with grayscale image.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+        <span class="k">assert</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="p">(</span><span class="n">img</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_channels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_channels</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span>
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img_shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;(out_channels=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_channels</span><span class="si">}</span><span class="s1">, &#39;</span> \
+                    <span class="sa">f</span><span class="s1">&#39;weights=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+
+
+<div class="viewcode-block" id="AdjustGamma"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.AdjustGamma">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">AdjustGamma</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Using gamma correction to process the image.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gamma (float or int): Gamma value used in gamma correction.</span>
+<span class="sd">            Default: 1.0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">gamma</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span>
+        <span class="n">inv_gamma</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">gamma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">i</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">)</span><span class="o">**</span><span class="n">inv_gamma</span> <span class="o">*</span> <span class="mi">255</span>
+                               <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">)])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to process the image with gamma correction.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Processed results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">lut_transform</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;(gamma=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="si">}</span><span class="s1">)&#39;</span></div>
+
+
+<div class="viewcode-block" id="SegRescale"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.SegRescale">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">SegRescale</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Rescale semantic segmentation maps.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        scale_factor (float): The scale factor of the final output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to scale the semantic segmentation map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Result dict with semantic segmentation map scaled.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;seg_fields&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">imrescale</span><span class="p">(</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;(scale_factor=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="si">}</span><span class="s1">)&#39;</span></div>
+
+
+<div class="viewcode-block" id="PhotoMetricDistortion"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.PhotoMetricDistortion">[docs]</a><span class="nd">@PIPELINES</span><span class="o">.</span><span class="n">register_module</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">PhotoMetricDistortion</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Apply photometric distortion to image sequentially, every transformation</span>
+<span class="sd">    is applied with a probability of 0.5. The position of random contrast is in</span>
+<span class="sd">    second or second to last.</span>
+
+<span class="sd">    1. random brightness</span>
+<span class="sd">    2. random contrast (mode 0)</span>
+<span class="sd">    3. convert color from BGR to HSV</span>
+<span class="sd">    4. random saturation</span>
+<span class="sd">    5. random hue</span>
+<span class="sd">    6. convert color from HSV to BGR</span>
+<span class="sd">    7. random contrast (mode 1)</span>
+<span class="sd">    8. randomly swap channels</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        brightness_delta (int): delta of brightness.</span>
+<span class="sd">        contrast_range (tuple): range of contrast.</span>
+<span class="sd">        saturation_range (tuple): range of saturation.</span>
+<span class="sd">        hue_delta (int): delta of hue.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">brightness_delta</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+                 <span class="n">contrast_range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
+                 <span class="n">saturation_range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
+                 <span class="n">hue_delta</span><span class="o">=</span><span class="mi">18</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brightness_delta</span> <span class="o">=</span> <span class="n">brightness_delta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contrast_lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contrast_upper</span> <span class="o">=</span> <span class="n">contrast_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saturation_lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">saturation_upper</span> <span class="o">=</span> <span class="n">saturation_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hue_delta</span> <span class="o">=</span> <span class="n">hue_delta</span>
+
+<div class="viewcode-block" id="PhotoMetricDistortion.convert"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.PhotoMetricDistortion.convert">[docs]</a>    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Multiple with alpha and add beat with clip.&quot;&quot;&quot;</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">beta</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PhotoMetricDistortion.brightness"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.PhotoMetricDistortion.brightness">[docs]</a>    <span class="k">def</span> <span class="nf">brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Brightness distortion.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span>
+                <span class="n">img</span><span class="p">,</span>
+                <span class="n">beta</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">brightness_delta</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">brightness_delta</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">img</span></div>
+
+<div class="viewcode-block" id="PhotoMetricDistortion.contrast"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.PhotoMetricDistortion.contrast">[docs]</a>    <span class="k">def</span> <span class="nf">contrast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Contrast distortion.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span>
+                <span class="n">img</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contrast_lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contrast_upper</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">img</span></div>
+
+<div class="viewcode-block" id="PhotoMetricDistortion.saturation"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.PhotoMetricDistortion.saturation">[docs]</a>    <span class="k">def</span> <span class="nf">saturation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saturation distortion.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">bgr2hsv</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+            <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span>
+                <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">saturation_lower</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">saturation_upper</span><span class="p">))</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">hsv2bgr</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span></div>
+
+<div class="viewcode-block" id="PhotoMetricDistortion.hue"><a class="viewcode-back" href="../../../../api.html#mmseg.datasets.pipelines.PhotoMetricDistortion.hue">[docs]</a>    <span class="k">def</span> <span class="nf">hue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hue distortion.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">bgr2hsv</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+            <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span>
+                <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">+</span>
+                      <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">hue_delta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hue_delta</span><span class="p">))</span> <span class="o">%</span> <span class="mi">180</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">mmcv</span><span class="o">.</span><span class="n">hsv2bgr</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call function to perform photometric distortion on images.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            results (dict): Result dict from loading pipeline.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Result dict with images distorted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span>
+        <span class="c1"># random brightness</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">brightness</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="c1"># mode == 0 --&gt; do random contrast first</span>
+        <span class="c1"># mode == 1 --&gt; do random contrast last</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contrast</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="c1"># random saturation</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">saturation</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="c1"># random hue</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hue</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="c1"># random contrast</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contrast</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="n">results</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span>
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(brightness_delta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">brightness_delta</span><span class="si">}</span><span class="s1">, &#39;</span>
+                     <span class="sa">f</span><span class="s1">&#39;contrast_range=(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">contrast_lower</span><span class="si">}</span><span class="s1">, &#39;</span>
+                     <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">contrast_upper</span><span class="si">}</span><span class="s1">), &#39;</span>
+                     <span class="sa">f</span><span class="s1">&#39;saturation_range=(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">saturation_lower</span><span class="si">}</span><span class="s1">, &#39;</span>
+                     <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">saturation_upper</span><span class="si">}</span><span class="s1">), &#39;</span>
+                     <span class="sa">f</span><span class="s1">&#39;hue_delta=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">hue_delta</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+</pre></div>
+
+              </article>
+              
+            </div>
+            <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../../../"
+    src="../../../../_static/documentation_options.js"></script>
+  <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+  <script src="../../../../_static/jquery.js"></script>
+  <script src="../../../../_static/underscore.js"></script>
+  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/clipboard.min.js"></script>
+  <script src="../../../../_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

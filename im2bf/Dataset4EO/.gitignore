@@ -1,0 +1,8 @@
+/Dataset4EO.egg-info/
+/build/
+/dist/
+*.pyc
+*.tar
+*.gz
+*.zip
+*.tar.gz

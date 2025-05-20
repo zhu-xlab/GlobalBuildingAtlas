@@ -1,0 +1,698 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Benchmark and Model Zoo &mdash; RSI-Segmentation 0.0.1 documentation</title>
+  
+
+  <link rel="shortcut icon" href="_static/images/favicon.ico" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/readthedocs.css" type="text/css" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Model Zoo Statistics" href="modelzoo_statistics.html" />
+  <link rel="prev" title="Prepare datasets" href="dataset_prepare.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest"
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+          <li >
+            <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
+              <a
+                class="resource-option with-down-arrow">
+                EarthNets
+              </a>
+              <div class="resources-dropdown-menu">
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/Dataset4EO" target="_blank">
+                  <span class="dropdown-title">Dataset4EO </span>
+                  <p>Re-organize remote sensing datasets.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Classification" target="_blank">
+                  <span class="dropdown-title">RSI-Classification </span>
+                  <p>Image/scene classification for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">
+                  <span class="dropdown-title">RSI-Segmentation </span>
+                  <p>Pixel-wise semantic segmentation for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-Detection" target="_blank">
+                  <span class="dropdown-title">RSI-Detection </span>
+                  <p>Object detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-ChangeDetection" target="_blank">
+                  <span class="dropdown-title">RSI-ChangeDetection </span>
+                  <p>Change detection for RS images.</p>
+                </a>
+                <a class="doc-dropdown-option nav-dropdown-item"
+                  href="https://github.com/EarthNets/RSI-SelfSupervised" target="_blank">
+                  <span class="dropdown-title">RSI-SelfSupervised </span>
+                  <p>Self-supervised learning for RS images.</p>
+                </a>
+              </div>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html#installation">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dataset Preparation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dataset_prepare.html">Prepare datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Model Zoo</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmark and Model Zoo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelzoo_statistics.html">Model Zoo Statistics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quick Run</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="train.html">Train a model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Inference with pretrained models</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/config.html">Tutorial 1: Learn about Configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_datasets.html">Tutorial 2: Customize Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/data_pipeline.html">Tutorial 3: Customize Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_models.html">Tutorial 4: Customize Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/training_tricks.html">Tutorial 5: Training Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/customize_runtime.html">Tutorial 6: Customize Runtime Settings</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Useful Tools and Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html">Useful tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#miscellaneous">Miscellaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#model-serving">Model Serving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_tools.html#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ)</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Benchmark and Model Zoo</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="_sources/model_zoo.md.txt" rel="nofollow"><img src="_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="benchmark-and-model-zoo">
+<h1>Benchmark and Model Zoo<a class="headerlink" href="#benchmark-and-model-zoo" title="Permalink to this heading">¶</a></h1>
+<section id="common-settings">
+<h2>Common settings<a class="headerlink" href="#common-settings" title="Permalink to this heading">¶</a></h2>
+<ul>
+<li><p>We use distributed training with 4 GPUs by default.</p></li>
+<li><p>All pytorch-style pretrained backbones on ImageNet are train by ourselves, with the same procedure in the <a class="reference external" href="https://arxiv.org/pdf/1812.01187.pdf">paper</a>.
+Our ResNet style backbone are based on ResNetV1c variant, where the 7x7 conv in the input stem is replaced with three 3x3 convs.</p></li>
+<li><p>For the consistency across different hardwares, we report the GPU memory as the maximum value of <code class="docutils literal notranslate"><span class="pre">torch.cuda.max_memory_allocated()</span></code> for all 4 GPUs with <code class="docutils literal notranslate"><span class="pre">torch.backends.cudnn.benchmark=False</span></code>.
+Note that this value is usually less than what <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> shows.</p></li>
+<li><p>We report the inference time as the total time of network forwarding and post-processing, excluding the data loading time.
+Results are obtained with the script <code class="docutils literal notranslate"><span class="pre">tools/benchmark.py</span></code> which computes the average time on 200 images with <code class="docutils literal notranslate"><span class="pre">torch.backends.cudnn.benchmark=False</span></code>.</p></li>
+<li><p>There are two inference modes in this framework.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">slide</span></code> mode: The <code class="docutils literal notranslate"><span class="pre">test_cfg</span></code> will be like <code class="docutils literal notranslate"><span class="pre">dict(mode='slide',</span> <span class="pre">crop_size=(769,</span> <span class="pre">769),</span> <span class="pre">stride=(513,</span> <span class="pre">513))</span></code>.</p>
+<p>In this mode, multiple patches will be cropped from input image, passed into network individually.
+The crop size and stride between patches are specified by <code class="docutils literal notranslate"><span class="pre">crop_size</span></code> and <code class="docutils literal notranslate"><span class="pre">stride</span></code>.
+The overlapping area will be merged by average</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">whole</span></code> mode: The <code class="docutils literal notranslate"><span class="pre">test_cfg</span></code> will be like <code class="docutils literal notranslate"><span class="pre">dict(mode='whole')</span></code>.</p>
+<p>In this mode, the whole imaged will be passed into network directly.</p>
+<p>By default, we use <code class="docutils literal notranslate"><span class="pre">slide</span></code> inference for 769x769 trained model, <code class="docutils literal notranslate"><span class="pre">whole</span></code> inference for the rest.</p>
+</li>
+</ul>
+</li>
+<li><p>For input size of 8x+1 (e.g. 769), <code class="docutils literal notranslate"><span class="pre">align_corner=True</span></code> is adopted as a traditional practice.
+Otherwise, for input size of 8x (e.g. 512, 1024), <code class="docutils literal notranslate"><span class="pre">align_corner=False</span></code> is adopted.</p></li>
+</ul>
+</section>
+<section id="baselines">
+<h2>Baselines<a class="headerlink" href="#baselines" title="Permalink to this heading">¶</a></h2>
+<section id="fcn">
+<h3>FCN<a class="headerlink" href="#fcn" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/fcn">FCN</a> for details.</p>
+</section>
+<section id="pspnet">
+<h3>PSPNet<a class="headerlink" href="#pspnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/pspnet">PSPNet</a> for details.</p>
+</section>
+<section id="deeplabv3">
+<h3>DeepLabV3<a class="headerlink" href="#deeplabv3" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/deeplabv3">DeepLabV3</a> for details.</p>
+</section>
+<section id="psanet">
+<h3>PSANet<a class="headerlink" href="#psanet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/psanet">PSANet</a> for details.</p>
+</section>
+<section id="id1">
+<h3>DeepLabV3+<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/deeplabv3plus">DeepLabV3+</a> for details.</p>
+</section>
+<section id="upernet">
+<h3>UPerNet<a class="headerlink" href="#upernet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/upernet">UPerNet</a> for details.</p>
+</section>
+<section id="nonlocal-net">
+<h3>NonLocal Net<a class="headerlink" href="#nonlocal-net" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/nonlocal_net">NonLocal Net</a> for details.</p>
+</section>
+<section id="encnet">
+<h3>EncNet<a class="headerlink" href="#encnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/encnet">EncNet</a> for details.</p>
+</section>
+<section id="ccnet">
+<h3>CCNet<a class="headerlink" href="#ccnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/ccnet">CCNet</a> for details.</p>
+</section>
+<section id="danet">
+<h3>DANet<a class="headerlink" href="#danet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/danet">DANet</a> for details.</p>
+</section>
+<section id="apcnet">
+<h3>APCNet<a class="headerlink" href="#apcnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/apcnet">APCNet</a> for details.</p>
+</section>
+<section id="hrnet">
+<h3>HRNet<a class="headerlink" href="#hrnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/hrnet">HRNet</a> for details.</p>
+</section>
+<section id="gcnet">
+<h3>GCNet<a class="headerlink" href="#gcnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/gcnet">GCNet</a> for details.</p>
+</section>
+<section id="dmnet">
+<h3>DMNet<a class="headerlink" href="#dmnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/dmnet">DMNet</a> for details.</p>
+</section>
+<section id="ann">
+<h3>ANN<a class="headerlink" href="#ann" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/ann">ANN</a> for details.</p>
+</section>
+<section id="ocrnet">
+<h3>OCRNet<a class="headerlink" href="#ocrnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/ocrnet">OCRNet</a> for details.</p>
+</section>
+<section id="fast-scnn">
+<h3>Fast-SCNN<a class="headerlink" href="#fast-scnn" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/fastscnn">Fast-SCNN</a> for details.</p>
+</section>
+<section id="resnest">
+<h3>ResNeSt<a class="headerlink" href="#resnest" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/resnest">ResNeSt</a> for details.</p>
+</section>
+<section id="semantic-fpn">
+<h3>Semantic FPN<a class="headerlink" href="#semantic-fpn" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/sem_fpn">Semantic FPN</a> for details.</p>
+</section>
+<section id="pointrend">
+<h3>PointRend<a class="headerlink" href="#pointrend" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/point_rend">PointRend</a> for details.</p>
+</section>
+<section id="mobilenetv2">
+<h3>MobileNetV2<a class="headerlink" href="#mobilenetv2" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/mobilenet_v2">MobileNetV2</a> for details.</p>
+</section>
+<section id="mobilenetv3">
+<h3>MobileNetV3<a class="headerlink" href="#mobilenetv3" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/mobilenet_v3">MobileNetV3</a> for details.</p>
+</section>
+<section id="emanet">
+<h3>EMANet<a class="headerlink" href="#emanet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/emanet">EMANet</a> for details.</p>
+</section>
+<section id="dnlnet">
+<h3>DNLNet<a class="headerlink" href="#dnlnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/dnlnet">DNLNet</a> for details.</p>
+</section>
+<section id="cgnet">
+<h3>CGNet<a class="headerlink" href="#cgnet" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/cgnet">CGNet</a> for details.</p>
+</section>
+<section id="mixed-precision-fp16-training">
+<h3>Mixed Precision (FP16) Training<a class="headerlink" href="#mixed-precision-fp16-training" title="Permalink to this heading">¶</a></h3>
+<p>Please refer <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/bisenetv2/bisenetv2_fcn_fp16_4x4_1024x1024_160k_cityscapes.py">Mixed Precision (FP16) Training on BiSeNetV2</a> for details.</p>
+</section>
+<section id="u-net">
+<h3>U-Net<a class="headerlink" href="#u-net" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/unet/README.md">U-Net</a> for details.</p>
+</section>
+<section id="vit">
+<h3>ViT<a class="headerlink" href="#vit" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/vit/README.md">ViT</a> for details.</p>
+</section>
+<section id="swin">
+<h3>Swin<a class="headerlink" href="#swin" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/swin/README.md">Swin</a> for details.</p>
+</section>
+<section id="setr">
+<h3>SETR<a class="headerlink" href="#setr" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to <a class="reference external" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/setr/README.md">SETR</a> for details.</p>
+</section>
+</section>
+<section id="speed-benchmark">
+<h2>Speed benchmark<a class="headerlink" href="#speed-benchmark" title="Permalink to this heading">¶</a></h2>
+<section id="hardware">
+<h3>Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>8 NVIDIA Tesla V100 (32G) GPUs</p></li>
+<li><p>Intel(R) Xeon(R) Gold 6148 CPU &#64; 2.40GHz</p></li>
+</ul>
+</section>
+<section id="software-environment">
+<h3>Software environment<a class="headerlink" href="#software-environment" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Python 3.7</p></li>
+<li><p>PyTorch 1.5</p></li>
+<li><p>CUDA 10.1</p></li>
+<li><p>CUDNN 7.6.03</p></li>
+<li><p>NCCL 2.4.08</p></li>
+</ul>
+</section>
+<section id="training-speed">
+<h3>Training speed<a class="headerlink" href="#training-speed" title="Permalink to this heading">¶</a></h3>
+<p>For fair comparison, we benchmark all implementations with ResNet-101V1c.
+The input size is fixed to 1024x512 with batch size 2.</p>
+<p>The training speed is reported as followed, in terms of second per iter (s/iter). The lower, the better.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Implementation</th>
+<th>PSPNet (s/iter)</th>
+<th>DeepLabV3+ (s/iter)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/open-mmlab/mmsegmentation">MMSegmentation</a></td>
+<td><strong>0.83</strong></td>
+<td><strong>0.85</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/LikeLy-Journey/SegmenTron">SegmenTron</a></td>
+<td>0.84</td>
+<td>0.85</td>
+</tr>
+<tr>
+<td><a href="https://github.com/CSAILVision/semantic-segmentation-pytorch">CASILVision</a></td>
+<td>1.15</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Media-Smart/vedaseg">vedaseg</a></td>
+<td>0.95</td>
+<td>1.25</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The output stride of DeepLabV3+ is 8.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="modelzoo_statistics.html" class="btn btn-neutral float-right" title="Model Zoo Statistics" accesskey="n"
+      rel="next">Next <img src="_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="dataset_prepare.html" class="btn btn-neutral" title="Prepare datasets" accesskey="p"
+      rel="prev"><img src="_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2022, EarthNets.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Benchmark and Model Zoo</a><ul>
+<li><a class="reference internal" href="#common-settings">Common settings</a></li>
+<li><a class="reference internal" href="#baselines">Baselines</a><ul>
+<li><a class="reference internal" href="#fcn">FCN</a></li>
+<li><a class="reference internal" href="#pspnet">PSPNet</a></li>
+<li><a class="reference internal" href="#deeplabv3">DeepLabV3</a></li>
+<li><a class="reference internal" href="#psanet">PSANet</a></li>
+<li><a class="reference internal" href="#id1">DeepLabV3+</a></li>
+<li><a class="reference internal" href="#upernet">UPerNet</a></li>
+<li><a class="reference internal" href="#nonlocal-net">NonLocal Net</a></li>
+<li><a class="reference internal" href="#encnet">EncNet</a></li>
+<li><a class="reference internal" href="#ccnet">CCNet</a></li>
+<li><a class="reference internal" href="#danet">DANet</a></li>
+<li><a class="reference internal" href="#apcnet">APCNet</a></li>
+<li><a class="reference internal" href="#hrnet">HRNet</a></li>
+<li><a class="reference internal" href="#gcnet">GCNet</a></li>
+<li><a class="reference internal" href="#dmnet">DMNet</a></li>
+<li><a class="reference internal" href="#ann">ANN</a></li>
+<li><a class="reference internal" href="#ocrnet">OCRNet</a></li>
+<li><a class="reference internal" href="#fast-scnn">Fast-SCNN</a></li>
+<li><a class="reference internal" href="#resnest">ResNeSt</a></li>
+<li><a class="reference internal" href="#semantic-fpn">Semantic FPN</a></li>
+<li><a class="reference internal" href="#pointrend">PointRend</a></li>
+<li><a class="reference internal" href="#mobilenetv2">MobileNetV2</a></li>
+<li><a class="reference internal" href="#mobilenetv3">MobileNetV3</a></li>
+<li><a class="reference internal" href="#emanet">EMANet</a></li>
+<li><a class="reference internal" href="#dnlnet">DNLNet</a></li>
+<li><a class="reference internal" href="#cgnet">CGNet</a></li>
+<li><a class="reference internal" href="#mixed-precision-fp16-training">Mixed Precision (FP16) Training</a></li>
+<li><a class="reference internal" href="#u-net">U-Net</a></li>
+<li><a class="reference internal" href="#vit">ViT</a></li>
+<li><a class="reference internal" href="#swin">Swin</a></li>
+<li><a class="reference internal" href="#setr">SETR</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#speed-benchmark">Speed benchmark</a><ul>
+<li><a class="reference internal" href="#hardware">Hardware</a></li>
+<li><a class="reference internal" href="#software-environment">Software environment</a></li>
+<li><a class="reference internal" href="#training-speed">Training speed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="./"
+    src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="_static/js/vendor/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://rsi-segmentation.readthedocs.io/en/latest" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation/blob/main/demo/rsi_segmentation_tutorial.ipynb" target="_blank">Tutorial</a>
+          </li>
+          <li>
+            <a href="https://github.com/EarthNets/RSI-Segmentation" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="" target="_blank">About</a>
+          </li>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>
