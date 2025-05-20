@@ -5,4 +5,4 @@ In this repo, we provide the codes for training the regularization networks and 
 
 ## Installation
 Follow the bellow steps to reproduce the 
-1. A .yaml file is provided for creating the conda environment.
+1. A .yaml file is provided for creating the conda environment. Run 
