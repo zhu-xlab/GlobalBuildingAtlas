@@ -1,4 +1,4 @@
-# GlobalBuilding3D
+# GlobalBuildingAtlas
 
 ## Introduction
 In this project, we provide the level of detail 1 (LoD1) data of buildings across the globe.
@@ -22,8 +22,7 @@ The full data can be downloaded from [mediaTUM]()
 
 ## Development Code
 ### Global Building Polygon Generation using Satellite Data (Sec. 4.3)
-1. For codes related to building map extraction, i.e., generating building masks from satellite images (Sec. 4.3.2), please refer to `TODO`.
-2. For codes related to building map regularization, polygonization, and simplification using the GCP pipeline (Sec. 4.3.3 and Sec. 4.3.4). plesae refer to `./polygonization`
+For codes related to building map extraction, regularization, polygonization, and simplification, i.e., generating building polygons from satellite images (Sec. 4.3.2, Sec. 4.3.3, and Sec. 4.3.4), please refer to `./im2bf`.
 
 ### Global Building Height Estimation (Sec. 4.4)
 1. For codes related to monocular height estimation using HTC-DC Net (Sec. 4.4.2), please refer to `./im2bh`.
