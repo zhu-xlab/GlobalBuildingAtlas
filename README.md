@@ -19,3 +19,19 @@ A web interface for viewing the data is available at [Web Viewer](http://138.246
 
 ### Full Data Download
 The full data can be downloaded from [mediaTUM]()
+
+## Development Code
+### Global Building Polygon Generation using Satellite Data (Sec. 4.3)
+1. For codes related to building map extraction, i.e., generating building masks from satellite images (Sec. 4.3.2), please refer to `TODO`.
+2. For codes related to building map regularization, polygonization, and simplification using the GCP pipeline (Sec. 4.3.3 and Sec. 4.3.4). plesae refer to `./polygonization`
+
+### Global Building Height Estimation (Sec. 4.4)
+1. For codes related to monocular height estimation using HTC-DC Net (Sec. 4.4.2), please refer to `./im2bh`.
+2. For codes related to the global inference and uncertainty quantification (Sec. 4.4.3), please refer to `./infer_height`
+
+### Global LoD1 Building Model Generation (Sec. 4.5)
+1. For codes related to quality-guided building polygon fusion (Sec. 4.5.1), please refer to `./fuse_bf`.
+2. For codes related to LoD1 building model generation (Sec. 4.5.2), please refer to `./make_lod1`.
+
+## Visualization Code
+For codes to reproduce the plots in the manuscript, please refer to `./make_plots`.
