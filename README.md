@@ -12,13 +12,13 @@ A overview of the dataset is illustrated bellow:
 ### Web Feature Service (WFS)
 A WFS is provided so that one can access the data using other websites or GIS softwares such as QGIS and ArcGIS.
 
-Url: http://138.246.224.194:8088/geoserver/ows
+Url: http://tubvsig-so2sat-vm1.srv.mwn.de:8088/geoserver/ows
 
 ### Web Viewer
-A web interface for viewing the data is available at [Web Viewer](http://138.246.224.194/)
+A web interface for viewing the data is available at [Web Viewer](http://tubvsig-so2sat-vm1.srv.mwn.de/)
 
 ### Full Data Download
-The full data can be downloaded from [mediaTUM]()
+The full data can be downloaded from [mediaTUM](https://mediatum.ub.tum.de/178230)
 
 ## Development Code
 ### Global Building Polygon Generation using Satellite Data (Sec. 4.3)
