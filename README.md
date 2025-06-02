@@ -12,10 +12,10 @@ A overview of the dataset is illustrated bellow:
 ### Web Feature Service (WFS)
 A WFS is provided so that one can access the data using other websites or GIS softwares such as QGIS and ArcGIS.
 
-Url: http://tubvsig-so2sat-vm1.srv.mwn.de:8088/geoserver/ows
+Url: to be updated
 
 ### Web Viewer
-A web interface for viewing the data is available at [Web Viewer](http://tubvsig-so2sat-vm1.srv.mwn.de/)
+A web interface for viewing the data is available at: to be updated soon [Web Viewer]
 
 ### Full Data Download
 The full data can be downloaded from [mediaTUM](https://mediatum.ub.tum.de/178230)
