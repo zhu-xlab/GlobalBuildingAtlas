@@ -34,3 +34,17 @@ For codes related to building map extraction, regularization, polygonization, an
 
 ## Visualization Code
 For codes to reproduce the plots in the manuscript, please refer to `./make_plots`.
+
+## How to cite
+If you find this dataset helpful in your work, please cite the following paper.
+```
+@misc{zhu2025globalbuildingatlasopenglobalcomplete,
+      title={GlobalBuildingAtlas: An Open Global and Complete Dataset of Building Polygons, Heights and LoD1 3D Models}, 
+      author={Xiao Xiang Zhu and Sining Chen and Fahong Zhang and Yilei Shi and Yuanyuan Wang},
+      year={2025},
+      eprint={2506.04106},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2506.04106}, 
+}
+```
