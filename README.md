@@ -15,7 +15,7 @@ A WFS is provided so that one can access the data using other websites or GIS so
 Url: `https://tubvsig-so2sat-vm1.srv.mwn.de/geoserver/ows?` (Temporarily closed due to overwhelming number of visits)
 
 ### Web Viewer
-A web interface for viewing the data is available at: [website](https://tubvsig-so2sat-vm1.srv.mwn.de) (Temporarily closed due to overwhelming number of visits)
+A web interface for viewing the data is available at: [website](https://tubvsig-so2sat-vm1.srv.mwn.de) (Currently only a handful of cities are available.)
 
 ### Full Data Download
 The full data can be downloaded from [mediaTUM](https://mediatum.ub.tum.de/178230) (Open soon. Currently under review)
