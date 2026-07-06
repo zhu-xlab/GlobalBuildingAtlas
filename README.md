@@ -42,7 +42,7 @@ All building polygons are recorded in **EPSG:3857**. Some files in `GBA.ODbLPoly
 ### Web Viewer
 A web interface for viewing the data is available at: [website](https://tubvsig-so2sat-vm1.srv.mwn.de).
 
-Note: Over the past few days, our web viewer has received nearly 280,000 access requests. Due to this unusually high traffic, some data may not load completely, which may result in a significant portion of buildings not being displayed.
+Note: This webviewer is intended for interactive visualization only. Please do not use the WFS service for feature streaming, automated querying, or bulk data extraction. For data access, please use the following dataset release.
 
 ### Full Data Download
 ⚠️ By downloading the data, you agree to the [Terms of Use](https://tubvsig-so2sat-vm1.srv.mwn.de/terms_of_use.html) and acknowledge the [License Notice](#license-notice).
