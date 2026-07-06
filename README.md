@@ -39,11 +39,6 @@ You can follow the README instructions under this [repository](#how-to-use-the-d
 All building polygons are recorded in **EPSG:3857**. Some files in `GBA.ODbLPolygon` on [HuggingFace](https://huggingface.co/datasets/zhu-xlab/GBA.ODbLPolygon) may appear in EPSG:4326 — please treat them as EPSG:3857.
 
 ## Access to the Data
-### Web Feature Service (WFS)
-A WFS is provided so that one can access the data using other websites or GIS softwares such as QGIS and ArcGIS.
-
-Url: `https://tubvsig-so2sat-vm1.srv.mwn.de/geoserver/ows?`
-
 ### Web Viewer
 A web interface for viewing the data is available at: [website](https://tubvsig-so2sat-vm1.srv.mwn.de).
 
